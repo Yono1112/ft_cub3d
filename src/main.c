@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 	i = argc;
 	argc++;
 	argc = i;
-	check_mapfile(argv);
+	check_error((const int)argc, (const char**)argv);
 	printf("%s\n",argv[1]);
 	return (0);
 }
