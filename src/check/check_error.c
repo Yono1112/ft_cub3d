@@ -27,7 +27,7 @@ static void	free_map(char **map)
 	free(map);
 }
 
-char	**get_mapfile(int fd)
+static char	**get_mapfile(int fd)
 {
 	int	size;
 	char	**map;
@@ -60,7 +60,7 @@ void	check_error(const int argc, const char **argv)
 
 	if (argc != 2)
 		error(1);
-	fd = open(argv[1]);
+	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
 		error(2);
 	mapfile = get_mapfile(fd);
