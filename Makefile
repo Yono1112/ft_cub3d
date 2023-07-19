@@ -17,6 +17,7 @@ LIBFTDIR = libft
 SRCS	= 	src/main.c		\
 		src/error/error.c	\
 		src/check/check_error.c	\
+		src/check/check_file_name.c	\
 		src/check/check_mapfile.c
 all:	$(NAME)
 

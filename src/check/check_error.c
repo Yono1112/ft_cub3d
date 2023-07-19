@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
+/*   Updated: 2023/07/19 19:15:26 by rnaka            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	chardp_mig(char **map, char **save)
@@ -58,11 +70,11 @@ void	check_error(const int argc, const char **argv)
 	int	fd;
 	char	**mapfile;
 
-	if (argc != 2)
-		error(1);
+	file_name(argc, argv);
 	fd = open(argv[1], O_RDONLY);
-	if (fd <= 0)
+	if (fd == -1)
 		error(2);
 	mapfile = get_mapfile(fd);
+	printf("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\n");
 	check_mapfile(mapfile);
 }

@@ -12,5 +12,5 @@
 void	error(int error_num);
 void	check_error(const int argc, const char **argv);
 void	check_mapfile(char **argv);
-
+void	file_name(const int argc, const char **argv);
 #endif
