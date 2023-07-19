@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/19 19:22:11 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/19 19:34:37 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ void	check_error(const int argc, const char **argv)
 	if (fd == -1)
 		error(3);
 	mapfile = get_mapfile(fd);
-	printf("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\n");
 	check_mapfile(mapfile);
 }
