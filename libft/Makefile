@@ -34,7 +34,9 @@ SRCS1	= ft_atoi.c		\
 		ft_putchar_fd.c	\
 		ft_putstr_fd.c	\
 		ft_putendl_fd.c	\
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c	\
+		ft_strcmp.c
+
 
 SRCS2	=get_next_line.c
 
