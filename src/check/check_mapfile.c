@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/20 22:50:28 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/24 19:30:42 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*check_south(char *line)
 		i++;
 	return (ft_strdup(line + i));
 }
+
 char	*check_east(char *line)
 {
 	int	i;
@@ -40,6 +41,7 @@ char	*check_east(char *line)
 		i++;
 	return (ft_strdup(line + i));
 }
+
 char	*check_west(char *line)
 {
 	int	i;
@@ -54,6 +56,7 @@ char	*check_west(char *line)
 		i++;
 	return (ft_strdup(line + i));
 }
+
 char	*check_north(char *line)
 {
 	int	i;
@@ -69,59 +72,47 @@ char	*check_north(char *line)
 	return (ft_strdup(line + i));
 }
 
-void	check_texture(char **map)
+int	skip_space(char **map, int i)
+{
+	int	j;
+
+	while (map[i])
+	{
+		j = 0;
+		while (!ft_isalpha(map[i][j]) && map[i][j])
+			j++;
+		if (ft_isalpha(map[i][j]))
+			break ;
+		i++;
+	}
+	return i;
+}
+
+void	check_texture(char **map, t_map *mapdata)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (!ft_isalpha(map[i][j]) && map[i][j])
-			j++;
-		if (ft_isalpha(map[i][j]))
-			break ;
-		i++;
-	}
-	printf("%s",check_north(map[i]));
+	i = skip_space(map, i);
+	mapdata->no = check_north(map[i]);
+	printf("%s",mapdata->no);
 	i++;
-	while (map[i])
-	{
-		j = 0;
-		while (!ft_isalpha(map[i][j]) && map[i][j])
-			j++;
-		if (ft_isalpha(map[i][j]))
-			break ;
-		i++;
-	}
-	printf("%s",check_south(map[i]));
+	i = skip_space(map, i);
+	mapdata->so = check_south(map[i]);
+	printf("%s", mapdata->so);
 	i++;
-	while (map[i])
-	{
-		j = 0;
-		while (!ft_isalpha(map[i][j]) && map[i][j])
-			j++;
-		if (ft_isalpha(map[i][j]))
-			break ;
-		i++;
-	}
-	printf("%s",check_east(map[i]));
+	i = skip_space(map, i);
+	mapdata->ea = check_east(map[i]);
+	printf("%s",mapdata->ea);
 	i++;
-	while (map[i])
-	{
-		j = 0;
-		while (!ft_isalpha(map[i][j]) && map[i][j])
-			j++;
-		if (ft_isalpha(map[i][j]))
-			break ;
-		i++;
-	}
-	printf("%s",check_west(map[i]));
+	i = skip_space(map, i);
+	mapdata->we = check_west(map[i]);
+	printf("%s",mapdata->we);
 }
 
-void	check_mapfile(char **map)
+void	check_mapfile(char **map, t_map *mapdata)
 {
-	check_texture(map);
+	check_texture(map, mapdata);
 	// check-map(map);
 }

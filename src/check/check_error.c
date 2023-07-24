@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/19 19:34:37 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:43:32 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	**get_mapfile(int fd)
 	return (map);
 }
 
-void	check_error(const int argc, const char **argv)
+void	check_error(const int argc, const char **argv, t_map *mapdata)
 {
 	int	fd;
 	char	**mapfile;
@@ -75,5 +75,5 @@ void	check_error(const int argc, const char **argv)
 	if (fd == -1)
 		error(3);
 	mapfile = get_mapfile(fd);
-	check_mapfile(mapfile);
+	check_mapfile(mapfile, mapdata);
 }
