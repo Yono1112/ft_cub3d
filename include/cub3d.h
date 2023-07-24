@@ -15,8 +15,8 @@ typedef struct s_map
 	char *so;
 	char *we;
 	char *ea;
-	int *floor;
-	int *ceiling;
+	char *floor;
+	char *ceiling;
 	char **map;
 }t_map;
 //check-mapfile

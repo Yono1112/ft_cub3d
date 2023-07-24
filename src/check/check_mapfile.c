@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/24 19:30:42 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/24 20:40:55 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,36 @@ int	skip_space(char **map, int i)
 	return i;
 }
 
+char	*check_ceiling(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (!ft_isalpha(line[i]))
+		i++;
+	if (ft_strncmp(line + i, "C", 1))
+		error(5);
+	i += 2;
+	while (!ft_isalpha(line[i]))
+		i++;
+	return (ft_strdup(line + i));
+}
+
+char	*check_floor(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (!ft_isalpha(line[i]))
+		i++;
+	if (ft_strncmp(line + i, "F", 1))
+		error(5);
+	i += 2;
+	while (!ft_isalpha(line[i]))
+		i++;
+	return (ft_strdup(line + i));
+}
+
 void	check_texture(char **map, t_map *mapdata)
 {
 	int	i;
@@ -96,23 +126,29 @@ void	check_texture(char **map, t_map *mapdata)
 	i = 0;
 	i = skip_space(map, i);
 	mapdata->no = check_north(map[i]);
-	printf("%s",mapdata->no);
 	i++;
 	i = skip_space(map, i);
 	mapdata->so = check_south(map[i]);
-	printf("%s", mapdata->so);
 	i++;
 	i = skip_space(map, i);
 	mapdata->ea = check_east(map[i]);
-	printf("%s",mapdata->ea);
 	i++;
 	i = skip_space(map, i);
 	mapdata->we = check_west(map[i]);
-	printf("%s",mapdata->we);
+	i++;
+	if (!map[i])
+		error(5);
+	i = skip_space(map, i);
+	mapdata->floor = check_floor(map[i]);
+	i++;
+	if (!map[i])
+		error(5);
+	i = skip_space(map, i);
+	mapdata->ceiling = check_ceiling(map[i]);
 }
 
 void	check_mapfile(char **map, t_map *mapdata)
 {
 	check_texture(map, mapdata);
-	// check-map(map);
+	check_map(map, mapdata);
 }
