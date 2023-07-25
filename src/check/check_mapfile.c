@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/26 02:22:32 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/26 03:06:29 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,14 +173,40 @@ void	check_map(char **map, t_map *mapdata, int i)
 		stock = strlen;
 		while (stock < maxlen-1)
 		{
-			newline[stock] = '\b';
+			newline[stock] = ' ';
 			stock++;
 		}
 		map[i] = newline;
-		printf("%s\n",newline);
 		i++;
 	}
 	i = stock;
+}
+void	check_mapcontents(char **map, t_map *mapdata, int i)
+{
+	int	count_news;
+	int	j;
+
+	count_news = 0;
+	skip_space(map, &i);
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			printf("%c",map[i][j]);
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
+				error(5);
+			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
+			{
+				if (count_news)
+					error(5);
+				count_news++;
+			}
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
 void	check_mapfile(char **map, t_map *mapdata)
@@ -190,4 +216,5 @@ void	check_mapfile(char **map, t_map *mapdata)
 	i = check_texture(map, mapdata);
 	i++;
 	check_map(map, mapdata, i);
+	check_mapcontents(map, mapdata, i);
 }
