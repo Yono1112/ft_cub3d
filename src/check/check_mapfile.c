@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/26 04:36:36 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/26 04:40:10 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,6 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		j = 0;
 		while (map[i][j])
 		{
-			printf("%c",map[i][j]);
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'a' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
 				error(5);
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
@@ -204,7 +203,6 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 			}
 			j++;
 		}
-		printf("\n");
 		i++;
 	}
 	if (!count_news)
@@ -245,9 +243,7 @@ void	check_mapcollect(char **map, t_map *mapdata, int i)
 			break ;
 		i++;
 	}
-	printf("start = %d,%d,%c\n", i, j, map[i][j]);
 	check_hole(map, i, j, border);
-	printf("mapcheckdone\n");
 
 }
 
@@ -266,13 +262,10 @@ void	check_mapfile(char **map, t_map *mapdata)
 	check_mapcontents(map, mapdata, i);
 	check_mapcollect(map, mapdata, i);
 	stock = i;
-	printf("i %d,s %d, %d\n",i,stock,stock-i);
 	while (map[stock])
 		stock++;
-	printf("i %d,s %d, %d\n",i,stock,stock-i);
 	newmap = (char **)malloc(sizeof(char *) * (stock - i + 1));
 	newmap[i - stock] = NULL;
-	printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
 	stock = i;
 	i = 0;
 	while (map[i + stock])
@@ -289,16 +282,6 @@ void	check_mapfile(char **map, t_map *mapdata)
 		newmap[i] = ft_strdup(map[i + stock]);
 		i++;
 	}
-	i = 0;
-	while (newmap[i])
-	{
-		j = 0;
-		while (newmap[i][j])
-		{
-			printf("%c",newmap[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	mapdata->map = newmap;
 }
+
