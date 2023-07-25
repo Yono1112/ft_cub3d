@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/26 03:06:29 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/26 04:36:36 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	check_map(char **map, t_map *mapdata, int i)
 		stock = strlen;
 		while (stock < maxlen-1)
 		{
-			newline[stock] = ' ';
+			newline[stock] = 'a';
 			stock++;
 		}
 		map[i] = newline;
@@ -194,7 +194,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		while (map[i][j])
 		{
 			printf("%c",map[i][j]);
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'a' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
 				error(5);
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
 			{
@@ -207,14 +207,98 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		printf("\n");
 		i++;
 	}
+	if (!count_news)
+		error(5);
+}
+
+void	check_hole(char **map, int i, int j, int border)
+{
+	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')
+		 return ;
+	if (map[i][j] == 'a')
+		error(5);
+	if (map[i][j] == '0')
+	map[i][j] = '2';
+	check_hole(map, i + 1, j, border);
+	check_hole(map, i - 1, j, border);
+	check_hole(map, i, j + 1, border);
+	check_hole(map, i, j - 1, border);
+}
+
+void	check_mapcollect(char **map, t_map *mapdata, int i)
+{
+	int	j;
+	int	border;
+
+	skip_space(map, &i);
+	border = i;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
+				break ;
+			j++;
+		}
+		if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
+			break ;
+		i++;
+	}
+	printf("start = %d,%d,%c\n", i, j, map[i][j]);
+	check_hole(map, i, j, border);
+	printf("mapcheckdone\n");
+
 }
 
 void	check_mapfile(char **map, t_map *mapdata)
 {
 	int	i;
+	int	j;
+	int	stock;
+	int	start;
+	char	**newmap;
 
+	j = 0;
 	i = check_texture(map, mapdata);
 	i++;
 	check_map(map, mapdata, i);
 	check_mapcontents(map, mapdata, i);
+	check_mapcollect(map, mapdata, i);
+	stock = i;
+	printf("i %d,s %d, %d\n",i,stock,stock-i);
+	while (map[stock])
+		stock++;
+	printf("i %d,s %d, %d\n",i,stock,stock-i);
+	newmap = (char **)malloc(sizeof(char *) * (stock - i + 1));
+	newmap[i - stock] = NULL;
+	printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+	stock = i;
+	i = 0;
+	while (map[i + stock])
+	{
+		j = 0;
+		while (map[i + stock][j])
+		{
+			if (map[i + stock][j] == ' ')
+				map[i + stock][j] = '1';
+			else if(map[i + stock][j] == '2')
+				map[i + stock][j] = '0';
+			j++;
+		}
+		newmap[i] = ft_strdup(map[i + stock]);
+		i++;
+	}
+	i = 0;
+	while (newmap[i])
+	{
+		j = 0;
+		while (newmap[i][j])
+		{
+			printf("%c",newmap[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
