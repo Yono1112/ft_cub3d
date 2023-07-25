@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/24 22:13:49 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/07/26 02:22:32 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	skip_space(char **map, int *i)
 	while (map[*i])
 	{
 		j = 0;
-		while (!ft_isalpha(map[*i][j]) && map[*i][j])
+		while (!ft_isalnum(map[*i][j]) && map[*i][j])
 			j++;
-		if (ft_isalpha(map[*i][j]))
+		if (ft_isalnum(map[*i][j]))
 			break ;
 		(*i)++;
 	}
@@ -99,7 +99,7 @@ char	*check_ceiling(char *line)
 	if (ft_strncmp(line + i, "C", 1))
 		error(5);
 	i += 1;
-	while (!ft_isalpha(line[i]))
+	while (!ft_isalnum(line[i]))
 		i++;
 	return (ft_strdup(line + i));
 }
@@ -114,7 +114,7 @@ char	*check_floor(char *line)
 	if (ft_strncmp(line + i, "F", 1))
 		error(5);
 	i += 1;
-	while (!ft_isalpha(line[i]))
+	while (!ft_isalnum(line[i]))
 		i++;
 	return (ft_strdup(line + i));
 }
@@ -128,25 +128,21 @@ int	check_texture(char **map, t_map *mapdata)
 	skip_space(map, &i);
 	mapdata->no = check_north(map[i]);
 	i++;
-	printf("%d\n", i);
 	skip_space(map, &i);
 	mapdata->so = check_south(map[i]);
 	i++;
-	printf("%d\n", i);
 	skip_space(map, &i);
 	mapdata->ea = check_east(map[i]);
 	i++;
-	printf("%d\n", i);
 	skip_space(map, &i);
 	mapdata->we = check_west(map[i]);
 	i++;
-	printf("%d\n", i);
 	skip_space(map, &i);
 	mapdata->floor = check_floor(map[i]);
 	i++;
-	printf("%d\n", i);
 	skip_space(map, &i);
 	mapdata->ceiling = check_ceiling(map[i]);
+	skip_space(map, &i);
 	return i;
 }
 
@@ -154,19 +150,36 @@ void	check_map(char **map, t_map *mapdata, int i)
 {
 	int	stock;
 	int	maxlen;
+	int	strlen;
+	char	*newline;
 
 	maxlen = 0;
-	printf("%d\n", i);
 	skip_space(map, &i);
 	stock = i;
-	printf("%d\n", i);
-	while (!map[i])
+	while (map[i])
 	{
 		if (ft_strlen(map[i])>maxlen)
 			maxlen = ft_strlen(map[i]);
 		i++;
 	}
-	printf("%d\n",i);
+	i = stock;
+	while (map[i])
+	{
+		newline = malloc(sizeof(char)*maxlen);
+		newline[maxlen-1] = '\0';
+		strlen = ft_strlen(map[i])-1;
+		ft_memcpy(newline, map[i], strlen);// strlen-1は'\n'分減らしているが、確認が必要
+		free(map[i]);
+		stock = strlen;
+		while (stock < maxlen-1)
+		{
+			newline[stock] = '\b';
+			stock++;
+		}
+		map[i] = newline;
+		printf("%s\n",newline);
+		i++;
+	}
 	i = stock;
 }
 
@@ -175,5 +188,6 @@ void	check_mapfile(char **map, t_map *mapdata)
 	int	i;
 
 	i = check_texture(map, mapdata);
+	i++;
 	check_map(map, mapdata, i);
 }
