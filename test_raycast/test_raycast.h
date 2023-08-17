@@ -47,5 +47,7 @@ char	world_map[MAP_HEIGHT][MAP_WIDTH];
 void	set_player(t_mlx *mlx);
 void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
+void	calc_dist_to_wall(t_mlx *mlx);
+void	draw_wall_texture(t_mlx *mlx, size_t x);
 
 #endif

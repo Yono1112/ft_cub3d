@@ -1,16 +1,5 @@
 #include "test_raycast.h"
 
-void	calc_dist_to_wall(t_mlx *mlx)
-{
-	(void)mlx;
-}
-
-void	draw_wall_texture(t_mlx *mlx, size_t x)
-{
-	(void)mlx;
-	(void)x;
-}
-
 int	ft_raycast(t_mlx *mlx)
 {
 	size_t	x;
