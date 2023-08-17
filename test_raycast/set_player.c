@@ -37,5 +37,5 @@ void	set_player(t_mlx *mlx)
 		}
 		y++;
 	}
-	exit_error("ERROR: start position is not set\n");
+	exit_error("ERROR: start position is not set");
 }
