@@ -18,10 +18,10 @@ void	set_player(t_mlx *mlx)
 	size_t	y;
 
 	y = 0;
-	while (y < mapheight)
+	while (y < MAP_HEIGHT)
 	{
 		x = 0;
-		while (x < mapwidth)
+		while (x < MAP_WIDTH)
 		{
 			if (world_map[y][x] == 'N' || world_map[y][x] == 'S'
 				|| world_map[y][x] == 'W' || world_map[y][x] == 'E')

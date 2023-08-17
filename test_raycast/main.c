@@ -1,6 +1,6 @@
 #include "test_raycast.h"
 
-char	world_map[mapheight][mapwidth] = 
+char	world_map[MAP_HEIGHT][MAP_WIDTH] = 
 {
 	{'1', '1', '1', '1', '1', '1', '1', '1'},
 	{'1', '0', '0', '0', '0', '0', '0', '1'},
@@ -34,12 +34,12 @@ int	main(void)
 	t_mlx	mlx;
 
 	print_world_map();
-	mlx.init_ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.init_ptr, 640, 480, "cub3D");
+	mlx.mlx_ptr = mlx_init();
+	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, WINSIZE_HEIGTH, WINSIZE_WIDTH, "cub3D");
+	mlx.fov = FOV;
 	set_player(&mlx);
-	// printf("%f, %f\n", mlx.pos_x, mlx.pos_y);
-	// printf("%d, %d\n", mlx.map_x, mlx.map_y);
-	mlx_hook(mlx.win, 2, 0, &key_press, NULL);
-	mlx_loop(mlx.init_ptr);
+	mlx_loop_hook(mlx.mlx_ptr, ft_raycast, &mlx);
+	mlx_hook(mlx.mlx_win, 2, 0, &key_press, NULL);
+	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }
