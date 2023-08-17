@@ -1,11 +1,4 @@
-#include "../minilibx_opengl_20191021/mlx.h"
-#include <stdio.h>
-
-typedef struct s_mlx
-{
-	void	*init_ptr;
-	void	*win;
-}	t_mlx;
+#include "test_raycast.h"
 
 char	world_map[8][8] = 
 {
@@ -38,6 +31,7 @@ int	main(void)
 	}
 	mlx.init_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.init_ptr, 640, 480, "cub3D");
+	// set_player_map(&mlx);
 	mlx_hook(mlx.win, 2, 0, &key_press, NULL);
 	mlx_loop(mlx.init_ptr);
 	return (0);
