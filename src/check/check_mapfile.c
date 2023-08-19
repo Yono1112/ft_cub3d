@@ -6,70 +6,24 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/26 04:40:10 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/08/19 11:07:26 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-char	*check_south(char *line)
+char *check_direction(char *line, char *dir)
 {
-	int	i;
+	int i = 0;
 
-	i = 0;
 	while (!ft_isalpha(line[i]))
 		i++;
-	if (ft_strncmp(line + i, "SO", 2))
+	if (ft_strncmp(line + i, dir, ft_strlen(dir)))
 		error(5);
-	i += 2;
+	i += ft_strlen(dir);
 	while (!ft_isalpha(line[i]))
 		i++;
-	return (ft_strdup(line + i));
-}
-
-char	*check_east(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (!ft_isalpha(line[i]))
-		i++;
-	if (ft_strncmp(line + i, "EA", 2))
-		error(5);
-	i += 2;
-	while (!ft_isalpha(line[i]))
-		i++;
-	return (ft_strdup(line + i));
-}
-
-char	*check_west(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (!ft_isalpha(line[i]))
-		i++;
-	if (ft_strncmp(line + i, "WE", 2))
-		error(5);
-	i += 2;
-	while (!ft_isalpha(line[i]))
-		i++;
-	return (ft_strdup(line + i));
-}
-
-char	*check_north(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (!ft_isalpha(line[i]))
-		i++;
-	if (ft_strncmp(line + i, "NO", 2))
-		error(5);
-	i += 2;
-	while (!ft_isalpha(line[i]))
-		i++;
-	return (ft_strdup(line + i));
+	return ft_strdup(line + i);
 }
 
 void	skip_space(char **map, int *i)
@@ -89,34 +43,18 @@ void	skip_space(char **map, int *i)
 		error(5);
 }
 
-char	*check_ceiling(char *line)
+char	*cheack_ceiling_and_floor(char *line, char c)
 {
-	int	i;
+	int i = 0;
 
-	i = 0;
 	while (!ft_isalpha(line[i]))
 		i++;
-	if (ft_strncmp(line + i, "C", 1))
+	if (line[i] != c)
 		error(5);
-	i += 1;
+	i++;
 	while (!ft_isalnum(line[i]))
 		i++;
-	return (ft_strdup(line + i));
-}
-
-char	*check_floor(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (!ft_isalpha(line[i]))
-		i++;
-	if (ft_strncmp(line + i, "F", 1))
-		error(5);
-	i += 1;
-	while (!ft_isalnum(line[i]))
-		i++;
-	return (ft_strdup(line + i));
+	return ft_strdup(line + i);	
 }
 
 int	check_texture(char **map, t_map *mapdata)
@@ -126,22 +64,17 @@ int	check_texture(char **map, t_map *mapdata)
 
 	i = 0;
 	skip_space(map, &i);
-	mapdata->no = check_north(map[i]);
-	i++;
+	mapdata->no = check_direction(map[i], "NO");
 	skip_space(map, &i);
-	mapdata->so = check_south(map[i]);
-	i++;
+	mapdata->so = check_direction(map[i], "SO");
 	skip_space(map, &i);
-	mapdata->ea = check_east(map[i]);
-	i++;
+	mapdata->ea = check_direction(map[i], "EA");
 	skip_space(map, &i);
-	mapdata->we = check_west(map[i]);
-	i++;
+	mapdata->we = check_direction(map[i], "WE");
 	skip_space(map, &i);
-	mapdata->floor = check_floor(map[i]);
-	i++;
+	mapdata->floor = cheack_ceiling_and_floor(map[i], 'F');
 	skip_space(map, &i);
-	mapdata->ceiling = check_ceiling(map[i]);
+	mapdata->ceiling = cheack_ceiling_and_floor(map[i], 'C');
 	skip_space(map, &i);
 	return i;
 }
@@ -193,7 +126,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'a' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
 				error(5);
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
 			{
@@ -213,10 +146,10 @@ void	check_hole(char **map, int i, int j, int border)
 {
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')
 		 return ;
-	if (map[i][j] == 'a')
+	if (map[i][j] == ' ')
 		error(5);
 	if (map[i][j] == '0')
-	map[i][j] = '2';
+		map[i][j] = '2';
 	check_hole(map, i + 1, j, border);
 	check_hole(map, i - 1, j, border);
 	check_hole(map, i, j + 1, border);
