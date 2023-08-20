@@ -8,7 +8,6 @@
 # include<stdlib.h>
 #include <fcntl.h>
 
-
 typedef struct s_map
 {
 	char *no;

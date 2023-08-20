@@ -11,10 +11,10 @@
 
 #define MAP_WIDTH 8
 #define MAP_HEIGHT 8
-#define WINSIZE_WIDTH 480
+#define WINSIZE_WIDTH 640
 #define WINSIZE_HEIGTH 480
 #define SOUTH (M_PI / 180) * 90
-#define NORTH (M_PI / 180) * 180
+#define NORTH (M_PI / 180) * 270
 #define EAST (M_PI / 180) * 0
 #define WEST (M_PI / 180) * 180
 #define FOV (M_PI / 180) * 60
@@ -23,15 +23,14 @@ typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
-	double	fov;
 	double	pos_x;
 	double	pos_y;
 	int		map_x;
 	int		map_y;
-	double	direction;
+	double	player_direct;
+	double	ray_direct;
 	double	ray_dir_x;
 	double	ray_dir_y;
-	double	camera_x;
 	double	side_dist_x;
 	double	side_dist_y;
 	double	delta_dist_x;

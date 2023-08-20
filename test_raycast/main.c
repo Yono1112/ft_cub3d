@@ -40,7 +40,6 @@ int	main(void)
 	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, WINSIZE_HEIGTH, WINSIZE_WIDTH, "cub3D");
 	if (!mlx.mlx_win)
 		exit_error("ERROR: cannot run mlx_new_window()");
-	mlx.fov = FOV;
 	set_player(&mlx);
 	mlx_loop_hook(mlx.mlx_ptr, ft_raycast, &mlx);
 	mlx_hook(mlx.mlx_win, 2, 0, &key_press, NULL);

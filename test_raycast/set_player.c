@@ -3,13 +3,13 @@
 void	set_direction(t_mlx *mlx, char direction)
 {
 	if (direction == 'N')
-		mlx->direction = NORTH;
+		mlx->player_direct = NORTH;
 	if (direction == 'S')
-		mlx->direction = SOUTH;
+		mlx->player_direct = SOUTH;
 	if (direction == 'E')
-		mlx->direction = EAST;
+		mlx->player_direct = EAST;
 	if (direction == 'W')
-		mlx->direction = WEST;
+		mlx->player_direct = WEST;
 }
 
 void	set_player(t_mlx *mlx)
