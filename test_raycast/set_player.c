@@ -28,8 +28,6 @@ void	set_player(t_mlx *mlx)
 			{
 				mlx->pos_x = x;
 				mlx->pos_y = y;
-				mlx->map_x = (int)mlx->pos_x;
-				mlx->map_y = (int)mlx->pos_y;
 				set_direction(mlx, world_map[y][x]);
 				return ;
 			}

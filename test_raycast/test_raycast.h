@@ -1,23 +1,23 @@
 #ifndef TEST_RAYCAST_H
-#define TEST_RAYCAST_H
+# define TEST_RAYCAST_H
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <math.h>
-#include "../minilibx_opengl_20191021/mlx.h"
+# include <stdio.h>
+# include <stdbool.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <math.h>
+# include "../minilibx_opengl_20191021/mlx.h"
 
-#define MAP_WIDTH 8
-#define MAP_HEIGHT 8
-#define WINSIZE_WIDTH 640
-#define WINSIZE_HEIGTH 480
-#define SOUTH (M_PI / 180) * 90
-#define NORTH (M_PI / 180) * 270
-#define EAST (M_PI / 180) * 0
-#define WEST (M_PI / 180) * 180
-#define FOV (M_PI / 180) * 60
+# define MAP_WIDTH 8
+# define MAP_HEIGHT 8
+# define WINSIZE_WIDTH 640
+# define WINSIZE_HEIGTH 480
+# define SOUTH (M_PI / 180) * 90
+# define NORTH (M_PI / 180) * 270
+# define EAST (M_PI / 180) * 0
+# define WEST (M_PI / 180) * 180
+# define FOV (M_PI / 180) * 60
 
 typedef struct s_mlx
 {
@@ -38,7 +38,6 @@ typedef struct s_mlx
 	double	dist_to_wall;
 	int		step_x;
 	int		step_y;
-	bool	is_hit;
 	int		side;
 }	t_mlx;
 
