@@ -18,6 +18,8 @@
 # define EAST (M_PI / 180) * 0
 # define WEST (M_PI / 180) * 180
 # define FOV (M_PI / 180) * 60
+# define SIDE_X 0
+# define SIDE_Y 1
 
 typedef struct s_mlx
 {
