@@ -6,13 +6,13 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/08/19 11:07:26 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/08/22 16:12:50 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-char *check_direction(char *line, char *dir)
+char	*check_direction(char *line, char *dir)
 {
 	int i = 0;
 
@@ -40,7 +40,7 @@ void	skip_space(char **map, int *i)
 		(*i)++;
 	}
 	if (!map[*i])
-		error(5);
+		error(6);
 }
 
 char	*cheack_ceiling_and_floor(char *line, char c)
@@ -50,7 +50,7 @@ char	*cheack_ceiling_and_floor(char *line, char c)
 	while (!ft_isalpha(line[i]))
 		i++;
 	if (line[i] != c)
-		error(5);
+		error(7);
 	i++;
 	while (!ft_isalnum(line[i]))
 		i++;
@@ -65,14 +65,19 @@ int	check_texture(char **map, t_map *mapdata)
 	i = 0;
 	skip_space(map, &i);
 	mapdata->no = check_direction(map[i], "NO");
+	i++;
 	skip_space(map, &i);
 	mapdata->so = check_direction(map[i], "SO");
+	i++;
 	skip_space(map, &i);
 	mapdata->ea = check_direction(map[i], "EA");
+	i++;
 	skip_space(map, &i);
 	mapdata->we = check_direction(map[i], "WE");
+	i++;
 	skip_space(map, &i);
 	mapdata->floor = cheack_ceiling_and_floor(map[i], 'F');
+	i++;
 	skip_space(map, &i);
 	mapdata->ceiling = cheack_ceiling_and_floor(map[i], 'C');
 	skip_space(map, &i);
@@ -126,12 +131,17 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		j = 0;
 		while (map[i][j])
 		{
+				printf("%d    %d\n" , i, j);
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
-				error(5);
+				{
+				printf("%d    %d\n" , i, j);
+				error(8);
+				}
+
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
 			{
 				if (count_news)
-					error(5);
+					error(9);
 				count_news++;
 			}
 			j++;
@@ -139,7 +149,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		i++;
 	}
 	if (!count_news)
-		error(5);
+		error(9);
 }
 
 void	check_hole(char **map, int i, int j, int border)
@@ -147,7 +157,7 @@ void	check_hole(char **map, int i, int j, int border)
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')
 		 return ;
 	if (map[i][j] == ' ')
-		error(5);
+		error(10);
 	if (map[i][j] == '0')
 		map[i][j] = '2';
 	check_hole(map, i + 1, j, border);
