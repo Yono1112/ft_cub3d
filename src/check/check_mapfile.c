@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/08/22 16:12:50 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/08 22:48:46 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	check_map(char **map, t_map *mapdata, int i)
 	}
 	i = stock;
 }
+
 void	check_mapcontents(char **map, t_map *mapdata, int i)
 {
 	int	count_news;
@@ -187,7 +188,6 @@ void	check_mapcollect(char **map, t_map *mapdata, int i)
 		i++;
 	}
 	check_hole(map, i, j, border);
-
 }
 
 void	check_mapfile(char **map, t_map *mapdata)
