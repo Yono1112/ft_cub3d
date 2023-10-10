@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/08 22:48:46 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/10 12:16:49 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*check_direction(char *line, char *dir)
 {
-	int i = 0;
+	int j = 0;
 
-	while (!ft_isalpha(line[i]))
-		i++;
-	if (ft_strncmp(line + i, dir, ft_strlen(dir)))
+	while (!ft_isalpha(line[j]))
+		j++;
+	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー //ft_strlen(dir) を2に変更してみる
 		error(5);
-	i += ft_strlen(dir);
-	while (!ft_isalpha(line[i]))
-		i++;
-	return ft_strdup(line + i);
+	j += ft_strlen(dir);
+	while (!ft_isalpha(line[j]))
+		j++;
+	return ft_strdup(line + j);//テクスチャー名の後にスペースがある場合を除けていない?
 }
 
-void	skip_space(char **map, int *i)
+void	skip_space(char **map, int *i) //最初に文字が来る行を特定している
 {
 	int	j;
 
@@ -54,7 +54,7 @@ char	*cheack_ceiling_and_floor(char *line, char c)
 	i++;
 	while (!ft_isalnum(line[i]))
 		i++;
-	return ft_strdup(line + i);	
+	return ft_strdup(line + i);
 }
 
 int	check_texture(char **map, t_map *mapdata)
@@ -80,6 +80,7 @@ int	check_texture(char **map, t_map *mapdata)
 	i++;
 	skip_space(map, &i);
 	mapdata->ceiling = cheack_ceiling_and_floor(map[i], 'C');
+	i++;
 	skip_space(map, &i);
 	return i;
 }
@@ -92,7 +93,7 @@ void	check_map(char **map, t_map *mapdata, int i)
 	char	*newline;
 
 	maxlen = 0;
-	skip_space(map, &i);
+	//skip_space(map, &i); //check_textureでスペース飛ばしを行っているので必要ない（？）
 	stock = i;
 	while (map[i])
 	{
@@ -200,7 +201,7 @@ void	check_mapfile(char **map, t_map *mapdata)
 
 	j = 0;
 	i = check_texture(map, mapdata);
-	i++;
+	//i++; //check_texture() でiは次の行を指しているはず
 	check_map(map, mapdata, i);
 	check_mapcontents(map, mapdata, i);
 	check_mapcollect(map, mapdata, i);
