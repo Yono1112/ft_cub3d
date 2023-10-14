@@ -21,5 +21,11 @@ void	error(int error)
 		printf("invalid number of news.\n");
 	else if (error == Hole_In_Map)
 		printf("there is hole in map.\n");
+	else if (error == Open_Texture_Error)
+		printf("can't open the texture.\n");
+	else if (error == Comma_Error)
+		printf("commma error.\n");
+	else if (error == Texture_is_big)
+		printf("texture number error.\n");
 	exit(1);
 }

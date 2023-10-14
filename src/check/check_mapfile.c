@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/14 13:29:54 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/14 17:16:02 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*check_direction(char *line, char *dir)
 	else
 		while (!ft_isalpha(line[j]))
 			j++;
-	return ft_strdup(line + j);//テクスチャー名の後のスペーススを除けていない
+	return ft_strdup(line + j);//テクスチャー名の後のスペースを除けていない
 }
 
 void	skip_space(char **map, int *i) //最初に文字が来る行を特定している
@@ -151,10 +151,10 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 
 void	check_hole(char **map, int i, int j, int border)
 {
+	if (map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0)
+		error(Hole_In_Map);
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;
-	if (map[i][j] == ' ')
-		error(Hole_In_Map);
 	if (map[i][j] == '0')
 		map[i][j] = '2';
 	check_hole(map, i + 1, j, border);
@@ -186,6 +186,85 @@ void	check_mapcollect(char **map, t_map *mapdata, int i)
 	check_hole(map, i, j, border);
 }
 
+void	check_read_texture(t_map *mapdata)
+{
+	int	fd;
+
+	fd = open(mapdata->no,O_RDONLY);
+	if (fd == -1)
+		error(Open_Texture_Error);
+	close(fd);
+	fd = open(mapdata->so,O_RDONLY);
+	if (fd == -1)
+		error(Open_Texture_Error);
+	close(fd);
+	fd = open(mapdata->ea,O_RDONLY);
+	if (fd == -1)
+		error(Open_Texture_Error);
+	close(fd);
+	fd = open(mapdata->we,O_RDONLY);
+	if (fd == -1)
+		error(Open_Texture_Error);
+	close(fd);
+}
+
+bool	check_num_coma(char* str)
+{
+	int i;
+	int commma_num;
+
+	i = 0;
+	commma_num = 0;
+	while (str[i])
+	{
+		printf("%c", str[i]);
+		if (commma_num > 2 || (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n' || (str[i] == ',' && !ft_isdigit(str[i + 1]))))
+			return(false);
+		if (str[i] == '\n')
+			str[i] = '\0';
+		if (str[i] == ',' )
+			commma_num++;
+		i++;
+	}
+	if (commma_num < 2)
+		return(false);
+	return (true);
+}
+
+int	split_number(t_map *mapdata)
+{
+	char **array_ceiling;
+	char **array_floor;
+	int num_ceiling;
+	int num_floor;
+	int i;
+
+	i = 0;
+	array_floor = ft_split(mapdata->floor, ',');
+	array_ceiling = ft_split(mapdata->ceiling, ',');
+	while (array_ceiling[i] && array_floor[i])
+	{
+		num_ceiling = ft_atoi(array_ceiling[i]);
+		num_floor = ft_atoi(array_floor[i]);
+		free(array_ceiling[i]);
+		free(array_floor[i]);
+		if (num_ceiling > 255 || num_floor > 255)
+			return(false);
+		i++;
+	}
+	free(array_ceiling);
+	free(array_floor);
+	return(true);
+}
+
+void	check_floor_ceiling(t_map *mapdata)
+{
+	if (!check_num_coma(mapdata->floor) || !check_num_coma(mapdata->ceiling))
+		error(Comma_Error);
+	if (!split_number(mapdata))
+		error(Texture_is_big);
+}
+
 void	check_mapfile(char **map, t_map *mapdata)
 {
 	int	i;
@@ -199,6 +278,8 @@ void	check_mapfile(char **map, t_map *mapdata)
 	check_map(map, mapdata, i);
 	check_mapcontents(map, mapdata, i);
 	check_mapcollect(map, mapdata, i);
+	check_floor_ceiling(mapdata);
+	check_read_texture(mapdata);
 	stock = i;
 	while (map[stock])
 		stock++;
@@ -223,4 +304,3 @@ void	check_mapfile(char **map, t_map *mapdata)
 	}
 	mapdata->map = newmap;
 }
-

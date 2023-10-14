@@ -7,6 +7,7 @@
 # include <stdint.h>
 # include<stdlib.h>
 #include <fcntl.h>
+#include <stdbool.h>
 
 
 typedef struct s_map
@@ -18,6 +19,8 @@ typedef struct s_map
 	char *floor;
 	char *ceiling;
 	char **map;
+	int ceiling_num[3];
+	int floor_num[3];
 }t_map;
 
 enum Error {
@@ -29,7 +32,10 @@ enum Error {
 	Texture_Error,
 	Invalid_Argument_In_Map_Error,
 	Num_Arguments_Error,
-	Hole_In_Map
+	Hole_In_Map,
+	Open_Texture_Error,
+	Comma_Error,
+	Texture_is_big
 };
 
 //check-mapfile
