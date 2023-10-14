@@ -4,11 +4,17 @@ CC	= gcc
 
 #CFLAGS	= -Wall -Wextra -Werror
 
+DEBUG_FLAGS = -g -O0
+
 INC	= -I./include
 
 OBJ_DIR	= obj
 
+DEBUG_OBJ_DIR = debug_obj
+
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o)
+
+DEBUG_OBJS = $(SRCS:%.c=$(DEBUG_OBJ_DIR)/%.o)
 
 RM	= rm -rf
 
@@ -25,6 +31,10 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
+$(DEBUG_OBJ_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(INC) -c $< -o $@
+
 $(NAME): $(OBJS)
 	@make -C $(LIBFTDIR)
 	$(CC) $(CFLAGS)	-L $(LIBFTDIR) -lft -o $(NAME) $(OBJS)
@@ -39,4 +49,9 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+lldb: $(DEBUG_OBJS)
+	@make -C $(LIBFTDIR)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -L $(LIBFTDIR) -lft -o $(NAME) $(DEBUG_OBJS)
+	@lldb ./$(NAME)
+
+.PHONY: all clean fclean re lldb

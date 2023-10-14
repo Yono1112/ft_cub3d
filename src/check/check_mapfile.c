@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/10 12:16:49 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/14 12:42:02 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*check_direction(char *line, char *dir)
 	while (!ft_isalpha(line[j]))
 		j++;
 	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー //ft_strlen(dir) を2に変更してみる
-		error(5);
+		error(Texture_Error);
 	j += ft_strlen(dir);
 	while (!ft_isalpha(line[j]))
 		j++;
@@ -40,7 +40,7 @@ void	skip_space(char **map, int *i) //最初に文字が来る行を特定して
 		(*i)++;
 	}
 	if (!map[*i])
-		error(6);
+		error(Mapargument_Error);
 }
 
 char	*cheack_ceiling_and_floor(char *line, char c)
@@ -50,7 +50,7 @@ char	*cheack_ceiling_and_floor(char *line, char c)
 	while (!ft_isalpha(line[i]))
 		i++;
 	if (line[i] != c)
-		error(7);
+		error(Invalid_Argument_In_Map_Error);
 	i++;
 	while (!ft_isalnum(line[i]))
 		i++;
@@ -88,14 +88,14 @@ int	check_texture(char **map, t_map *mapdata)
 void	check_map(char **map, t_map *mapdata, int i)
 {
 	int	stock;
-	int	maxlen;
+	int	maxlen;// 最長行
 	int	strlen;
 	char	*newline;
 
 	maxlen = 0;
 	//skip_space(map, &i); //check_textureでスペース飛ばしを行っているので必要ない（？）
 	stock = i;
-	while (map[i])
+	while (map[i])//最長行を探している
 	{
 		if (ft_strlen(map[i])>maxlen)
 			maxlen = ft_strlen(map[i]);
@@ -105,17 +105,18 @@ void	check_map(char **map, t_map *mapdata, int i)
 	while (map[i])
 	{
 		newline = malloc(sizeof(char)*maxlen);
-		newline[maxlen-1] = '\0';
-		strlen = ft_strlen(map[i])-1;
+		newline[maxlen-1] = '\0';//NULL stoper
+		strlen = ft_strlen(map[i]) - 1;
 		ft_memcpy(newline, map[i], strlen);// strlen-1は'\n'分減らしているが、確認が必要
 		free(map[i]);
 		stock = strlen;
-		while (stock < maxlen-1)
+		while (stock < maxlen - 1)
 		{
-			newline[stock] = 'a';
+			newline[stock] = '1';
 			stock++;
 		}
 		map[i] = newline;
+		printf("%s\n",newline);
 		i++;
 	}
 	i = stock;
@@ -133,17 +134,13 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		j = 0;
 		while (map[i][j])
 		{
-				printf("%d    %d\n" , i, j);
+				//printf("%d    %d\n" , i, j);
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
-				{
-				printf("%d    %d\n" , i, j);
-				error(8);
-				}
-
+				error(Invalid_Argument_In_Map_Error);
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
 			{
 				if (count_news)
-					error(9);
+					error(Num_Arguments_Error);
 				count_news++;
 			}
 			j++;
@@ -151,7 +148,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		i++;
 	}
 	if (!count_news)
-		error(9);
+		error(Num_Arguments_Error);
 }
 
 void	check_hole(char **map, int i, int j, int border)
@@ -159,7 +156,7 @@ void	check_hole(char **map, int i, int j, int border)
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')
 		 return ;
 	if (map[i][j] == ' ')
-		error(10);
+		error(Hole_In_Map);
 	if (map[i][j] == '0')
 		map[i][j] = '2';
 	check_hole(map, i + 1, j, border);

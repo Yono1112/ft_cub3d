@@ -51,6 +51,8 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 
+DEBUG_FLAGS = -g -O0
+
 INCLUDE		= -I include
 
 OBJDIR		= objs
@@ -76,4 +78,7 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean re
+lldb: CFLAGS += $(DEBUG_FLAGS)
+lldb: $(NAME)
+
+.PHONY:	all clean fclean re lldb

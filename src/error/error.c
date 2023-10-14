@@ -1,27 +1,25 @@
 #include "cub3d.h"
 
-void	error(int error_num)
+void	error(int error)
 {
 	printf("\e[31mERROR\e[m");
-	if (error_num == 1)
+	if (error == Argument_Error)
 		printf("Missing required arguments.\n");
-	else if (error_num == 2)
+	else if (error == Filename_Error)
 		printf("Missing filename.\n");
-	else if (error_num == 3)
+	else if (error == Openfile_Error)
 		printf("I can't open the file.\n");
-	else if (error_num == 4)
+	else if (error == Readfile_Error)
 		printf("I can't read the file.\n");
-	else if (error_num == 5)
-		printf("Direction error.\n");
-	else if (error_num == 6)
+	else if (error == Texture_Error)
+		printf("Texture error.\n");
+	else if (error == Mapargument_Error)//num_map_argument_error
 		printf("not enogh arguments.\n");
-	else if (error_num == 7)
-		printf("ceiling or floor arguments is invalid.\n");
-	else if (error_num == 8)
+	else if (error == Invalid_Argument_In_Map_Error)
 		printf("invalid arguments in map.\n");
-	else if (error_num == 9)
+	else if (error == Num_Arguments_Error)
 		printf("invalid number of news.\n");
-	else if (error_num == 10)
+	else if (error == Hole_In_Map)
 		printf("there is hole in map.\n");
 	exit(1);
 }
