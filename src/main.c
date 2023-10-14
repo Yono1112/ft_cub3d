@@ -11,3 +11,8 @@ int main(int argc, char **argv)
 	check_error((const int)argc, (const char**)argv, &mapdata);
 	return (0);
 }
+
+__attribute__((destructor))
+static void destructor(void){
+			system("leaks -q cub3d");
+			}
