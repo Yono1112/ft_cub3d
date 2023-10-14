@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/14 12:42:02 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/14 13:29:54 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ char	*check_direction(char *line, char *dir)
 
 	while (!ft_isalpha(line[j]))
 		j++;
-	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー //ft_strlen(dir) を2に変更してみる
+	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー
 		error(Texture_Error);
 	j += ft_strlen(dir);
-	while (!ft_isalpha(line[j]))
-		j++;
-	return ft_strdup(line + j);//テクスチャー名の後にスペースがある場合を除けていない?
+	if (ft_strlen(dir) == 1)
+		while (!ft_isalnum(line[j]))
+			j++;
+	else
+		while (!ft_isalpha(line[j]))
+			j++;
+	return ft_strdup(line + j);//テクスチャー名の後のスペーススを除けていない
 }
 
 void	skip_space(char **map, int *i) //最初に文字が来る行を特定している
@@ -41,20 +45,6 @@ void	skip_space(char **map, int *i) //最初に文字が来る行を特定して
 	}
 	if (!map[*i])
 		error(Mapargument_Error);
-}
-
-char	*cheack_ceiling_and_floor(char *line, char c)
-{
-	int i = 0;
-
-	while (!ft_isalpha(line[i]))
-		i++;
-	if (line[i] != c)
-		error(Invalid_Argument_In_Map_Error);
-	i++;
-	while (!ft_isalnum(line[i]))
-		i++;
-	return ft_strdup(line + i);
 }
 
 int	check_texture(char **map, t_map *mapdata)
@@ -76,16 +66,24 @@ int	check_texture(char **map, t_map *mapdata)
 	mapdata->we = check_direction(map[i], "WE");
 	i++;
 	skip_space(map, &i);
-	mapdata->floor = cheack_ceiling_and_floor(map[i], 'F');
+	mapdata->floor = check_direction(map[i], "F");
 	i++;
 	skip_space(map, &i);
-	mapdata->ceiling = cheack_ceiling_and_floor(map[i], 'C');
+	mapdata->ceiling = check_direction(map[i], "C");
+//------------------------------------------------------------
+	printf("no = %s\n", mapdata->no);
+	printf("so = %s\n", mapdata->so);
+	printf("ea = %s\n", mapdata->ea);
+	printf("we = %s\n", mapdata->we);
+	printf("floor = %s\n", mapdata->floor);
+	printf("ceiling = %s\n", mapdata->ceiling);
+//------------------------------------------------------------
 	i++;
 	skip_space(map, &i);
 	return i;
 }
 
-void	check_map(char **map, t_map *mapdata, int i)
+void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 {
 	int	stock;
 	int	maxlen;// 最長行
@@ -93,7 +91,7 @@ void	check_map(char **map, t_map *mapdata, int i)
 	char	*newline;
 
 	maxlen = 0;
-	//skip_space(map, &i); //check_textureでスペース飛ばしを行っているので必要ない（？）
+	//skip_space(map, &i); //check_textureでスペース飛ばしを行っているので必要ない,あっても問題ない
 	stock = i;
 	while (map[i])//最長行を探している
 	{
@@ -153,7 +151,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 
 void	check_hole(char **map, int i, int j, int border)
 {
-	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')
+	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;
 	if (map[i][j] == ' ')
 		error(Hole_In_Map);
@@ -172,7 +170,7 @@ void	check_mapcollect(char **map, t_map *mapdata, int i)
 
 	skip_space(map, &i);
 	border = i;
-	while (map[i])
+	while (map[i])//スタート位置探索
 	{
 		j = 0;
 		while (map[i][j])
@@ -198,7 +196,6 @@ void	check_mapfile(char **map, t_map *mapdata)
 
 	j = 0;
 	i = check_texture(map, mapdata);
-	//i++; //check_texture() でiは次の行を指しているはず
 	check_map(map, mapdata, i);
 	check_mapcontents(map, mapdata, i);
 	check_mapcollect(map, mapdata, i);
@@ -220,6 +217,7 @@ void	check_mapfile(char **map, t_map *mapdata)
 				map[i + stock][j] = '0';
 			j++;
 		}
+		printf("%s\n",map[i + stock]);
 		newmap[i] = ft_strdup(map[i + stock]);
 		i++;
 	}

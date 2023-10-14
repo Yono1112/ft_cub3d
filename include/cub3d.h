@@ -21,15 +21,15 @@ typedef struct s_map
 }t_map;
 
 enum Error {
-	Argument_Error,//1
-	Openfile_Error,//3
-	Filename_Error,//4
-	Readfile_Error,//5
+	Argument_Error,
+	Openfile_Error,
+	Filename_Error,
+	Readfile_Error,
 	Mapargument_Error,
-	Texture_Error,//6
-	Invalid_Argument_In_Map_Error,//9
-	Num_Arguments_Error,//10
-	Hole_In_Map//11
+	Texture_Error,
+	Invalid_Argument_In_Map_Error,
+	Num_Arguments_Error,
+	Hole_In_Map
 };
 
 //check-mapfile
