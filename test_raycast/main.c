@@ -12,6 +12,11 @@ char	world_map[MAP_HEIGHT][MAP_WIDTH] =
 	{'1', '1', '1', '1', '1', '1', '1', '1'},
 };
 
+char	*north_texture = "./wall_texture/";
+char	*south_texture = "./wall_texture/";
+char	*east_texture = "./wall_texture/";
+char	*west_texture = "./wall_texture/";
+
 void	print_world_map(void)
 {
 	for (int i = 0; i < 8; i++)
@@ -41,6 +46,7 @@ int	main(void)
 	if (!mlx.mlx_win)
 		exit_error("ERROR: cannot run mlx_new_window()");
 	set_player(&mlx);
+	set_wall_texture(&mlx);
 	mlx_loop_hook(mlx.mlx_ptr, ft_raycast, &mlx);
 	mlx_hook(mlx.mlx_win, 2, 0, &key_press, NULL);
 	mlx_loop(mlx.mlx_ptr);

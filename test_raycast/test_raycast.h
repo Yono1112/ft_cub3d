@@ -21,6 +21,15 @@
 # define SIDE_X 0
 # define SIDE_Y 1
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		*bits_per_pixel;
+	int		*size_line;
+	int		*endian;
+	char	*deta_addr;
+}	t_img;
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
@@ -41,6 +50,8 @@ typedef struct s_mlx
 	int		step_x;
 	int		step_y;
 	int		side;
+	// texture
+	t_img	wall_texure[4];
 }	t_mlx;
 
 char	world_map[MAP_HEIGHT][MAP_WIDTH];
@@ -49,5 +60,6 @@ void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
 void	calc_dist_to_wall(t_mlx *mlx);
 void	draw_wall_texture(t_mlx *mlx, size_t x);
+void	set_wall_texture(t_mlx *mlx);
 
 #endif

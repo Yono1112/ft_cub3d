@@ -19,7 +19,8 @@ SRCS	= 	main.c		\
 			draw_wall_texture.c \
 			exit_error.c	\
 			ft_raycast.c	\
-			set_player.c	
+			set_player.c	\
+			set_wall_texture.c
 all:	$(NAME)
 
 $(NAME): $(OBJS)
