@@ -3,12 +3,12 @@
 char	world_map[MAP_HEIGHT][MAP_WIDTH] = 
 {
 	{'1', '1', '1', '1', '1', '1', '1', '1'},
+	{'1', '0', '0', '1', '0', '0', '0', '1'},
+	{'1', '0', '0', '0', '0', '0', '0', '1'},
 	{'1', '0', '0', '0', '0', '0', '0', '1'},
 	{'1', '0', '0', '0', '0', '0', '0', '1'},
 	{'1', '0', '0', '0', '0', '0', '0', '1'},
 	{'1', '0', '0', 'N', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
 	{'1', '1', '1', '1', '1', '1', '1', '1'},
 };
 
@@ -34,6 +34,13 @@ int	key_press(int i, void *param)
 	return (0);
 }
 
+// int	ft_destroy(t_mlx *mlx)
+// {
+// 	(void)mlx;
+// 	printf("FINISH: click button\n");
+// 	exit(0);
+// }
+
 int	main(void)
 {
 	t_mlx	mlx;
@@ -46,9 +53,10 @@ int	main(void)
 	if (!mlx.mlx_win)
 		exit_error("ERROR: cannot run mlx_new_window()");
 	set_player(&mlx);
-	set_wall_texture(&mlx);
+	// set_wall_texture(&mlx);
 	mlx_loop_hook(mlx.mlx_ptr, ft_raycast, &mlx);
-	mlx_hook(mlx.mlx_win, 2, 0, &key_press, NULL);
+	// mlx_hook(mlx.mlx_win, 2, 1L << 0, &key_press, &mlx);
+	// mlx_hook(mlx.mlx_win, 17, 1L << 2, ft_destroy, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

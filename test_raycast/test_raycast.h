@@ -11,8 +11,8 @@
 
 # define MAP_WIDTH 8
 # define MAP_HEIGHT 8
-# define WINSIZE_WIDTH 640
-# define WINSIZE_HEIGTH 480
+# define WINSIZE_WIDTH 800
+# define WINSIZE_HEIGTH 800
 # define SOUTH (M_PI / 180) * 90
 # define NORTH (M_PI / 180) * 270
 # define EAST (M_PI / 180) * 0
@@ -50,6 +50,7 @@ typedef struct s_mlx
 	int		step_x;
 	int		step_y;
 	int		side;
+	int		wall_height;
 	// texture
 	t_img	wall_texure[4];
 }	t_mlx;
@@ -59,7 +60,7 @@ void	set_player(t_mlx *mlx);
 void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
 void	calc_dist_to_wall(t_mlx *mlx);
-void	draw_wall_texture(t_mlx *mlx, size_t x);
+void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx);
 
 #endif

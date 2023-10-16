@@ -13,11 +13,13 @@ void	set_wall_texture(t_mlx *mlx)
 	while (i < 4)
 	{
 		mlx->wall_texure[i].img_ptr
-			= mlx_xpm_file_to_image(mlx->mlx_ptr, );
+			= mlx_xpm_file_to_image(mlx->mlx_ptr, NULL, &height, &width);
 		if (!mlx->wall_texure[i].img_ptr)
 			exit_error("ERROR: \
 				cannot convert xpm to image in mlx_xpm_file_to_image()");
-		mlx->wall_texure[i].deta_addr = mlx_get_data_addr();
+		mlx->wall_texure[i].deta_addr = mlx_get_data_addr(
+				mlx->wall_texure[i].img_ptr, mlx->wall_texure[i].bits_per_pixel,
+				mlx->wall_texure[i].size_line, mlx->wall_texure[i].endian);
 		if (!mlx->wall_texure[i].img_ptr)
 			exit_error("ERROR: \
 				cannot get memory address of image in mlx_get_data_addr()");
