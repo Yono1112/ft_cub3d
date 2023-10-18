@@ -2,14 +2,14 @@
 
 char	world_map[MAP_HEIGHT][MAP_WIDTH] = 
 {
-	{'1', '1', '1', '1', '1', '1', '1', '1'},
-	{'1', '0', '0', '1', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', 'N', '0', '0', '0', '1'},
-	{'1', '1', '1', '1', '1', '1', '1', '1'},
+	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+	{'1', '0', '1', '0', '0', '1', '1', '0', '0', '0', '0', '1', '0', '0', '1', '1'},
+	{'1', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+	{'1', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1'},
+	{'1', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+	{'1', '0', 'S', '0', '0', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1'},
+	{'1', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1'},
+	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
 };
 
 char	*north_texture = "./wall_texture/";
@@ -19,27 +19,13 @@ char	*west_texture = "./wall_texture/";
 
 void	print_world_map(void)
 {
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < MAP_HEIGHT; i++)
 	{
-		for(int j = 0; j < 8; j++)
+		for(int j = 0; j < MAP_WIDTH; j++)
 			printf("%c", world_map[i][j]);
 		printf("\n");
 	}
 }
-
-int	key_press(int i, void *param)
-{
-	printf("%d\n", i);
-	(void)param;
-	return (0);
-}
-
-// int	ft_destroy(t_mlx *mlx)
-// {
-// 	(void)mlx;
-// 	printf("FINISH: click button\n");
-// 	exit(0);
-// }
 
 int	main(void)
 {
@@ -55,8 +41,8 @@ int	main(void)
 	set_player(&mlx);
 	// set_wall_texture(&mlx);
 	mlx_loop_hook(mlx.mlx_ptr, ft_raycast, &mlx);
-	// mlx_hook(mlx.mlx_win, 2, 1L << 0, &key_press, &mlx);
-	// mlx_hook(mlx.mlx_win, 17, 1L << 2, ft_destroy, &mlx);
+	mlx_hook(mlx.mlx_win, 2, 1L << 0, &ft_press_key, &mlx);
+	mlx_hook(mlx.mlx_win, 17, 1L << 2, ft_destroy, "press close button");
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

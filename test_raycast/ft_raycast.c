@@ -50,8 +50,8 @@ int	ft_raycast(t_mlx *mlx)
 	{
 		init_mlx_value(mlx, x);
 		calc_dist_to_wall(mlx);
-		printf("%ld: %f(%f°), %f(%f°)\n", x, mlx->player_direct, mlx->player_direct * (180 / M_PI), mlx->ray_direct, mlx->ray_direct * (180 / M_PI));
-		printf("dist_to_wall:%f\n", mlx->dist_to_wall);
+		// printf("%ld: %f(%f°), %f(%f°)\n", x, mlx->player_direct, mlx->player_direct * (180 / M_PI), mlx->ray_direct, mlx->ray_direct * (180 / M_PI));
+		// printf("dist_to_wall:%f\n", mlx->dist_to_wall);
 		draw_wall_texture_ceiling_floor(mlx, x);
 		x++;
 	}

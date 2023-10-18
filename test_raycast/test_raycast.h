@@ -9,10 +9,10 @@
 # include <math.h>
 # include "../minilibx_opengl_20191021/mlx.h"
 
-# define MAP_WIDTH 8
-# define MAP_HEIGHT 8
-# define WINSIZE_WIDTH 800
-# define WINSIZE_HEIGTH 800
+# define MAP_WIDTH 16
+# define MAP_HEIGHT 16
+# define WINSIZE_WIDTH 1000
+# define WINSIZE_HEIGTH 1000
 # define SOUTH (M_PI / 180) * 90
 # define NORTH (M_PI / 180) * 270
 # define EAST (M_PI / 180) * 0
@@ -20,6 +20,14 @@
 # define FOV (M_PI / 180) * 60
 # define SIDE_X 0
 # define SIDE_Y 1
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_ARROW_LEFT 123
+# define KEY_ARROW_RIGHT 124
+# define MOVE_SPEED 1 
 
 typedef struct s_img
 {
@@ -62,5 +70,7 @@ int		ft_raycast(t_mlx *mlx);
 void	calc_dist_to_wall(t_mlx *mlx);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx);
+int		ft_destroy(t_mlx *mlx, char *str);
+int		ft_press_key(int i, t_mlx *mlx);
 
 #endif

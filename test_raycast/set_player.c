@@ -26,9 +26,10 @@ void	set_player(t_mlx *mlx)
 			if (world_map[y][x] == 'N' || world_map[y][x] == 'S'
 				|| world_map[y][x] == 'W' || world_map[y][x] == 'E')
 			{
-				mlx->pos_x = x;
-				mlx->pos_y = y;
+				mlx->pos_x = (double)x + 0.5;
+				mlx->pos_y = (double)y + 0.5;
 				set_direction(mlx, world_map[y][x]);
+				world_map[y][x] = '0';
 				return ;
 			}
 			x++;

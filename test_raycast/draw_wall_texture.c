@@ -36,8 +36,12 @@ void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win)
 	mlx_pixel_put(mlx_ptr, mlx_win, x, y, color_floor);
 }
 
-void	draw_wall_texture()
+void	draw_wall_texture(int x, int y, t_mlx *mlx)
 {
+	long	color_wall_texture;
+
+	color_wall_texture = (255 * 65536) + (0 * 256) + 0;
+	mlx_pixel_put(mlx->mlx_ptr, mlx->mlx_win, x, y, color_wall_texture);
 }
 
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
@@ -48,7 +52,7 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 
 	y = 0;
 	mlx->wall_height = WINSIZE_HEIGTH / mlx->dist_to_wall;
-	printf("mlx->wall_height: %d\n", mlx->wall_height);
+	// printf("mlx->wall_height: %d\n", mlx->wall_height);
 	set_draw_start_end(mlx->wall_height, &draw_start, &draw_end);
 	while (y < WINSIZE_HEIGTH)
 	{
@@ -56,8 +60,8 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 			draw_ceiling(x, y, mlx->mlx_ptr, mlx->mlx_win);
 		else if (is_floor(y, draw_end))
 			draw_floor(x, y, mlx->mlx_ptr, mlx->mlx_win);
-		// else
-		// 	draw_wall_texture();
+		else
+			draw_wall_texture(x, y, mlx);
 		y++;
 	}
 }
