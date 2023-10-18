@@ -36,6 +36,32 @@ void	move_back(t_mlx *mlx)
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
 
+void	move_left(t_mlx *mlx)
+{
+	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
+	if (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
+		[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1')
+	{
+		printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
+		mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
+		mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
+	}
+	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
+}
+
+void	move_right(t_mlx *mlx)
+{
+	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
+	if (world_map[(int)(mlx->pos_y + MOVE_SPEED * sin(mlx->player_direct))]
+		[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1')
+	{
+		printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
+		mlx->pos_x = mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct);
+		mlx->pos_y = mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct);
+	}
+	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
+}
+
 void	rotate_left(t_mlx *mlx)
 {
 	// printf("before mlx->player_direct: %lf°\n", mlx->player_direct);
@@ -68,16 +94,16 @@ int	ft_press_key(int key_num, t_mlx *mlx)
 		printf("press S key\n");
 		move_back(mlx);
 	}
-	// else if (key_num == KEY_A)
-	// {
-	// 	printf("press A key\n");
-	// 	move_left(mlx);
-	// }
-	// else if (key_num == KEY_D)
-	// {
-	// 	printf("press D key\n");
-	// 	move_right(mlx);
-	// }
+	else if (key_num == KEY_A)
+	{
+		printf("press A key\n");
+		move_left(mlx);
+	}
+	else if (key_num == KEY_D)
+	{
+		printf("press D key\n");
+		move_right(mlx);
+	}
 	else if (key_num == KEY_ARROW_LEFT)
 	{
 		printf("press KEY_ARROw_LEFT key\n");

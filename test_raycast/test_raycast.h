@@ -11,8 +11,8 @@
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
-# define WINSIZE_WIDTH 1000
-# define WINSIZE_HEIGTH 1000
+# define WINSIZE_WIDTH 800
+# define WINSIZE_HEIGTH 800
 # define SOUTH (M_PI / 180) * 90
 # define NORTH (M_PI / 180) * 270
 # define EAST (M_PI / 180) * 0
@@ -27,7 +27,7 @@
 # define KEY_D 2
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
-# define MOVE_SPEED 1 
+# define MOVE_SPEED 0.25
 
 typedef struct s_img
 {
