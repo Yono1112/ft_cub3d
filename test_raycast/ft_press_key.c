@@ -82,7 +82,7 @@ int	ft_press_key(int key_num, t_mlx *mlx)
 {
 	printf("%d\n", key_num);
 	if (key_num == KEY_ESC)
-		ft_destroy(mlx, "press ESC key");
+		ft_destroy("press ESC key", mlx);
 	else if (key_num == KEY_W)
 	{
 		printf("press W key\n");
