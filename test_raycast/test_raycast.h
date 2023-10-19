@@ -58,7 +58,7 @@ typedef struct s_mlx
 	int		step_x;
 	int		step_y;
 	int		side;
-	int		wall_height;
+	double	wall_height;
 	// texture
 	t_img	wall_texure[4];
 }	t_mlx;

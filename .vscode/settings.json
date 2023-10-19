@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"chrono": "cpp",
+		"cmath": "cpp"
 	}
 }

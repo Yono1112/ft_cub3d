@@ -1,6 +1,6 @@
 #include "test_raycast.h"
 
-void	set_draw_start_end(int wall_height, int *draw_start, int *draw_end)
+void	set_draw_start_end(double wall_height, double *draw_start, double *draw_end)
 {
 	*draw_start = -1 * wall_height / 2 + WINSIZE_HEIGTH / 2;
 	if (*draw_start < 0)
@@ -10,12 +10,12 @@ void	set_draw_start_end(int wall_height, int *draw_start, int *draw_end)
 		*draw_end = WINSIZE_HEIGTH - 1;
 }
 
-bool	is_ceiling(int y, int draw_start)
+bool	is_ceiling(int y, double draw_start)
 {
 	return (y < draw_start);
 }
 
-bool	is_floor(int y, int draw_end)
+bool	is_floor(int y, double draw_end)
 {
 	return (y > draw_end);
 }
@@ -40,15 +40,32 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 {
 	long	color_wall_texture;
 
-	color_wall_texture = (255 * 65536) + (0 * 256) + 0;
+	// color_wall_texture = (255 * 65536) + (0 * 256) + 0;
+	// printf("mlx->side: %d\n", mlx->side);
+	// printf("mlx->ray_direct: %f, mlx->ray_dir_x: %f, mlx->ray_dir_y: %f\n",mlx->ray_direct * (180 / M_PI) , mlx->ray_dir_x, mlx->ray_dir_y);
+	// exit(0);
+	color_wall_texture = 0;
+	// printf("%d\n", (int)mlx->side);
+	if ((int)mlx->side == SIDE_Y
+		&& sin(mlx->ray_direct) >= 0) //south
+		color_wall_texture = (255 * 65536) + (0 * 256) + 0;
+	else if ((int)mlx->side == SIDE_Y
+		&& sin(mlx->ray_direct) < 0) // north
+		color_wall_texture = (0 * 65536) + (255 * 256) + 0;
+	else if ((int)mlx->side == SIDE_X
+		&& cos(mlx->ray_direct) >= 0) //east
+		color_wall_texture = (0 * 65536) + (0 * 256) + 255;
+	else if ((int)mlx->side == SIDE_X
+		&& cos(mlx->ray_direct) < 0) //west
+		color_wall_texture = (255 * 65536) + (255 * 256) + 0;
 	mlx_pixel_put(mlx->mlx_ptr, mlx->mlx_win, x, y, color_wall_texture);
 }
 
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 {
 	int		y;
-	int		draw_start;
-	int		draw_end;
+	double	draw_start;
+	double	draw_end;
 
 	y = 0;
 	mlx->wall_height = WINSIZE_HEIGTH / mlx->dist_to_wall;
