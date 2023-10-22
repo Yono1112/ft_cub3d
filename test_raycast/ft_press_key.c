@@ -114,11 +114,6 @@ int	ft_press_key(int key_num, t_mlx *mlx)
 		printf("press KEY_ARROW_RIGHT key\n");
 		rotate_right(mlx);
 	}
-	else if (key_num == 34)
-	{
-		printf("press KEY_I key\n");
-		printf("dist_to_wall:%f(%f°)\n", mlx->dist_to_wall, mlx->ray_direct * (180 / M_PI));
-	}
 	// exit(0);
 	return (0);
 }
