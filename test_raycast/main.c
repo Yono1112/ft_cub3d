@@ -16,7 +16,8 @@ char	*wall_texture[4] = {
 	"./wall_texture/wall_texture_north.xpm",
 	"./wall_texture/wall_texture_south.xpm",
 	"./wall_texture/wall_texture_east.xpm",
-	"./wall_texture/wall_texture_west.xpm"
+	"./wall_texture/wall_texture_east.xpm",
+	// "./wall_texture/wall_texture_west.xpm"
 };
 
 void	print_world_map(void)

@@ -24,7 +24,7 @@ void	draw_ceiling(int x, int y, void *mlx_ptr, void *mlx_win)
 {
 	long	color_ceiling;
 
-	color_ceiling = (255 * 65536) + (255 * 256) + 255;
+	color_ceiling = (0 * 65536) + (0 * 256) + 0;
 	mlx_pixel_put(mlx_ptr, mlx_win, x, y, color_ceiling);
 }
 
@@ -32,7 +32,7 @@ void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win)
 {
 	long	color_floor;
 
-	color_floor = (255 * 65536) + (255 * 256) + 255;
+	color_floor = (0 * 65536) + (0 * 256) + 0;
 	mlx_pixel_put(mlx_ptr, mlx_win, x, y, color_floor);
 }
 
@@ -48,9 +48,9 @@ void	calc_wall_x(double *wall_x, t_mlx *mlx)
 void	calc_tex_x(int *tex_x, t_mlx *mlx, double wall_x)
 {
 	*tex_x = (int)(wall_x * (double)TEX_WIDTH);
-	if (mlx->side == SIDE_X && mlx->ray_dir_x > 0)
+	if (mlx->side == SIDE_Y && mlx->ray_dir_y >= 0)
 		*tex_x = TEX_WIDTH - *tex_x - 1;
-	else if (mlx->side == SIDE_Y && mlx->ray_dir_y < 0)
+	else if (mlx->side == SIDE_X && mlx->ray_dir_x < 0)
 		*tex_x = TEX_WIDTH - *tex_x - 1;
 }
 
@@ -86,8 +86,6 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 	tex_y = (int)mlx->tex_pos & (TEX_HEIGHT - 1);
 	mlx->tex_pos += mlx->step;
 	index_texture = set_index_texture(mlx);
-	// (void)tex_x;
-	// (void)tex_y;
 	// index_texture = 0;
 	if (index_texture < 0)
 		exit_error("ERROR: cannot set index_texture in draw_wall_texture()\n");
