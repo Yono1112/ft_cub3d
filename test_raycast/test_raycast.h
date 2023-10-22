@@ -28,13 +28,19 @@
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 # define MOVE_SPEED 0.25
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define NORTH_TEX 0
+# define SOUTH_TEX 1
+# define EAST_TEX 2
+# define WEST_TEX 3
 
 typedef struct s_img
 {
 	void	*img_ptr;
-	int		*bits_per_pixel;
-	int		*size_line;
-	int		*endian;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 	char	*deta_addr;
 }	t_img;
 
@@ -60,10 +66,14 @@ typedef struct s_mlx
 	int		side;
 	double	wall_height;
 	// texture
-	t_img	wall_texure[4];
+	t_img	wall_texture[4];
+	double	step;
+	double	tex_pos;
 }	t_mlx;
 
 char	world_map[MAP_HEIGHT][MAP_WIDTH];
+char	*wall_texture[4];
+
 void	set_player(t_mlx *mlx);
 void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
