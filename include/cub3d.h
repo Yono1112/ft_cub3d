@@ -19,8 +19,6 @@ typedef struct s_map
 	char *floor;
 	char *ceiling;
 	char **map;
-	int ceiling_num[3];
-	int floor_num[3];
 	char *ceiling_num_char[3];
 	char *floor_num_char[3];
 }t_map;
