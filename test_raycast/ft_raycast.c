@@ -29,20 +29,20 @@ void	init_mlx_value(t_mlx *mlx, size_t x)
 		mlx->delta_dist_x = 1e30;
 	else
 	{
-		// mlx->delta_dist_x = sqrt(1 + (mlx->ray_dir_y * mlx->ray_dir_y)
-		// 		/ (mlx->ray_dir_x * mlx->ray_dir_x));
+		mlx->delta_dist_x = sqrt(1 + (mlx->ray_dir_y * mlx->ray_dir_y)
+				/ (mlx->ray_dir_x * mlx->ray_dir_x));
 		// printf("1 / mlx->ray_dir_x: %f\n", 1 / mlx->ray_dir_x);
-		mlx->delta_dist_x = fabs(1 / mlx->ray_dir_x);
+		// mlx->delta_dist_x = fabs(1 / mlx->ray_dir_x);
 	}
 	if (!mlx->ray_dir_y)
 		mlx->delta_dist_y = 1e30;
 		// mlx->delta_dist_y = DBL_MAX;
 	else
 	{
-		// mlx->delta_dist_y = sqrt(1 + (mlx->ray_dir_x * mlx->ray_dir_x)
-		// 		/ (mlx->ray_dir_y * mlx->ray_dir_y));
+		mlx->delta_dist_y = sqrt(1 + (mlx->ray_dir_x * mlx->ray_dir_x)
+				/ (mlx->ray_dir_y * mlx->ray_dir_y));
 		// printf("1 / mlx->ray_dir_y: %f\n", 1 / mlx->ray_dir_y);
-		mlx->delta_dist_y = fabs(1 / mlx->ray_dir_y);
+		// mlx->delta_dist_y = fabs(1 / mlx->ray_dir_y);
 	}
 }
 

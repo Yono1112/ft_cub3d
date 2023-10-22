@@ -53,13 +53,13 @@ void	calc_dist_to_wall(t_mlx *mlx)
 	calc_dda_algorithm(mlx);
 	if (mlx->side == SIDE_X)
 	{
-		// mlx->dist_to_wall = (mlx->map_x - mlx->pos_x + (1 - mlx->step_x) / 2) / mlx->ray_dir_x;
-		mlx->dist_to_wall = (mlx->side_dist_x - mlx->delta_dist_x);
+		mlx->dist_to_wall = (mlx->map_x - mlx->pos_x + (1 - mlx->step_x) / 2) / mlx->ray_dir_x;
+		// mlx->dist_to_wall = (mlx->side_dist_x - mlx->delta_dist_x);
 	}
 	else
 	{
-		// mlx->dist_to_wall = (mlx->map_y - mlx->pos_y + (1 - mlx->step_y) / 2) / mlx->ray_dir_y;
-		mlx->dist_to_wall = (mlx->side_dist_y - mlx->delta_dist_y);
+		mlx->dist_to_wall = (mlx->map_y - mlx->pos_y + (1 - mlx->step_y) / 2) / mlx->ray_dir_y;
+		// mlx->dist_to_wall = (mlx->side_dist_y - mlx->delta_dist_y);
 	}
 	// printf("\n%f, %f\n", mlx->ray_dir_x, mlx->ray_dir_y);
 	// exit(0);
