@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/23 03:17:01 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/23 03:54:38 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int	check_texture(char **map, t_map *mapdata)
 	mapdata->so = check_direction(map[i], "SO");
 	i++;
 	skip_space(map, &i);
-	mapdata->ea = check_direction(map[i], "EA");
+	mapdata->we = check_direction(map[i], "WE");
 	i++;
 	skip_space(map, &i);
-	mapdata->we = check_direction(map[i], "WE");
+	mapdata->ea = check_direction(map[i], "EA");
 	i++;
 	skip_space(map, &i);
 	mapdata->floor = check_direction(map[i], "F");
