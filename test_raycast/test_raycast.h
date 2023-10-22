@@ -34,6 +34,10 @@
 # define SOUTH_TEX 1
 # define EAST_TEX 2
 # define WEST_TEX 3
+# define MOVE_FORWARD 0
+# define MOVE_BACK 1
+# define MOVE_LEFT 2
+# define MOVE_RIGHT 3
 
 typedef struct s_img
 {

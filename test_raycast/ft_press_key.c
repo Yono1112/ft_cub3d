@@ -1,10 +1,20 @@
 #include "test_raycast.h"
 
-// bool	is_hit_wall(t_mlx *mlx)
-// {
-// 	return (world_map[(int)(mlx->pos_y + mlx->player_direct * MOVE_SPEED)]
-// 			[(int)(mlx->pos_x + mlx->player_direct * MOVE_SPEED)] == '1');
-// }
+bool	is_not_hit_wall(int flag_move, t_mlx *mlx)
+{
+	if (flag_move == MOVE_FORWARD)
+		return (world_map[(int)(mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED)]
+			[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1');
+	else if (flag_move == MOVE_BACK)
+		return (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
+			[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1');
+	else if (flag_move == MOVE_LEFT)
+		return (world_map[(int)(mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct))]
+			[(int)(mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct))] != '1');
+	else
+		return (world_map[(int)(mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct))]
+			[(int)(mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct))] != '1');
+}
 
 void	move_forward(t_mlx *mlx)
 {
@@ -14,11 +24,15 @@ void	move_forward(t_mlx *mlx)
 	// printf("new_pos_y: %lf\n", new_pos_y);
 	printf("mlx->pos_x: %f\n", mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct));
 	printf("mlx->pos_y: %f\n", mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED);
-	if (world_map[(int)(mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED)]
-			[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1')
+	// if (world_map[(int)(mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED)]
+	// 		[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1')
+	if (is_not_hit_wall(MOVE_FORWARD, mlx))
 	{
-		mlx->pos_y = mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED;
-		mlx->pos_x = mlx->pos_x + cos(mlx->player_direct) * MOVE_SPEED;
+		if (is_not_hit_wall(MOVE_LEFT, mlx) && is_not_hit_wall(MOVE_RIGHT, mlx))
+		{
+			mlx->pos_y = mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED;
+			mlx->pos_x = mlx->pos_x + cos(mlx->player_direct) * MOVE_SPEED;
+		}
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 	// exit(0);
@@ -27,11 +41,15 @@ void	move_forward(t_mlx *mlx)
 void	move_back(t_mlx *mlx)
 {
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	if (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
-		[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1')
+	// if (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
+	// 	[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1')
+	if (is_not_hit_wall(MOVE_BACK, mlx))
 	{
-		mlx->pos_x = mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct);
-		mlx->pos_y = mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct);
+		if (is_not_hit_wall(MOVE_LEFT, mlx) && is_not_hit_wall(MOVE_RIGHT, mlx))
+		{
+			mlx->pos_x = mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct);
+			mlx->pos_y = mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct);
+		}
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
@@ -39,12 +57,16 @@ void	move_back(t_mlx *mlx)
 void	move_left(t_mlx *mlx)
 {
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	if (world_map[(int)(mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct))]
-		[(int)(mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct))] != '1')
+	// if (world_map[(int)(mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct))]
+	// 	[(int)(mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct))] != '1')
+	if (is_not_hit_wall(MOVE_LEFT, mlx))
 	{
-		printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
-		mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
-		mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
+		if (is_not_hit_wall(MOVE_FORWARD, mlx) && is_not_hit_wall(MOVE_BACK, mlx))
+		{
+			printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
+			mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
+			mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
+		}
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
@@ -52,12 +74,16 @@ void	move_left(t_mlx *mlx)
 void	move_right(t_mlx *mlx)
 {
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	if (world_map[(int)(mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct))]
-		[(int)(mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct))] != '1')
+	// if (world_map[(int)(mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct))]
+	// 	[(int)(mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct))] != '1')
+	if (is_not_hit_wall(MOVE_RIGHT, mlx))
 	{
-		printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
-		mlx->pos_x = mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct);
-		mlx->pos_y = mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct);
+		if (is_not_hit_wall(MOVE_FORWARD, mlx) && is_not_hit_wall(MOVE_BACK, mlx))
+		{
+			printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
+			mlx->pos_x = mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct);
+			mlx->pos_y = mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct);
+		}
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
