@@ -86,5 +86,6 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx);
 int		ft_destroy(char *str, t_mlx *mlx);
 int		ft_press_key(int i, t_mlx *mlx);
+void	init_raycast_value(t_mlx *mlx, size_t x);
 
 #endif
