@@ -9,6 +9,7 @@ void	calc_initial_step(t_mlx *mlx)
 	}
 	else
 	{
+		// printf("%d, %f\n", mlx->map_x, mlx->pos_x);
 		mlx->step_x = 1;
 		mlx->side_dist_x = (mlx->map_x + 1.0 - mlx->pos_x) * mlx->delta_dist_x;
 	}
@@ -19,8 +20,9 @@ void	calc_initial_step(t_mlx *mlx)
 	}
 	else
 	{
+		// printf("%d, %f\n", mlx->map_y, mlx->pos_y);
 		mlx->step_y = 1;
-		mlx->side_dist_y = (mlx->pos_y - mlx->map_y) * mlx->delta_dist_y;
+		mlx->side_dist_y = (mlx->map_y + 1.0 - mlx->pos_y) * mlx->delta_dist_y;
 	}
 }
 
@@ -51,7 +53,7 @@ void	calc_dist_to_wall(t_mlx *mlx)
 	calc_dda_algorithm(mlx);
 	if (mlx->side == SIDE_X)
 	{
-		// mlx->dist_to_wall = (mlx->map_x - mlx->pos_x + (1 - mxx->step_x) / 2) / mlx->ray_dir_x;
+		// mlx->dist_to_wall = (mlx->map_x - mlx->pos_x + (1 - mlx->step_x) / 2) / mlx->ray_dir_x;
 		mlx->dist_to_wall = (mlx->side_dist_x - mlx->delta_dist_x);
 	}
 	else

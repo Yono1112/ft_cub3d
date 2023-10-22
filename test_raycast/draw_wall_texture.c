@@ -2,10 +2,10 @@
 
 void	set_draw_start_end(double wall_height, double *draw_start, double *draw_end)
 {
-	*draw_start = -1 * wall_height / 2 + WINSIZE_HEIGTH / 2;
+	*draw_start = -1 * wall_height / 2.0 + (double)WINSIZE_HEIGTH / 2.0;
 	if (*draw_start < 0)
 		*draw_start = 0;
-	*draw_end = wall_height / 2 + WINSIZE_HEIGTH / 2;
+	*draw_end = wall_height / 2.0 + (double)WINSIZE_HEIGTH / 2.0;
 	if (*draw_end >= WINSIZE_HEIGTH)
 		*draw_end = WINSIZE_HEIGTH - 1;
 }
@@ -117,7 +117,7 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 
 	y = 0;
 	mlx->wall_height = WINSIZE_HEIGTH / mlx->dist_to_wall;
-	// printf("mlx->wall_height: %d\n", mlx->wall_height);
+	// printf("mlx->wall_height: %f\n", mlx->wall_height);
 	set_draw_start_end(mlx->wall_height, &draw_start, &draw_end);
 	mlx->step = 1.0 * TEX_HEIGHT / mlx->wall_height;
 	mlx->tex_pos = (draw_start - WINSIZE_HEIGTH / 2 + mlx->wall_height / 2)
