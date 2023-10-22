@@ -6,11 +6,25 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/14 17:16:02 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/23 03:17:01 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
+
+char*	change_newline_to_null(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			str[i] = '\0';
+		i++;
+	}
+	return (str);
+}
 
 char	*check_direction(char *line, char *dir)
 {
@@ -25,9 +39,9 @@ char	*check_direction(char *line, char *dir)
 		while (!ft_isalnum(line[j]))
 			j++;
 	else
-		while (!ft_isalpha(line[j]))
+		while (!ft_isprint(line[j]))
 			j++;
-	return ft_strdup(line + j);//テクスチャー名の後のスペースを除けていない
+	return change_newline_to_null(ft_strdup(line + j + 1));//テクスチャー名の後のスペースを除けていない
 }
 
 void	skip_space(char **map, int *i) //最初に文字が来る行を特定している
@@ -37,9 +51,9 @@ void	skip_space(char **map, int *i) //最初に文字が来る行を特定して
 	while (map[*i])
 	{
 		j = 0;
-		while (!ft_isalnum(map[*i][j]) && map[*i][j])
+		while (!ft_isprint(map[*i][j]) && map[*i][j])
 			j++;
-		if (ft_isalnum(map[*i][j]))
+		if (ft_isprint(map[*i][j]))
 			break ;
 		(*i)++;
 	}
@@ -71,12 +85,12 @@ int	check_texture(char **map, t_map *mapdata)
 	skip_space(map, &i);
 	mapdata->ceiling = check_direction(map[i], "C");
 //------------------------------------------------------------
-	printf("no = %s\n", mapdata->no);
-	printf("so = %s\n", mapdata->so);
-	printf("ea = %s\n", mapdata->ea);
-	printf("we = %s\n", mapdata->we);
-	printf("floor = %s\n", mapdata->floor);
-	printf("ceiling = %s\n", mapdata->ceiling);
+//	printf("no = %s\n", mapdata->no);
+//	printf("so = %s\n", mapdata->so);
+//	printf("ea = %s\n", mapdata->ea);
+//	printf("we = %s\n", mapdata->we);
+//	printf("floor = %s\n", mapdata->floor);
+//	printf("ceiling = %s\n", mapdata->ceiling);
 //------------------------------------------------------------
 	i++;
 	skip_space(map, &i);
@@ -114,7 +128,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 			stock++;
 		}
 		map[i] = newline;
-		printf("%s\n",newline);
+//		printf("%s\n",newline);
 		i++;
 	}
 	i = stock;
@@ -186,24 +200,28 @@ void	check_mapcollect(char **map, t_map *mapdata, int i)
 	check_hole(map, i, j, border);
 }
 
-void	check_read_texture(t_map *mapdata)
+void	check_readable_texture(t_map *mapdata)
 {
 	int	fd;
 
+//--------------------------------------------------------------------------------------------------------------
+//	printf("openfd = %d vs %d\n", open(mapdata->no,O_RDONLY), open("./path_to_the_north_texture",O_RDONLY));
+//	printf("%s vs %s\n",mapdata->no, "./path_to_the_north_texture");
+//--------------------------------------------------------------------------------------------------------------
 	fd = open(mapdata->no,O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 		error(Open_Texture_Error);
 	close(fd);
 	fd = open(mapdata->so,O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 		error(Open_Texture_Error);
 	close(fd);
 	fd = open(mapdata->ea,O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 		error(Open_Texture_Error);
 	close(fd);
 	fd = open(mapdata->we,O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 		error(Open_Texture_Error);
 	close(fd);
 }
@@ -217,7 +235,7 @@ bool	check_num_coma(char* str)
 	commma_num = 0;
 	while (str[i])
 	{
-		printf("%c", str[i]);
+//		printf("%c", str[i]);
 		if (commma_num > 2 || (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n' || (str[i] == ',' && !ft_isdigit(str[i + 1]))))
 			return(false);
 		if (str[i] == '\n')
@@ -246,14 +264,23 @@ int	split_number(t_map *mapdata)
 	{
 		num_ceiling = ft_atoi(array_ceiling[i]);
 		num_floor = ft_atoi(array_floor[i]);
-		free(array_ceiling[i]);
-		free(array_floor[i]);
 		if (num_ceiling > 255 || num_floor > 255)
 			return(false);
+		free(array_floor[i]);
+		free(array_ceiling[i]);
+		mapdata->floor_num_char[i] = ft_itoa(num_floor);
+		mapdata->ceiling_num_char[i] = ft_itoa(num_ceiling);
 		i++;
 	}
-	free(array_ceiling);
 	free(array_floor);
+	free(array_ceiling);
+//------------------------------------------------------------
+//	printf("\n");
+//	for (int i = 0; i < 3; i++)
+//	{
+//		printf("floor %s, ceiling %s\n", mapdata->floor_num_char[i],mapdata->ceiling_num_char[i]);
+//	}
+//------------------------------------------------------------
 	return(true);
 }
 
@@ -265,21 +292,12 @@ void	check_floor_ceiling(t_map *mapdata)
 		error(Texture_is_big);
 }
 
-void	check_mapfile(char **map, t_map *mapdata)
+char**	creat_new_map(char **map, t_map *mapdata, int i)
 {
-	int	i;
 	int	j;
 	int	stock;
-	int	start;
 	char	**newmap;
-
-	j = 0;
-	i = check_texture(map, mapdata);
-	check_map(map, mapdata, i);
-	check_mapcontents(map, mapdata, i);
-	check_mapcollect(map, mapdata, i);
-	check_floor_ceiling(mapdata);
-	check_read_texture(mapdata);
+	
 	stock = i;
 	while (map[stock])
 		stock++;
@@ -298,9 +316,34 @@ void	check_mapfile(char **map, t_map *mapdata)
 				map[i + stock][j] = '0';
 			j++;
 		}
-		printf("%s\n",map[i + stock]);
+//		printf("%s\n",map[i + stock]);
 		newmap[i] = ft_strdup(map[i + stock]);
 		i++;
 	}
-	mapdata->map = newmap;
+	return (newmap);
+}
+
+void	check_mapfile(char **map, t_map *mapdata)
+{
+	int	i;
+	int	j;
+	int	stock;
+	int	start;
+
+	j = 0;
+	i = check_texture(map, mapdata);
+	check_map(map, mapdata, i);
+	check_mapcontents(map, mapdata, i);
+	check_mapcollect(map, mapdata, i);
+	check_floor_ceiling(mapdata);
+	check_readable_texture(mapdata);
+	mapdata->map = creat_new_map(map, mapdata, i);
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+//--------------------------------------------------------------------------------
+//	for (int i = 0; i < 4; i++)
+//		printf("%s\n",mapdata->map[i]);
+//--------------------------------------------------------------------------------
 }
