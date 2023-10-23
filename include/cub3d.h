@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <stdbool.h>
 
-
 typedef struct s_map
 {
 	char *no;
