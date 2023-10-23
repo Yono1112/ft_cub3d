@@ -5,11 +5,11 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdint.h>
-# include<stdlib.h>
+# include <stdlib.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <math.h>
-# include "./minilibx_opengl_20191021/mlx.h"
+# include "../minilibx_opengl_20191021/mlx.h"
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
@@ -65,6 +65,7 @@ typedef struct s_img
 
 typedef struct s_mlx
 {
+	t_map	*mapdate;
 	void	*mlx_ptr;
 	void	*mlx_win;
 	double	pos_x;
@@ -112,11 +113,12 @@ void	check_error(const int argc, const char **argv,t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
 void	file_name(const int argc, const char **argv);
 // raycast
-void	run_mlx(t_map *mapdate)
-void	set_player(t_mlx *mlx);
+void	run_mlx(t_map *mapdate);
+void	ft_init_mlx(t_mlx *mlx, t_map *mapdate);
+void	set_player(t_mlx *mlx, char **map);
 void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
-void	calc_dist_to_wall(t_mlx *mlx);
+void	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx);
 int		ft_destroy(char *str, t_mlx *mlx);

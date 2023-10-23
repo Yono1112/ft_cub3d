@@ -1,89 +1,80 @@
 #include "test_raycast.h"
 
-bool	is_not_hit_wall(int flag_move, t_mlx *mlx)
-{
-	if (flag_move == MOVE_FORWARD)
-		return (world_map[(int)(mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED)]
-			[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1');
-	else if (flag_move == MOVE_BACK)
-		return (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
-			[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1');
-	else if (flag_move == MOVE_LEFT)
-		return (world_map[(int)(mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct))]
-			[(int)(mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct))] != '1');
-	else
-		return (world_map[(int)(mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct))]
-			[(int)(mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct))] != '1');
-}
+// bool	is_not_hit_wall(int flag_move, t_mlx *mlx)
+// {
+// 	if (flag_move == MOVE_FORWARD)
+// 		return (world_map[(int)(mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED)]
+// 			[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1');
+// 	else if (flag_move == MOVE_BACK)
+// 		return (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
+// 			[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1');
+// 	else if (flag_move == MOVE_LEFT)
+// 		return (world_map[(int)(mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct))]
+// 			[(int)(mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct))] != '1');
+// 	else
+// 		return (world_map[(int)(mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct))]
+// 			[(int)(mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct))] != '1');
+// }
 
 void	move_forward(t_mlx *mlx)
 {
-	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	printf("mlx->player_direct: %lf\n", mlx->player_direct);
+	double	dist_to_wall;
 
-	// printf("new_pos_y: %lf\n", new_pos_y);
-	printf("mlx->pos_x: %f\n", mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct));
-	printf("mlx->pos_y: %f\n", mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED);
-	// if (world_map[(int)(mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED)]
-	// 		[(int)(mlx->pos_x + MOVE_SPEED * cos(mlx->player_direct))] != '1')
-	if (is_not_hit_wall(MOVE_FORWARD, mlx))
+	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
+	dist_to_wall = calc_dist_to_wall(mlx, mlx->player_direct);
+	printf("dist_to_wall: %f\n", dist_to_wall);
+	if (dist_to_wall > MOVE_SPEED)
 	{
-		if (is_not_hit_wall(MOVE_LEFT, mlx) && is_not_hit_wall(MOVE_RIGHT, mlx))
-		{
-			mlx->pos_y = mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED;
-			mlx->pos_x = mlx->pos_x + cos(mlx->player_direct) * MOVE_SPEED;
-		}
+		mlx->pos_y = mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED;
+		mlx->pos_x = mlx->pos_x + cos(mlx->player_direct) * MOVE_SPEED;
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	// exit(0);
 }
 
 void	move_back(t_mlx *mlx)
 {
+	double	dist_to_wall;
+
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	// if (world_map[(int)(mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct))]
-	// 	[(int)(mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct))] != '1')
-	if (is_not_hit_wall(MOVE_BACK, mlx))
+	dist_to_wall = calc_dist_to_wall(mlx,
+			(mlx->player_direct - 180 * (M_PI / 180)));
+	printf("dist_to_wall: %f\n", dist_to_wall);
+	if (dist_to_wall > MOVE_SPEED)
 	{
-		if (is_not_hit_wall(MOVE_LEFT, mlx) && is_not_hit_wall(MOVE_RIGHT, mlx))
-		{
-			mlx->pos_x = mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct);
-			mlx->pos_y = mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct);
-		}
+		mlx->pos_x = mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct);
+		mlx->pos_y = mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct);
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
 
 void	move_left(t_mlx *mlx)
 {
+	double	dist_to_wall;
+
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	// if (world_map[(int)(mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct))]
-	// 	[(int)(mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct))] != '1')
-	if (is_not_hit_wall(MOVE_LEFT, mlx))
+	dist_to_wall = calc_dist_to_wall(mlx,
+			(mlx->player_direct - 90 * (M_PI / 180)));
+	printf("dist_to_wall: %f\n", dist_to_wall);
+	if (dist_to_wall > MOVE_SPEED)
 	{
-		if (is_not_hit_wall(MOVE_FORWARD, mlx) && is_not_hit_wall(MOVE_BACK, mlx))
-		{
-			printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
-			mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
-			mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
-		}
+		mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
+		mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
 
 void	move_right(t_mlx *mlx)
 {
+	double	dist_to_wall;
+
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	// if (world_map[(int)(mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct))]
-	// 	[(int)(mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct))] != '1')
-	if (is_not_hit_wall(MOVE_RIGHT, mlx))
+	dist_to_wall = calc_dist_to_wall(mlx,
+			(mlx->player_direct + 90 * (M_PI / 180)));
+	printf("dist_to_wall: %f\n", dist_to_wall);
+	if (dist_to_wall > MOVE_SPEED)
 	{
-		if (is_not_hit_wall(MOVE_FORWARD, mlx) && is_not_hit_wall(MOVE_BACK, mlx))
-		{
-			printf("cos: %lf, sin: %lf\n", cos(mlx->player_direct), sin(mlx->player_direct));
-			mlx->pos_x = mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct);
-			mlx->pos_y = mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct);
-		}
+		mlx->pos_x = mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct);
+		mlx->pos_y = mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct);
 	}
 	printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 }
@@ -91,7 +82,7 @@ void	move_right(t_mlx *mlx)
 void	rotate_left(t_mlx *mlx)
 {
 	// printf("before mlx->player_direct: %lf°\n", mlx->player_direct);
-	mlx->player_direct -= 20 * (M_PI / 180);
+	mlx->player_direct -= 10 * (M_PI / 180);
 	if (mlx->player_direct < 0)
 		mlx->player_direct += 2 * M_PI;
 	// printf("after mlx->player_direct: %lf°\n", mlx->player_direct);
@@ -99,7 +90,7 @@ void	rotate_left(t_mlx *mlx)
 
 void	rotate_right(t_mlx *mlx)
 {
-	mlx->player_direct += 20 * (M_PI / 180);
+	mlx->player_direct += 10 * (M_PI / 180);
 	if (mlx->player_direct > 2 * M_PI)
 		mlx->player_direct -= 2 * M_PI;
 }
