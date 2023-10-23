@@ -9,7 +9,8 @@ int main(int argc, char **argv)
 	argc++;
 	argc = i;
 	check_error((const int)argc, (const char**)argv, &mapdata);
-	exit (0);
+	run_mlx(&mapdata);
+	return (0);
 }
 
 __attribute__((destructor))
