@@ -9,5 +9,10 @@ int main(int argc, char **argv)
 	argc++;
 	argc = i;
 	check_error((const int)argc, (const char**)argv, &mapdata);
-	return (0);
+	exit (0);
 }
+
+__attribute__((destructor))
+static void destructor(void){
+			system("leaks -q cub3d");
+			}

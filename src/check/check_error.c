@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/24 16:43:32 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/14 12:22:15 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	free_map(char **map)
 	free(map);
 }
 
-static char	**get_mapfile(int fd)
+static char	**read_mapfile(int fd)
 {
 	int	size;
 	char	**map;
@@ -49,7 +49,7 @@ static char	**get_mapfile(int fd)
 	map = NULL;
 	stock = get_next_line(fd);
 	if (!stock)
-		error(4);
+		error(Readfile_Error);
 	size = 0;
 	while (stock)
 	{
@@ -73,7 +73,7 @@ void	check_error(const int argc, const char **argv, t_map *mapdata)
 	file_name(argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error(3);
-	mapfile = get_mapfile(fd);
+		error(Filename_Error);
+	mapfile = read_mapfile(fd);
 	check_mapfile(mapfile, mapdata);
 }

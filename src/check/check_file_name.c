@@ -6,7 +6,7 @@
 /*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:56:13 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/19 19:10:02 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/14 12:45:49 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	check_extencion(const char *argv)
 void	file_name(const int argc, const char *argv[])
 {
 	if (argc <= 1)
-		error(0);
+		error(Argument_Error);
 	else if (check_extencion(argv[1]))
-		error(1);
+		error(Filename_Error);
 	return ;
 }
