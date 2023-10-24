@@ -13,8 +13,8 @@
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
-# define WINSIZE_WIDTH 800
-# define WINSIZE_HEIGTH 800
+# define WINSIZE_WIDTH 400
+# define WINSIZE_HEIGTH 400
 # define SOUTH (M_PI / 180) * 90
 # define NORTH (M_PI / 180) * 270
 # define EAST (M_PI / 180) * 0
@@ -118,12 +118,14 @@ void	ft_init_mlx(t_mlx *mlx, t_map *mapdate);
 void	set_player(t_mlx *mlx, char **map);
 void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
-void	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata);
 int		ft_destroy(char *str, t_mlx *mlx);
 int		ft_press_key(int i, t_mlx *mlx);
 void	init_raycast_value(t_mlx *mlx, size_t x);
 void	print_map(char **map);
+double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
+int		ft_destroy(char *str, t_mlx *mlx);
+int		ft_press_key(int key_num, t_mlx *mlx);
 
 #endif

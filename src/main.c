@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 	argc++;
 	argc = i;
 	check_error((const int)argc, (const char**)argv, &mapdata);
+	// print_map(mapdata.map);
 	run_mlx(&mapdata);
 	exit(0);
 }

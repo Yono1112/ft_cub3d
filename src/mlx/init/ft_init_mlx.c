@@ -84,5 +84,4 @@ void	ft_init_mlx(t_mlx *mlx, t_map *mapdate)
 	printf("finish set_player\n");
 	set_wall_texture(mlx, mlx->mapdata);
 	// free_mapdate(mapdate);
-	exit(0);
 }
