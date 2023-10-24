@@ -30,7 +30,8 @@ SRCS	= 	src/main.c		\
 		src/mlx/run_mlx.c \
 		src/mlx/init/ft_init_mlx.c \
 		src/error/exit_error.c \
-		src/mlx/init/set_player.c
+		src/mlx/init/set_player.c \
+		src/mlx/init/set_wall_texture.c
 all:	$(NAME)
 
 $(OBJ_DIR)/%.o: %.c

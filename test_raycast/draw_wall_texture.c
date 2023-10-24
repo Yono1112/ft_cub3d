@@ -58,19 +58,19 @@ int		set_index_texture(t_mlx *mlx)
 {
 	if ((int)mlx->side == SIDE_Y
 		&& sin(mlx->ray_direct) >= 0) //south
-		return (SOUTH_TEX);
+		return (NORTH_TEX);
 		// color_wall_texture = (255 * 65536) + (0 * 256) + 0;
 	else if ((int)mlx->side == SIDE_Y
 		&& sin(mlx->ray_direct) < 0) // north
-		return (NORTH_TEX);
+		return (SOUTH_TEX);
 		// color_wall_texture = (0 * 65536) + (255 * 256) + 0;
 	else if ((int)mlx->side == SIDE_X
 		&& cos(mlx->ray_direct) >= 0) //east
-		return (EAST_TEX);
+		return (WEST_TEX);
 		// color_wall_texture = (0 * 65536) + (0 * 256) + 255;
 	else if ((int)mlx->side == SIDE_X
 		&& cos(mlx->ray_direct) < 0) //west
-		return (WEST_TEX);
+		return (EAST_TEX);
 	return (-1);
 }
 

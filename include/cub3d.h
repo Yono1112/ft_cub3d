@@ -65,7 +65,7 @@ typedef struct s_img
 
 typedef struct s_mlx
 {
-	t_map	*mapdate;
+	t_map	*mapdata;
 	void	*mlx_ptr;
 	void	*mlx_win;
 	double	pos_x;
@@ -120,9 +120,10 @@ void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
 void	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
-void	set_wall_texture(t_mlx *mlx);
+void	set_wall_texture(t_mlx *mlx, t_map *mapdata);
 int		ft_destroy(char *str, t_mlx *mlx);
 int		ft_press_key(int i, t_mlx *mlx);
 void	init_raycast_value(t_mlx *mlx, size_t x);
+void	print_map(char **map);
 
 #endif

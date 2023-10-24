@@ -17,6 +17,7 @@ void	set_player(t_mlx *mlx, char **map)
 	size_t	x;
 	size_t	y;
 
+	printf("start set_player\n");
 	y = 0;
 	while (map[y] != NULL)
 	{
@@ -32,7 +33,6 @@ void	set_player(t_mlx *mlx, char **map)
 				map[y][x] = '0';
 				return ;
 			}
-			// write(1, &mapdate->map[y][x], 1);
 			x++;
 		}
 		// printf("\n");
