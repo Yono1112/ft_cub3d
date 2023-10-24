@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/23 03:54:38 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/24 13:05:24 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,8 +268,9 @@ int	split_number(t_map *mapdata)
 			return(false);
 		free(array_floor[i]);
 		free(array_ceiling[i]);
-		mapdata->floor_num_char[i] = ft_itoa(num_floor);
-		mapdata->ceiling_num_char[i] = ft_itoa(num_ceiling);
+		mapdata->floor_num[i] = num_floor;
+		mapdata->ceiling_num[i] = num_ceiling;
+		printf("floor = %d\n",mapdata->floor_num[i]);
 		i++;
 	}
 	free(array_floor);
