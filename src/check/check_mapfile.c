@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/24 13:05:24 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/25 01:31:06 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 
 void	check_hole(char **map, int i, int j, int border)
 {
-	if (map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0)
+	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0 )
 		error(Hole_In_Map);
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;

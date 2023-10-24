@@ -18,8 +18,8 @@ typedef struct s_map
 	char *floor;
 	char *ceiling;
 	char **map;
-	int *ceiling_num[3];
-	int *floor_num[3];
+	int ceiling_num[3];
+	int floor_num[3];
 }t_map;
 
 enum Error {
