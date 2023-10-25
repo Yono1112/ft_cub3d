@@ -30,7 +30,12 @@
 # define MOVE_BACK 1
 # define MOVE_LEFT 2
 # define MOVE_RIGHT 3
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_DESTROY_NOTIFY 17 
 # define GAME_NAME "cub3D"
+// # define ESC_DESTROY "press ESC key"
+// # define CLOSE_BUTTON_DESTROY "press close button"
+# define DESTROY_PREFIX "\x1b[96mFINISH\x1b[0m"
 
 // error_message
 # define ERROR_PREFIX "\e[31mERROR\e[m: "
