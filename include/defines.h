@@ -3,8 +3,8 @@
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
-# define WINSIZE_WIDTH 400
-# define WINSIZE_HEIGTH 400
+# define WINSIZE_WIDTH 480
+# define WINSIZE_HEIGTH 480
 # define SOUTH (M_PI / 180) * 90
 # define NORTH (M_PI / 180) * 270
 # define EAST (M_PI / 180) * 0

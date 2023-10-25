@@ -78,7 +78,7 @@ void	ft_init_mlx(t_mlx *mlx, t_map *mapdate)
 	if (!mlx->mlx_ptr)
 		error(MLX_INIT_ERROR);
 	mlx->mlx_win = mlx_new_window(
-			mlx->mlx_ptr, WINSIZE_HEIGTH, WINSIZE_WIDTH, GAME_NAME);
+			mlx->mlx_ptr, WINSIZE_WIDTH, WINSIZE_HEIGTH, GAME_NAME);
 	if (!mlx->mlx_win)
 		error(MLX_WINDOW_ERROR);
 	set_player(mlx, mlx->mapdata->map);
