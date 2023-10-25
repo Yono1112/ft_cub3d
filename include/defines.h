@@ -32,6 +32,7 @@
 # define MOVE_RIGHT 3
 
 // error_message
+# define ERROR_PREFIX "\e[31mERROR\e[m: "
 # define ARGUMENT_ERROR "Missing required arguments"
 # define FILENAME_ERROR "Missing filename"
 # define OPENFILE_ERROR "Cannot open the file"

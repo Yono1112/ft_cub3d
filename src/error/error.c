@@ -2,7 +2,7 @@
 
 void	error(char *str)
 {
-	write(STDERR_FILENO, "\e[31mERROR\e[m: ", ft_strlen("\e[31mERROR\e[m: "));
+	write(STDERR_FILENO, ERROR_PREFIX, ft_strlen(ERROR_PREFIX));
 	if (str)
 		write(STDERR_FILENO, str, ft_strlen(str));
 	write(STDERR_FILENO, "\n", 1);
