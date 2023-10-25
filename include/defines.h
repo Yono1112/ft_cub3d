@@ -31,4 +31,26 @@
 # define MOVE_LEFT 2
 # define MOVE_RIGHT 3
 
+// error_message
+# define ARGUMENT_ERROR "Missing required arguments"
+# define FILENAME_ERROR "Missing filename"
+# define OPENFILE_ERROR "Cannot open the file"
+# define READFILE_ERROR "Cannnot read the file"
+# define TEXTURE_ERROR "Texture error"
+# define NOT_ENOUGH_ARGUMENT_ERROR "Has not enough arguments"
+# define MAP_ARGUMENT_ERROR "Invalid arguments in map"
+# define NUM_ARGUMENT_ERROR "Invalid number of nums"
+# define HOLE_MAP_ERROR "There is hoge in map"
+# define OPEN_TEXTURE_ERROR "Cannot open the texture"
+# define COMMA_ERROR "Commma error"
+# define TEXTURE_BIG_ERROR "Texture number error"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+// # define FILENAME_ERROR "Missing required arguments"
+
 #endif

@@ -79,7 +79,7 @@ enum Error
 };
 
 //check-mapfile
-void	error(int error_num);
+void	error(char *str);
 void	check_error(const int argc, const char **argv,t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
 void	file_name(const int argc, const char **argv);

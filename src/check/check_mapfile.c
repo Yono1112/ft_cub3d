@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/25 04:12:46 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:35:52by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*check_direction(char *line, char *dir)
 	while (!ft_isalpha(line[j]))
 		j++;
 	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー
-		error(Texture_Error);
+		error(TEXTURE_ERROR);
 	j += ft_strlen(dir);
 	if (ft_strlen(dir) == 1)
 		while (!ft_isalnum(line[j]))
@@ -58,7 +58,7 @@ void	skip_space(char **map, int *i) //最初に文字が来る行を特定して
 		(*i)++;
 	}
 	if (!map[*i])
-		error(Mapargument_Error);
+		error(NOT_ENOUGH_ARGUMENT_ERROR);
 }
 
 int	check_texture(char **map, t_map *mapdata)
@@ -148,11 +148,11 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		{
 				//printf("%d    %d\n" , i, j);
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' )
-				error(Invalid_Argument_In_Map_Error);
+				error(MAP_ARGUMENT_ERROR);
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S' )
 			{
 				if (count_news)
-					error(Num_Arguments_Error);
+					error(NUM_ARGUMENT_ERROR);
 				count_news++;
 			}
 			j++;
@@ -160,13 +160,13 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 		i++;
 	}
 	if (!count_news)
-		error(Num_Arguments_Error);
+		error(NUM_ARGUMENT_ERROR);
 }
 
 void	check_hole(char **map, int i, int j, int border)
 {
 	if (map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0)
-		error(Hole_In_Map);
+		error(HOLE_MAP_ERROR);
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;
 	if (map[i][j] == '0')
@@ -210,19 +210,19 @@ void	check_readable_texture(t_map *mapdata)
 //--------------------------------------------------------------------------------------------------------------
 	fd = open(mapdata->no,O_RDONLY);
 	if (fd < 0)
-		error(Open_Texture_Error);
+		error(OPEN_TEXTURE_ERROR);
 	close(fd);
 	fd = open(mapdata->so,O_RDONLY);
 	if (fd < 0)
-		error(Open_Texture_Error);
+		error(OPEN_TEXTURE_ERROR);
 	close(fd);
 	fd = open(mapdata->ea,O_RDONLY);
 	if (fd < 0)
-		error(Open_Texture_Error);
+		error(OPEN_TEXTURE_ERROR);
 	close(fd);
 	fd = open(mapdata->we,O_RDONLY);
 	if (fd < 0)
-		error(Open_Texture_Error);
+		error(OPEN_TEXTURE_ERROR);
 	close(fd);
 }
 
@@ -287,9 +287,9 @@ int	split_number(t_map *mapdata)
 void	check_floor_ceiling(t_map *mapdata)
 {
 	if (!check_num_coma(mapdata->floor) || !check_num_coma(mapdata->ceiling))
-		error(Comma_Error);
+		error(COMMA_ERROR);
 	if (!split_number(mapdata))
-		error(Texture_is_big);
+		error(TEXTURE_BIG_ERROR);
 }
 
 char**	creat_new_map(char **map, t_map *mapdata, int i)
@@ -306,10 +306,8 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 	newmap[i - stock] = NULL;
 	stock = i;
 	i = 0;
-	// print_map(&map[i + stock]);
 	while (map[i + stock])
 	{
-		// printf("map: %s\n",map[i + stock]);
 		j = 0;
 		while (map[i + stock][j])
 		{
@@ -320,10 +318,8 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 			j++;
 		}
 		newmap[i] = ft_strdup(map[i + stock]);
-		// printf("newmap: %s\n", newmap[i]);
 		i++;
 	}
-	// print_map(newmap);
 	return (newmap);
 }
 
@@ -343,8 +339,6 @@ void	check_mapfile(char **map, t_map *mapdata)
 	check_floor_ceiling(mapdata);
 	check_readable_texture(mapdata);
 	mapdata->map = creat_new_map(map, mapdata, i);
-	// print_map(map);
-	// print_map(mapdata->map);
 	i = 0;
 	while (map[i])
 		free(map[i++]);
