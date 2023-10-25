@@ -62,22 +62,6 @@ typedef struct s_mlx
 	double	tex_pos;
 }	t_mlx;
 
-enum Error
-{
-	Argument_Error,
-	Openfile_Error,
-	Filename_Error,
-	Readfile_Error,
-	Mapargument_Error,
-	Texture_Error,
-	Invalid_Argument_In_Map_Error,
-	Num_Arguments_Error,
-	Hole_In_Map,
-	Open_Texture_Error,
-	Comma_Error,
-	Texture_is_big
-};
-
 //check-mapfile
 void	error(char *str);
 void	check_error(const int argc, const char **argv,t_map *mapdata);
