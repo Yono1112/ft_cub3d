@@ -5,11 +5,16 @@
 # define MAP_HEIGHT 16
 # define WINSIZE_WIDTH 480
 # define WINSIZE_HEIGTH 480
-# define SOUTH (M_PI / 180) * 90
-# define NORTH (M_PI / 180) * 270
-# define EAST (M_PI / 180) * 0
-# define WEST (M_PI / 180) * 180
-# define FOV (M_PI / 180) * 60
+# define SOUTH 1.570796
+// # define SOUTH (M_PI / 180) * 90
+# define NORTH 4.712389
+// # define NORTH (M_PI / 180) * 270
+# define EAST  0
+// # define EAST (M_PI / 180) * 0
+# define WEST 3.141593
+// # define WEST (M_PI / 180) * 180
+# define FOV 1.047198 
+// # define FOV (M_PI / 180) * 60
 # define SIDE_X 0
 # define SIDE_Y 1
 # define KEY_ESC 53
