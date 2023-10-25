@@ -30,6 +30,7 @@
 # define MOVE_BACK 1
 # define MOVE_LEFT 2
 # define MOVE_RIGHT 3
+# define GAME_NAME "cub3D"
 
 // error_message
 # define ERROR_PREFIX "\e[31mERROR\e[m: "
@@ -45,6 +46,13 @@
 # define OPEN_TEXTURE_ERROR "Cannot open the texture"
 # define COMMA_ERROR "Commma error"
 # define TEXTURE_BIG_ERROR "Texture number error"
+# define MLX_INIT_ERROR "Cannot run mlx_init()"
+# define MLX_WINDOW_ERROR "Cannot run mlx_new_window()"
+# define SET_PLAYER_ERROR "Start position is not set"
+# define IMG_PTR_ERROR "Cannot convert xpm to image in mlx_xpm_file_to_image()"
+# define DETA_ADDR_ERROR\
+		"Cannot get memory address of image in mlx_get_data_addr()"
+# define INDEX_TEXTURE_ERROR "cannot set index_texture in draw_wall_texture()"
 // # define FILENAME_ERROR "Missing required arguments"
 // # define FILENAME_ERROR "Missing required arguments"
 // # define FILENAME_ERROR "Missing required arguments"

@@ -71,7 +71,6 @@ void	file_name(const int argc, const char **argv);
 void	run_mlx(t_map *mapdate);
 void	ft_init_mlx(t_mlx *mlx, t_map *mapdate);
 void	set_player(t_mlx *mlx, char **map);
-void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata);

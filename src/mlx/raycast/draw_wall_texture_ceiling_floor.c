@@ -88,7 +88,7 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 	index_texture = set_index_texture(mlx);
 	// index_texture = 0;
 	if (index_texture < 0)
-		exit_error("ERROR: cannot set index_texture in draw_wall_texture()\n");
+		error(INDEX_TEXTURE_ERROR);
 	// if ((int)mlx->side == SIDE_Y
 	// 	&& sin(mlx->ray_direct) >= 0) //south
 	// 	index_texture = (255 * 65536) + (0 * 256) + 0;
