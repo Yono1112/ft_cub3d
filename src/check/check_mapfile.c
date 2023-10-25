@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/23 03:54:38 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/25 04:12:46 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 			stock++;
 		}
 		map[i] = newline;
-//		printf("%s\n",newline);
+		// printf("%s\n",map[i]);
 		i++;
 	}
 	i = stock;
@@ -297,7 +297,8 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 	int	j;
 	int	stock;
 	char	**newmap;
-	
+
+	// printf("create_new_map\n");
 	stock = i;
 	while (map[stock])
 		stock++;
@@ -305,8 +306,10 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 	newmap[i - stock] = NULL;
 	stock = i;
 	i = 0;
+	// print_map(&map[i + stock]);
 	while (map[i + stock])
 	{
+		// printf("map: %s\n",map[i + stock]);
 		j = 0;
 		while (map[i + stock][j])
 		{
@@ -316,10 +319,11 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 				map[i + stock][j] = '0';
 			j++;
 		}
-//		printf("%s\n",map[i + stock]);
 		newmap[i] = ft_strdup(map[i + stock]);
+		// printf("newmap: %s\n", newmap[i]);
 		i++;
 	}
+	// print_map(newmap);
 	return (newmap);
 }
 
@@ -332,12 +336,15 @@ void	check_mapfile(char **map, t_map *mapdata)
 
 	j = 0;
 	i = check_texture(map, mapdata);
+	// print_map(map);
 	check_map(map, mapdata, i);
 	check_mapcontents(map, mapdata, i);
 	check_mapcollect(map, mapdata, i);
 	check_floor_ceiling(mapdata);
 	check_readable_texture(mapdata);
 	mapdata->map = creat_new_map(map, mapdata, i);
+	// print_map(map);
+	// print_map(mapdata->map);
 	i = 0;
 	while (map[i])
 		free(map[i++]);

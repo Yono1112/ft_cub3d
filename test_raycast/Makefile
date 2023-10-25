@@ -22,7 +22,8 @@ SRCS	= 	main.c		\
 			set_player.c	\
 			set_wall_texture.c	\
 			ft_destroy.c	\
-			ft_press_key.c
+			ft_press_key.c	\
+			init_raycast_value.c
 all:	$(NAME)
 
 $(NAME): $(OBJS)

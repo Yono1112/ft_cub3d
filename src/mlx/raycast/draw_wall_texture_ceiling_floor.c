@@ -1,4 +1,4 @@
-#include "test_raycast.h"
+#include "cub3d.h"
 
 void	set_draw_start_end(double wall_height, double *draw_start, double *draw_end)
 {

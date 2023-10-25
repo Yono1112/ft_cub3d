@@ -1,4 +1,4 @@
-#include "test_raycast.h"
+#include "cub3d.h"
 
 // bool	is_not_hit_wall(int flag_move, t_mlx *mlx)
 // {
