@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/26 17:47:36 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:25:02 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	**read_mapfile(int fd)
 	map = NULL;
 	stock = get_next_line(fd);
 	if (!stock)
-		error(READFILE_ERROR);
+		exit_error(READFILE_ERROR, NULL, NULL);
 	size = 0;
 	while (stock)
 	{
@@ -65,15 +65,27 @@ static char	**read_mapfile(int fd)
 	return (map);
 }
 
+static void	init_mapdata(t_map *mapdata)
+{
+	mapdata->no = NULL;
+	mapdata->so = NULL;
+	mapdata->ea = NULL;
+	mapdata->we = NULL;
+	mapdata->floor = NULL;
+	mapdata->ceiling = NULL;
+	mapdata->map = NULL;
+}
+
 void	check_error(const int argc, const char **argv, t_map *mapdata)
 {
 	int	fd;
 	char	**mapfile;
 
+	init_mapdata(mapdata);
 	file_name(argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error(FILENAME_ERROR);
+		exit_error(FILENAME_ERROR, NULL, NULL);
 	mapfile = read_mapfile(fd);
 	close(fd);
 	check_mapfile(mapfile, mapdata);

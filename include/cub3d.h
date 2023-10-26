@@ -64,6 +64,7 @@ typedef struct s_mlx
 
 //check-mapfile
 void	error(char *str);
+void	exit_error(char *str, t_map *mapdata, char **map);
 void	check_error(const int argc, const char **argv,t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
 void	file_name(const int argc, const char **argv);
