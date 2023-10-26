@@ -298,12 +298,12 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 	int	stock;
 	char	**newmap;
 
-	// printf("create_new_map\n");
+	// printf("start create_new_map\n");
 	stock = i;
 	while (map[stock])
 		stock++;
 	newmap = (char **)malloc(sizeof(char *) * (stock - i + 1));
-	newmap[i - stock] = NULL;
+	newmap[stock - i] = NULL;
 	stock = i;
 	i = 0;
 	while (map[i + stock])
