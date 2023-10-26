@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/25 01:31:06 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/26 13:55:02 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	skip_space(char **map, int *i) //最初に文字が来る行を特定して
 int	check_texture(char **map, t_map *mapdata)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	skip_space(map, &i);
@@ -97,19 +96,19 @@ int	check_texture(char **map, t_map *mapdata)
 	return i;
 }
 
-void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
+void	check_map(char **map, int i)//checkではなくeditmap
 {
 	int	stock;
-	int	maxlen;// 最長行
 	int	strlen;
 	char	*newline;
+	size_t	maxlen;// 最長行
 
 	maxlen = 0;
 	//skip_space(map, &i); //check_textureでスペース飛ばしを行っているので必要ない,あっても問題ない
 	stock = i;
 	while (map[i])//最長行を探している
 	{
-		if (ft_strlen(map[i])>maxlen)
+		if (ft_strlen(map[i]) > maxlen)
 			maxlen = ft_strlen(map[i]);
 		i++;
 	}
@@ -122,7 +121,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 		ft_memcpy(newline, map[i], strlen);// strlen-1は'\n'分減らしているが、確認が必要
 		free(map[i]);
 		stock = strlen;
-		while (stock < maxlen - 1)
+		while (stock < (int)maxlen - 1)
 		{
 			newline[stock] = '1';
 			stock++;
@@ -134,7 +133,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 	i = stock;
 }
 
-void	check_mapcontents(char **map, t_map *mapdata, int i)
+void	check_mapcontents(char **map, int i)
 {
 	int	count_news;
 	int	j;
@@ -165,7 +164,7 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 
 void	check_hole(char **map, int i, int j, int border)
 {
-	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0 )
+	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' ' || map[i][j] == '\0' || ((map[i][j] == '\0') && j == 0 ))
 		error(Hole_In_Map);
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;
@@ -177,7 +176,7 @@ void	check_hole(char **map, int i, int j, int border)
 	check_hole(map, i, j - 1, border);
 }
 
-void	check_mapcollect(char **map, t_map *mapdata, int i)
+void	check_mapcollect(char **map, int i)
 {
 	int	j;
 	int	border;
@@ -236,7 +235,7 @@ bool	check_num_coma(char* str)
 	while (str[i])
 	{
 //		printf("%c", str[i]);
-		if (commma_num > 2 || (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n' || (str[i] == ',' && !ft_isdigit(str[i + 1]))))
+		if (commma_num > 2 || (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n') || (str[i] == ',' && !ft_isdigit(str[i + 1])))
 			return(false);
 		if (str[i] == '\n')
 			str[i] = '\0';
@@ -293,7 +292,7 @@ void	check_floor_ceiling(t_map *mapdata)
 		error(Texture_is_big);
 }
 
-char**	creat_new_map(char **map, t_map *mapdata, int i)
+char**	creat_new_map(char **map, int i)
 {
 	int	j;
 	int	stock;
@@ -327,18 +326,14 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 void	check_mapfile(char **map, t_map *mapdata)
 {
 	int	i;
-	int	j;
-	int	stock;
-	int	start;
 
-	j = 0;
 	i = check_texture(map, mapdata);
-	check_map(map, mapdata, i);
-	check_mapcontents(map, mapdata, i);
-	check_mapcollect(map, mapdata, i);
+	check_map(map, i);
+	check_mapcontents(map, i);
+	check_mapcollect(map, i);
 	check_floor_ceiling(mapdata);
 	check_readable_texture(mapdata);
-	mapdata->map = creat_new_map(map, mapdata, i);
+	mapdata->map = creat_new_map(map, i);
 	i = 0;
 	while (map[i])
 		free(map[i++]);

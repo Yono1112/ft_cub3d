@@ -1,8 +1,8 @@
 NAME	= cub3d
 
-CC	= gcc
+CC	= cc
 
-#CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 DEBUG_FLAGS = -g -O0
 
