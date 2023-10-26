@@ -6,13 +6,13 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:39:47 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 03:11:21 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:26:08 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_direction(double direct_flag, double ray_direct, int side)
+static bool	is_direction(double direct_flag, double ray_direct, int side)
 {
 	if (direct_flag == NORTH)
 		return (side == SIDE_Y && sin(ray_direct) < 0);
@@ -25,7 +25,7 @@ bool	is_direction(double direct_flag, double ray_direct, int side)
 	return (false);
 }
 
-double	calc_wall_x(t_mlx *mlx)
+static double	calc_wall_x(t_mlx *mlx)
 {
 	double	wall_x;
 
@@ -37,7 +37,7 @@ double	calc_wall_x(t_mlx *mlx)
 	return (wall_x);
 }
 
-double	calc_tex_x(double ray_direct, int side, double wall_x)
+static double	calc_tex_x(double ray_direct, int side, double wall_x)
 {
 	double	tex_x;
 
@@ -49,7 +49,7 @@ double	calc_tex_x(double ray_direct, int side, double wall_x)
 	return (tex_x);
 }
 
-int	set_index_texture(double ray_direct, int side)
+static int	set_index_texture(double ray_direct, int side)
 {
 	if (is_direction(NORTH, ray_direct, side))
 		return (NORTH_TEX);

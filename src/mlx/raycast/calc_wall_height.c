@@ -6,13 +6,13 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:09:09 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:37:29 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:22:36 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	calc_ray_direct(t_mlx *mlx, size_t x)
+static double	calc_ray_direct(t_mlx *mlx, size_t x)
 {
 	double	angle;
 	double	left_fov_angle;

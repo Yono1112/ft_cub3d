@@ -6,13 +6,13 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:53 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:21:35 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:23:31 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	calc_initial_step(t_mlx *mlx)
+static void	calc_initial_step(t_mlx *mlx)
 {
 	if (mlx->ray_dir_x < 0)
 	{
@@ -36,7 +36,7 @@ void	calc_initial_step(t_mlx *mlx)
 	}
 }
 
-void	calc_dda_algorithm(t_mlx *mlx)
+static void	calc_dda_algorithm(t_mlx *mlx)
 {
 	while (1)
 	{
@@ -57,7 +57,7 @@ void	calc_dda_algorithm(t_mlx *mlx)
 	}
 }
 
-void	calc_delta_dist(t_mlx *mlx)
+static void	calc_delta_dist(t_mlx *mlx)
 {
 	if (!mlx->ray_dir_x)
 		mlx->delta_dist_x = 1e30;

@@ -6,13 +6,13 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:07:40 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:27:48 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:24:01 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_direction(t_mlx *mlx, char direction)
+static void	set_direction(t_mlx *mlx, char direction)
 {
 	if (direction == 'N')
 		mlx->player_direct = NORTH;
