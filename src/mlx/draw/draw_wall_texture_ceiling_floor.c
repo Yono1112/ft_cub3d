@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:58 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:42:54 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:15:57 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ bool	is_floor(int y, double draw_end)
 {
 	return (y > draw_end);
 }
-
 
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 {
