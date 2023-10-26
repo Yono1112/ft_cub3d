@@ -25,7 +25,7 @@ MLX_LIB = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit ./mi
 MLX_DIR = minilibx_opengl_20191021
 
 SRCS	= 	src/main.c		\
-		src/error/error.c	\
+		src/exit/exit_error.c	\
 		src/check/check_error.c	\
 		src/check/check_file_name.c	\
 		src/check/check_mapfile.c \
@@ -37,9 +37,9 @@ SRCS	= 	src/main.c		\
 		src/mlx/raycast/init_raycast_value.c \
 		src/mlx/raycast/draw_wall_texture_ceiling_floor.c \
 		src/mlx/raycast/calc_dist_to_wall.c \
-		src/error/ft_destroy.c \
+		src/exit/ft_destroy.c \
 		src/mlx/press_key/ft_press_key.c \
-		src/error/free.c
+		src/exit/free.c
 
 all:	$(NAME)
 
