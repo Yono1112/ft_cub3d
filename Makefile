@@ -1,4 +1,4 @@
-NAME	= cub3d
+NAME	= cub3D
 
 CC	= gcc
 
@@ -21,6 +21,8 @@ RM	= rm -rf
 LIBFTDIR = libft
 
 MLX_LIB = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit ./minilibx_opengl_20191021/libmlx.a
+
+MLX_DIR = minilibx_opengl_20191021
 
 SRCS	= 	src/main.c		\
 		src/error/error.c	\
@@ -49,10 +51,12 @@ $(DEBUG_OBJ_DIR)/%.o: %.c
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFTDIR)
+	@make -C ${MLX_DIR}
 	$(CC) $(CFLAGS)	-L $(LIBFTDIR) -lft -o $(NAME) $(OBJS) $(MLX_LIB)
 
 clean:
 	@make fclean -C $(LIBFTDIR)
+	@make clean -C $(MLX_DIR)
 	$(RM) $(OBJS)
 	$(RM) $(OBJ_DIR)
 
