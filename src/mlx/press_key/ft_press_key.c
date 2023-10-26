@@ -23,7 +23,7 @@ void	move_forward(t_mlx *mlx)
 	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
 	dist_to_wall = calc_dist_to_wall(mlx, mlx->player_direct);
 	printf("dist_to_wall: %f\n", dist_to_wall);
-	if (dist_to_wall > MOVE_SPEED)
+	if (dist_to_wall > MOVE_SPEED * 2)
 	{
 		mlx->pos_y = mlx->pos_y + sin(mlx->player_direct) * MOVE_SPEED;
 		mlx->pos_x = mlx->pos_x + cos(mlx->player_direct) * MOVE_SPEED;
@@ -39,7 +39,7 @@ void	move_back(t_mlx *mlx)
 	dist_to_wall = calc_dist_to_wall(mlx,
 			(mlx->player_direct - 180 * (M_PI / 180)));
 	printf("dist_to_wall: %f\n", dist_to_wall);
-	if (dist_to_wall > MOVE_SPEED)
+	if (dist_to_wall > MOVE_SPEED * 2)
 	{
 		mlx->pos_x = mlx->pos_x - MOVE_SPEED * cos(mlx->player_direct);
 		mlx->pos_y = mlx->pos_y - MOVE_SPEED * sin(mlx->player_direct);
@@ -55,7 +55,7 @@ void	move_left(t_mlx *mlx)
 	dist_to_wall = calc_dist_to_wall(mlx,
 			(mlx->player_direct - 90 * (M_PI / 180)));
 	printf("dist_to_wall: %f\n", dist_to_wall);
-	if (dist_to_wall > MOVE_SPEED)
+	if (dist_to_wall > MOVE_SPEED * 1.15)
 	{
 		mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
 		mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
@@ -71,7 +71,7 @@ void	move_right(t_mlx *mlx)
 	dist_to_wall = calc_dist_to_wall(mlx,
 			(mlx->player_direct + 90 * (M_PI / 180)));
 	printf("dist_to_wall: %f\n", dist_to_wall);
-	if (dist_to_wall > MOVE_SPEED)
+	if (dist_to_wall > MOVE_SPEED * 1.15)
 	{
 		mlx->pos_x = mlx->pos_x - MOVE_SPEED * sin(mlx->player_direct);
 		mlx->pos_y = mlx->pos_y + MOVE_SPEED * cos(mlx->player_direct);
