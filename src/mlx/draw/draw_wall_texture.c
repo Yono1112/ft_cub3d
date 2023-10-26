@@ -6,43 +6,58 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:39:47 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:40:04 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:11:21 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	calc_wall_x(double *wall_x, t_mlx *mlx)
+bool	is_direction(double direct_flag, double ray_direct, int side)
 {
+	if (direct_flag == NORTH)
+		return (side == SIDE_Y && sin(ray_direct) < 0);
+	else if (direct_flag == SOUTH)
+		return (side == SIDE_Y && sin(ray_direct) >= 0);
+	else if (direct_flag == EAST)
+		return (side == SIDE_X && cos(ray_direct) >= 0);
+	else if (direct_flag == WEST)
+		return (side == SIDE_X && cos(ray_direct) < 0);
+	return (false);
+}
+
+double	calc_wall_x(t_mlx *mlx)
+{
+	double	wall_x;
+
 	if (mlx->side == SIDE_X)
-		*wall_x = mlx->pos_y + mlx->dist_to_wall * mlx->ray_dir_y;
+		wall_x = mlx->pos_y + mlx->dist_to_wall * mlx->ray_dir_y;
 	else
-		*wall_x = mlx->pos_x + mlx->dist_to_wall * mlx->ray_dir_x;
-	*wall_x -= floor(*wall_x);
+		wall_x = mlx->pos_x + mlx->dist_to_wall * mlx->ray_dir_x;
+	wall_x -= floor(wall_x);
+	return (wall_x);
 }
 
-void	calc_tex_x(int *tex_x, t_mlx *mlx, double wall_x)
+double	calc_tex_x(double ray_direct, int side, double wall_x)
 {
-	*tex_x = (int)(wall_x * (double)TEX_WIDTH);
-	if (mlx->side == SIDE_Y && mlx->ray_dir_y >= 0)
-		*tex_x = TEX_WIDTH - *tex_x - 1;
-	else if (mlx->side == SIDE_X && mlx->ray_dir_x < 0)
-		*tex_x = TEX_WIDTH - *tex_x - 1;
+	double	tex_x;
+
+	tex_x = (int)(wall_x * (double)TEX_WIDTH);
+	if (is_direction(SOUTH, ray_direct, side))
+		tex_x = TEX_WIDTH - tex_x - 1;
+	else if (is_direction(WEST, ray_direct, side))
+		tex_x = TEX_WIDTH - tex_x - 1;
+	return (tex_x);
 }
 
-int	set_index_texture(t_mlx *mlx)
+int	set_index_texture(double ray_direct, int side)
 {
-	if ((int)mlx->side == SIDE_Y
-		&& sin(mlx->ray_direct) >= 0) //south
+	if (is_direction(NORTH, ray_direct, side))
 		return (NORTH_TEX);
-	else if ((int)mlx->side == SIDE_Y
-		&& sin(mlx->ray_direct) < 0) // north
+	if (is_direction(SOUTH, ray_direct, side))
 		return (SOUTH_TEX);
-	else if ((int)mlx->side == SIDE_X
-		&& cos(mlx->ray_direct) >= 0) //east
+	if (is_direction(WEST, ray_direct, side))
 		return (WEST_TEX);
-	else if ((int)mlx->side == SIDE_X
-		&& cos(mlx->ray_direct) < 0) //west
+	if (is_direction(EAST, ray_direct, side))
 		return (EAST_TEX);
 	return (-1);
 }
@@ -54,11 +69,11 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 	int		tex_x;
 	int		tex_y;
 
-	calc_wall_x(&wall_x, mlx);
-	calc_tex_x(&tex_x, mlx, wall_x);
+	wall_x = calc_wall_x(mlx);
+	tex_x = calc_tex_x(mlx->ray_direct, mlx->side, wall_x);
 	tex_y = (int)mlx->tex_pos & (TEX_HEIGHT - 1);
 	mlx->tex_pos += mlx->step;
-	index_texture = set_index_texture(mlx);
+	index_texture = set_index_texture(mlx->ray_direct, mlx->side);
 	if (index_texture < 0)
 		exit_error(INDEX_TEXTURE_ERROR, mlx->mapdata, mlx->mapdata->map);
 	mlx_pixel_put(mlx->mlx_ptr, mlx->mlx_win, x, y,
