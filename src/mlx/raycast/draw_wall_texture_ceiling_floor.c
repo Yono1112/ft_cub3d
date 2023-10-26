@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:58 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:08:59 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:24:12 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,12 @@ int		set_index_texture(t_mlx *mlx)
 	if ((int)mlx->side == SIDE_Y
 		&& sin(mlx->ray_direct) >= 0) //south
 		return (NORTH_TEX);
-		// color_wall_texture = (255 * 65536) + (0 * 256) + 0;
 	else if ((int)mlx->side == SIDE_Y
 		&& sin(mlx->ray_direct) < 0) // north
 		return (SOUTH_TEX);
-		// color_wall_texture = (0 * 65536) + (255 * 256) + 0;
 	else if ((int)mlx->side == SIDE_X
 		&& cos(mlx->ray_direct) >= 0) //east
 		return (WEST_TEX);
-		// color_wall_texture = (0 * 65536) + (0 * 256) + 255;
 	else if ((int)mlx->side == SIDE_X
 		&& cos(mlx->ray_direct) < 0) //west
 		return (EAST_TEX);
@@ -98,23 +95,8 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 	tex_y = (int)mlx->tex_pos & (TEX_HEIGHT - 1);
 	mlx->tex_pos += mlx->step;
 	index_texture = set_index_texture(mlx);
-	// index_texture = 0;
 	if (index_texture < 0)
 		exit_error(INDEX_TEXTURE_ERROR, mlx->mapdata, mlx->mapdata->map);
-	// if ((int)mlx->side == SIDE_Y
-	// 	&& sin(mlx->ray_direct) >= 0) //south
-	// 	index_texture = (255 * 65536) + (0 * 256) + 0;
-	// else if ((int)mlx->side == SIDE_Y
-	// 	&& sin(mlx->ray_direct) < 0) // north
-	// 	index_texture = (0 * 65536) + (255 * 256) + 0;
-	// else if ((int)mlx->side == SIDE_X
-	// 	&& cos(mlx->ray_direct) >= 0) //east
-	// 	index_texture = (0 * 65536) + (0 * 256) + 255;
-	// else if ((int)mlx->side == SIDE_X
-	// 	&& cos(mlx->ray_direct) < 0) //west
-	// 	index_texture = (255 * 65536) + (255 * 256) + 0;
-	// printf("mlx->wall_texture: %s\n", wall_texture[index_texture]);
-	// mlx_pixel_put(mlx->mlx_ptr, mlx->mlx_win, x, y, index_texture);
 	mlx_pixel_put(mlx->mlx_ptr, mlx->mlx_win, x, y,
 		*(int *)(mlx->wall_texture[index_texture].deta_addr
 			+ tex_y * mlx->wall_texture[index_texture].size_line
@@ -129,7 +111,6 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 
 	y = 0;
 	mlx->wall_height = WINSIZE_HEIGTH / mlx->dist_to_wall;
-	// printf("mlx->wall_height: %f\n", mlx->wall_height);
 	set_draw_start_end(mlx->wall_height, &draw_start, &draw_end);
 	mlx->step = 1.0 * TEX_HEIGHT / mlx->wall_height;
 	mlx->tex_pos = (draw_start - WINSIZE_HEIGTH / 2 + mlx->wall_height / 2)
