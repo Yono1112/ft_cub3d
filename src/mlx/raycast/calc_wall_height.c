@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_raycast_value.c                               :+:      :+:    :+:   */
+/*   calc_wall_height.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:09:09 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:24:04 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:37:29 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ double	calc_ray_direct(t_mlx *mlx, size_t x)
 	return (angle);
 }
 
-void	init_raycast_value(t_mlx *mlx, size_t x)
+void	calc_wall_height(t_mlx *mlx, size_t x)
 {
 	mlx->ray_direct = calc_ray_direct(mlx, x);
 	mlx->dist_to_wall = calc_dist_to_wall(mlx, mlx->ray_direct);
+	mlx->wall_height = WINSIZE_HEIGTH / mlx->dist_to_wall;
 }

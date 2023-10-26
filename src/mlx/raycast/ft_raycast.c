@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:09:06 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:24:58 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:35:05 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_raycast(t_mlx *mlx)
 	x = 0;
 	while (x < WINSIZE_WIDTH)
 	{
-		init_raycast_value(mlx, x);
+		calc_wall_height(mlx, x);
 		draw_wall_texture_ceiling_floor(mlx, x);
 		x++;
 	}
