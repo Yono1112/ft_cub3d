@@ -39,7 +39,13 @@ SRCS	= 	src/main.c		\
 		src/mlx/raycast/calc_dist_to_wall.c \
 		src/exit/ft_destroy.c \
 		src/mlx/press_key/ft_press_key.c \
-		src/exit/free.c
+		src/exit/free.c \
+		src/mlx/press_key/move_back.c \
+		src/mlx/press_key/move_forward.c \
+		src/mlx/press_key/move_left.c \
+		src/mlx/press_key/move_right.c \
+		src/mlx/press_key/rotate_left.c \
+		src/mlx/press_key/rotate_right.c \
 
 all:	$(NAME)
 

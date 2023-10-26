@@ -82,5 +82,11 @@ void	print_map(char **map);
 double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
+void	move_forward(t_mlx *mlx);
+void	move_back(t_mlx *mlx);
+void	move_left(t_mlx *mlx);
+void	move_right(t_mlx *mlx);
+void	rotate_left(t_mlx *mlx);
+void	rotate_right(t_mlx *mlx);
 
 #endif
