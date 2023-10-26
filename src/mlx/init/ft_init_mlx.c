@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:07:25 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:07:30 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:27:59 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ void	print_map(char **map)
 	int	i;
 
 	i = 0;
-	printf("start print_map\n");
 	while (map[i])
 	{
 		printf("%s\n", map[i]);
 		i++;
 	}
-	printf("finish print_map\n");
 }
 
 void	ft_init_mlx(t_mlx *mlx, t_map *mapdata)
@@ -37,6 +35,5 @@ void	ft_init_mlx(t_mlx *mlx, t_map *mapdata)
 	if (!mlx->mlx_win)
 		exit_error(MLX_WINDOW_ERROR, mlx->mapdata, mlx->mapdata->map);
 	set_player(mlx, mlx->mapdata->map);
-	printf("finish set_player\n");
 	set_wall_texture(mlx, mlx->mapdata);
 }

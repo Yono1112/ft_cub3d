@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:07:40 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:08:22 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:27:48 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	set_player(t_mlx *mlx, char **map)
 	size_t	x;
 	size_t	y;
 
-	printf("start set_player\n");
 	y = 0;
 	while (map[y] != NULL)
 	{
