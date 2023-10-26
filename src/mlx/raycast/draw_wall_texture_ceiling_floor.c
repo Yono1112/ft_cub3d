@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_wall_texture_ceiling_floor.c                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/27 02:08:58 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/27 02:08:59 by yumaohno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	set_draw_start_end(double wall_height, double *draw_start, double *draw_end)
