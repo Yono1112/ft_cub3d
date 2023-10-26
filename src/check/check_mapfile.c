@@ -339,10 +339,6 @@ void	check_mapfile(char **map, t_map *mapdata)
 	check_floor_ceiling(mapdata);
 	check_readable_texture(mapdata);
 	mapdata->map = creat_new_map(map, mapdata, i);
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
 //--------------------------------------------------------------------------------
 //	for (int i = 0; i < 4; i++)
 //		printf("%s\n",mapdata->map[i]);

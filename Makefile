@@ -38,7 +38,9 @@ SRCS	= 	src/main.c		\
 		src/mlx/raycast/draw_wall_texture_ceiling_floor.c \
 		src/mlx/raycast/calc_dist_to_wall.c \
 		src/error/ft_destroy.c \
-		src/mlx/press_key/ft_press_key.c
+		src/mlx/press_key/ft_press_key.c \
+		src/error/free.c
+
 all:	$(NAME)
 
 $(OBJ_DIR)/%.o: %.c

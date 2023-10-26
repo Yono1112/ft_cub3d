@@ -16,5 +16,5 @@ int main(int argc, char **argv)
 
 __attribute__((destructor))
 static void destructor(void){
-			system("leaks -q cub3d");
+			system("leaks -q cub3D");
 			}

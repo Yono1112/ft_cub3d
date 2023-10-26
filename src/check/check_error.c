@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/25 20:41:28 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:47:36 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	chardp_mig(char **map, char **save)
 	}
 }
 
-static void	free_map(char **map)
+static void	free_map_last_line(char **map)
 {
 	int	i;
 
@@ -58,7 +58,7 @@ static char	**read_mapfile(int fd)
 		chardp_mig(map, save);
 		save[size - 1] = stock;
 		save[size] = NULL;
-		free_map(map);
+		free_map_last_line(map);
 		map = save;
 		stock = get_next_line(fd);
 	}
@@ -75,5 +75,7 @@ void	check_error(const int argc, const char **argv, t_map *mapdata)
 	if (fd == -1)
 		error(FILENAME_ERROR);
 	mapfile = read_mapfile(fd);
+	close(fd);
 	check_mapfile(mapfile, mapdata);
+	free_map(mapfile);
 }
