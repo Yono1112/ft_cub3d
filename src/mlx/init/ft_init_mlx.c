@@ -76,10 +76,11 @@ void	ft_init_mlx(t_mlx *mlx, t_map *mapdate)
 	// print_map(mlx->mapdata->map);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
-		exit_error("ERROR: cannot run mlx_init()");
-	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WINSIZE_HEIGTH, WINSIZE_WIDTH, "cub3D");
+		error(MLX_INIT_ERROR);
+	mlx->mlx_win = mlx_new_window(
+			mlx->mlx_ptr, WINSIZE_WIDTH, WINSIZE_HEIGTH, GAME_NAME);
 	if (!mlx->mlx_win)
-		exit_error("ERROR: cannot run mlx_new_window()");
+		error(MLX_WINDOW_ERROR);
 	set_player(mlx, mlx->mapdata->map);
 	printf("finish set_player\n");
 	set_wall_texture(mlx, mlx->mapdata);

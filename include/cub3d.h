@@ -10,36 +10,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include "../minilibx_opengl_20191021/mlx.h"
-
-# define MAP_WIDTH 16
-# define MAP_HEIGHT 16
-# define WINSIZE_WIDTH 400
-# define WINSIZE_HEIGTH 400
-# define SOUTH (M_PI / 180) * 90
-# define NORTH (M_PI / 180) * 270
-# define EAST (M_PI / 180) * 0
-# define WEST (M_PI / 180) * 180
-# define FOV (M_PI / 180) * 60
-# define SIDE_X 0
-# define SIDE_Y 1
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_ARROW_LEFT 123
-# define KEY_ARROW_RIGHT 124
-# define MOVE_SPEED 0.3
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
-# define NORTH_TEX 0
-# define SOUTH_TEX 1
-# define EAST_TEX 2
-# define WEST_TEX 3
-# define MOVE_FORWARD 0
-# define MOVE_BACK 1
-# define MOVE_LEFT 2
-# define MOVE_RIGHT 3
+# include "defines.h"
 
 typedef struct s_map
 {
@@ -91,24 +62,8 @@ typedef struct s_mlx
 	double	tex_pos;
 }	t_mlx;
 
-enum Error
-{
-	Argument_Error,
-	Openfile_Error,
-	Filename_Error,
-	Readfile_Error,
-	Mapargument_Error,
-	Texture_Error,
-	Invalid_Argument_In_Map_Error,
-	Num_Arguments_Error,
-	Hole_In_Map,
-	Open_Texture_Error,
-	Comma_Error,
-	Texture_is_big
-};
-
 //check-mapfile
-void	error(int error_num);
+void	error(char *str);
 void	check_error(const int argc, const char **argv,t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
 void	file_name(const int argc, const char **argv);
@@ -116,16 +71,14 @@ void	file_name(const int argc, const char **argv);
 void	run_mlx(t_map *mapdate);
 void	ft_init_mlx(t_mlx *mlx, t_map *mapdate);
 void	set_player(t_mlx *mlx, char **map);
-void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata);
-int		ft_destroy(char *str, t_mlx *mlx);
 int		ft_press_key(int i, t_mlx *mlx);
 void	init_raycast_value(t_mlx *mlx, size_t x);
 void	print_map(char **map);
 double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
-int		ft_destroy(char *str, t_mlx *mlx);
+int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
 
 #endif

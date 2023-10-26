@@ -6,7 +6,8 @@ void	run_mlx(t_map *mapdate)
 
 	ft_init_mlx(&mlx, mapdate);
 	mlx_loop_hook(mlx.mlx_ptr, ft_raycast, &mlx);
-	mlx_hook(mlx.mlx_win, 2, 1L << 0, &ft_press_key, &mlx);
-	mlx_hook(mlx.mlx_win, 17, 1L << 2, ft_destroy, "press close button");
+	mlx_hook(mlx.mlx_win, X_EVENT_KEY_PRESS, 1L << 0, ft_press_key, &mlx);
+	mlx_hook(mlx.mlx_win, X_EVENT_DESTROY_NOTIFY,
+		1L << 2, ft_destroy, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 }

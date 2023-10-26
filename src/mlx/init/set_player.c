@@ -38,5 +38,5 @@ void	set_player(t_mlx *mlx, char **map)
 		// printf("\n");
 		y++;
 	}
-	exit_error("ERROR: start position is not set");
+	error(SET_PLAYER_ERROR);
 }
