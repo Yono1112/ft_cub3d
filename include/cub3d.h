@@ -63,12 +63,14 @@ typedef struct s_mlx
 }	t_mlx;
 
 //check-mapfile
-void	error(char *str);
+void	exit_error(char *str, t_map *mapdata, char **map);
 void	check_error(const int argc, const char **argv,t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
 void	file_name(const int argc, const char **argv);
+void	free_map(char **map);
+void	free_data(t_map *mapdata, char **map);
 // raycast
-void	run_mlx(t_map *mapdate);
+void	run_mlx(t_map *mapdata);
 void	ft_init_mlx(t_mlx *mlx, t_map *mapdate);
 void	set_player(t_mlx *mlx, char **map);
 int		ft_raycast(t_mlx *mlx);

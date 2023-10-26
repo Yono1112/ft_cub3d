@@ -17,7 +17,7 @@ void	set_img_ptr(t_mlx *mlx, t_map *mapdata)
 		= mlx_xpm_file_to_image(mlx->mlx_ptr, mapdata->we, &height, &width);
 	if (!mlx->wall_texture[0].img_ptr || !mlx->wall_texture[1].img_ptr
 		|| !mlx->wall_texture[2].img_ptr || !mlx->wall_texture[3].img_ptr)
-		error(IMG_PTR_ERROR);
+		exit_error(IMG_PTR_ERROR, mapdata, mapdata->map);
 }
 
 void	set_deta_addr(t_mlx *mlx)
@@ -36,7 +36,7 @@ void	set_deta_addr(t_mlx *mlx)
 			&mlx->wall_texture[3].size_line, &mlx->wall_texture[3].endian);
 	if (!mlx->wall_texture[0].deta_addr || !mlx->wall_texture[1].deta_addr
 		|| !mlx->wall_texture[2].deta_addr || !mlx->wall_texture[3].deta_addr)
-		error(DETA_ADDR_ERROR);
+		exit_error(DETA_ADDR_ERROR, mlx->mapdata, mlx->mapdata->map);
 }
 
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata)

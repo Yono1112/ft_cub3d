@@ -38,5 +38,5 @@ void	set_player(t_mlx *mlx, char **map)
 		// printf("\n");
 		y++;
 	}
-	error(SET_PLAYER_ERROR);
+	exit_error(SET_PLAYER_ERROR, mlx->mapdata, mlx->mapdata->map);
 }
