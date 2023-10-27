@@ -1,5 +1,5 @@
 #include"cub3d.h"
-void	print_map(char **map)
+void	print_map_debug(char **map)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	argc++;
 	argc = i;
 	check_error((const int)argc, (const char**)argv, &mapdata);
-	print_map(mapdata.map);
+	print_map_debug(mapdata.map);
 	run_mlx(&mapdata);
 	exit(0);
 }

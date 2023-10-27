@@ -6,11 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/10/25 01:31:06 by rnaka            ###   ########.fr       */
-=======
-/*   Updated: 2023/10/24 17:35:52by yumaohno         ###   ########.fr       */
->>>>>>> develop
+/*   Updated: 2023/10/27 09:53:55 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +124,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 		stock = strlen;
 		while (stock < maxlen - 1)
 		{
-			newline[stock] = '1';
+			newline[stock] = ' ';
 			stock++;
 		}
 		map[i] = newline;
