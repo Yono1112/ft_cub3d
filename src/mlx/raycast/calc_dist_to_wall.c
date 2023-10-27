@@ -1,4 +1,4 @@
-#include "test_raycast.h"
+#include "cub3d.h"
 
 void	calc_initial_step(t_mlx *mlx)
 {
@@ -42,7 +42,7 @@ void	calc_dda_algorithm(t_mlx *mlx)
 			mlx->map_y += mlx->step_y;
 			mlx->side = SIDE_Y;
 		}
-		if (world_map[mlx->map_y][mlx->map_x] != '0')
+		if (mlx->mapdata->map[mlx->map_y][mlx->map_x] != '0')
 			break ;
 	}
 }

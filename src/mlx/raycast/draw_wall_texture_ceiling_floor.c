@@ -1,4 +1,4 @@
-#include "test_raycast.h"
+#include "cub3d.h"
 
 void	set_draw_start_end(double wall_height, double *draw_start, double *draw_end)
 {
@@ -88,7 +88,7 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 	index_texture = set_index_texture(mlx);
 	// index_texture = 0;
 	if (index_texture < 0)
-		exit_error("ERROR: cannot set index_texture in draw_wall_texture()\n");
+		exit_error(INDEX_TEXTURE_ERROR, mlx->mapdata, mlx->mapdata->map);
 	// if ((int)mlx->side == SIDE_Y
 	// 	&& sin(mlx->ray_direct) >= 0) //south
 	// 	index_texture = (255 * 65536) + (0 * 256) + 0;

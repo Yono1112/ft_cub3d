@@ -1,27 +1,27 @@
 # Prerequisites
 *.d
-
+Doxy*
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
-
+*html
 # Linker output
 *.ilk
 *.map
 *.exp
-
+*tags
 # Precompiled Headers
 *.gch
 *.pch
-
+*latex*
 # Libraries
 *.lib
 *.a
 *.la
 *.lo
-
+*.swp
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so

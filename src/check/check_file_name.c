@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:56:13 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/14 12:45:49 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/26 20:52:59 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	check_extencion(const char *argv)
 void	file_name(const int argc, const char *argv[])
 {
 	if (argc <= 1)
-		error(Argument_Error);
+		exit_error(ARGUMENT_ERROR, NULL, NULL);
 	else if (check_extencion(argv[1]))
-		error(Filename_Error);
+		exit_error(FILENAME_ERROR, NULL, NULL);
 	return ;
 }

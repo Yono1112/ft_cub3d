@@ -1,13 +1,26 @@
+<<<<<<< HEAD
 NO ./wall_texture_north.xpm
 SO ./wall_texture_south.xpm
 WE ./wall_texture_west.xpm
 EA ./wall_texture_east.xpm
+=======
+NO ./wall_texture/wall_texture_north.xpm
+SO ./wall_texture/wall_texture_south.xpm
+WE ./wall_texture/wall_texture_west.xpm
+EA ./wall_texture/wall_texture_east.xpm
+>>>>>>> develop
 
 F 220,100,0
 C 225,30,0
 
 11111111
 10000001
+<<<<<<< HEAD
 100W0001
 10000001
 11111101
+=======
+100N0001
+10000001
+11111111
+>>>>>>> develop

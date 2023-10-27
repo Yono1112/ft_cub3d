@@ -1,4 +1,4 @@
-NAME	= cub3d
+NAME	= cub3D
 
 CC	= gcc
 
@@ -20,11 +20,27 @@ RM	= rm -rf
 
 LIBFTDIR = libft
 
+MLX_LIB = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit ./minilibx_opengl_20191021/libmlx.a
+
+MLX_DIR = minilibx_opengl_20191021
+
 SRCS	= 	src/main.c		\
-		src/error/error.c	\
+		src/exit/exit_error.c	\
 		src/check/check_error.c	\
 		src/check/check_file_name.c	\
-		src/check/check_mapfile.c
+		src/check/check_mapfile.c \
+		src/mlx/run_mlx.c \
+		src/mlx/init/ft_init_mlx.c \
+		src/mlx/init/set_player.c \
+		src/mlx/init/set_wall_texture.c \
+		src/mlx/raycast/ft_raycast.c \
+		src/mlx/raycast/init_raycast_value.c \
+		src/mlx/raycast/draw_wall_texture_ceiling_floor.c \
+		src/mlx/raycast/calc_dist_to_wall.c \
+		src/exit/ft_destroy.c \
+		src/mlx/press_key/ft_press_key.c \
+		src/exit/free.c
+
 all:	$(NAME)
 
 $(OBJ_DIR)/%.o: %.c
@@ -37,10 +53,12 @@ $(DEBUG_OBJ_DIR)/%.o: %.c
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFTDIR)
-	$(CC) $(CFLAGS)	-L $(LIBFTDIR) -lft -o $(NAME) $(OBJS)
+	@make -C ${MLX_DIR}
+	$(CC) $(CFLAGS)	-L $(LIBFTDIR) -lft -o $(NAME) $(OBJS) $(MLX_LIB)
 
 clean:
 	@make fclean -C $(LIBFTDIR)
+	@make clean -C $(MLX_DIR)
 	$(RM) $(OBJS)
 	$(RM) $(OBJ_DIR)
 

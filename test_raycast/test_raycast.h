@@ -81,7 +81,7 @@ char	*wall_texture[4];
 void	set_player(t_mlx *mlx);
 void	exit_error(char *str);
 int		ft_raycast(t_mlx *mlx);
-void	calc_dist_to_wall(t_mlx *mlx);
+double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx);
 int		ft_destroy(char *str, t_mlx *mlx);

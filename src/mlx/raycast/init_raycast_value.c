@@ -1,4 +1,4 @@
-#include "test_raycast.h"
+#include "cub3d.h"
 
 double	calc_ray_direct(t_mlx *mlx, size_t x)
 {

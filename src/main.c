@@ -15,18 +15,23 @@ void	print_map(char **map)
 
 int main(int argc, char **argv)
 {
-	int	i;
+	int		i;
 	t_map	mapdata;
 
 	i = argc;
 	argc++;
 	argc = i;
 	check_error((const int)argc, (const char**)argv, &mapdata);
+<<<<<<< HEAD
 	print_map(mapdata.map);
 	exit (0);
+=======
+	run_mlx(&mapdata);
+	exit(0);
+>>>>>>> develop
 }
 
 __attribute__((destructor))
 static void destructor(void){
-			system("leaks -q cub3d");
+			system("leaks -q cub3D");
 			}

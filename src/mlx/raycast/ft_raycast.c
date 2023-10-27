@@ -1,4 +1,4 @@
-#include "test_raycast.h"
+#include "cub3d.h"
 
 int	ft_raycast(t_mlx *mlx)
 {
