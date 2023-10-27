@@ -22,13 +22,9 @@ int main(int argc, char **argv)
 	argc++;
 	argc = i;
 	check_error((const int)argc, (const char**)argv, &mapdata);
-<<<<<<< HEAD
 	print_map(mapdata.map);
-	exit (0);
-=======
 	run_mlx(&mapdata);
 	exit(0);
->>>>>>> develop
 }
 
 __attribute__((destructor))

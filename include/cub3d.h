@@ -14,18 +14,6 @@
 
 typedef struct s_map
 {
-<<<<<<< HEAD
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-	char *floor;
-	char *ceiling;
-	char **map;
-	int ceiling_num[3];
-	int floor_num[3];
-}t_map;
-=======
 	char	*no;
 	char	*so;
 	char	*we;
@@ -33,10 +21,9 @@ typedef struct s_map
 	char	*floor;
 	char	*ceiling;
 	char	**map;
-	char	*ceiling_num_char[3];
-	char	*floor_num_char[3];
-}	t_map;
->>>>>>> develop
+	int	ceiling_num[3];
+	int	floor_num[3];
+}t_map;
 
 typedef struct s_img
 {

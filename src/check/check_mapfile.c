@@ -169,13 +169,10 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 
 void	check_hole(char **map, int i, int j, int border, t_map *mapdata)
 {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0 )
-		error(Hole_In_Map);
-=======
-	if (map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0)
 		exit_error(HOLE_MAP_ERROR, mapdata, map);
->>>>>>> develop
+//>>>>>>> develop
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;
 	if (map[i][j] == '0')
