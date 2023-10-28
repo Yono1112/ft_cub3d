@@ -12,6 +12,7 @@ void	free_map(char **map)
 		free(map[i]);
 		i++;
 	}
+	free(map[i]);
 	free(map);
 }
 

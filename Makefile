@@ -1,8 +1,8 @@
 NAME	= cub3D
 
-CC	= gcc
+CC	= cc
 
-#CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 DEBUG_FLAGS = -g -O0
 
@@ -39,7 +39,8 @@ SRCS	= 	src/main.c		\
 		src/mlx/raycast/calc_dist_to_wall.c \
 		src/exit/ft_destroy.c \
 		src/mlx/press_key/ft_press_key.c \
-		src/exit/free.c
+		src/exit/free.c \
+		src/check/check_texture.c
 
 all:	$(NAME)
 

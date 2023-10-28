@@ -6,43 +6,11 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/27 09:53:55 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/29 06:22:23 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
-
-char*	change_newline_to_null(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			str[i] = '\0';
-		i++;
-	}
-	return (str);
-}
-
-char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
-{
-	int j = 0;
-
-	while (!ft_isalpha(line[j]))
-		j++;
-	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー
-		exit_error(TEXTURE_ERROR, mapdata, map);
-	j += ft_strlen(dir);
-	if (ft_strlen(dir) == 1)
-		while (!ft_isalnum(line[j]))
-			j++;
-	else
-		while (!ft_isprint(line[j]))
-			j++;
-	return change_newline_to_null(ft_strdup(line + j + 1));//テクスチャー名の後のスペースを除けていない
-}
 
 void	skip_space(char **map, int *i, t_map *mapdata) //最初に文字が来る行を特定している
 {
@@ -61,55 +29,19 @@ void	skip_space(char **map, int *i, t_map *mapdata) //最初に文字が来る�
 		exit_error(NOT_ENOUGH_ARGUMENT_ERROR, mapdata, map);
 }
 
-int	check_texture(char **map, t_map *mapdata)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	skip_space(map, &i, mapdata);
-	mapdata->no = check_direction(map[i], "NO", map, mapdata);
-	i++;
-	skip_space(map, &i, mapdata);
-	mapdata->so = check_direction(map[i], "SO", map, mapdata);
-	i++;
-	skip_space(map, &i, mapdata);
-	mapdata->we = check_direction(map[i], "WE", map, mapdata);
-	i++;
-	skip_space(map, &i, mapdata);
-	mapdata->ea = check_direction(map[i], "EA", map, mapdata);
-	i++;
-	skip_space(map, &i, mapdata);
-	mapdata->floor = check_direction(map[i], "F", map, mapdata);
-	i++;
-	skip_space(map, &i, mapdata);
-	mapdata->ceiling = check_direction(map[i], "C", map, mapdata);
-//------------------------------------------------------------
-//	printf("no = %s\n", mapdata->no);
-//	printf("so = %s\n", mapdata->so);
-//	printf("ea = %s\n", mapdata->ea);
-//	printf("we = %s\n", mapdata->we);
-//	printf("floor = %s\n", mapdata->floor);
-//	printf("ceiling = %s\n", mapdata->ceiling);
-//------------------------------------------------------------
-	i++;
-	skip_space(map, &i, mapdata);
-	return i;
-}
-
-void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
+void	check_map(char **map, int i)//checkではなくeditmap
 {
 	int	stock;
-	int	maxlen;// 最長行
 	int	strlen;
 	char	*newline;
+	size_t	maxlen;// 最長行
 
 	maxlen = 0;
 	//skip_space(map, &i); //check_textureでスペース飛ばしを行っているので必要ない,あっても問題ない
 	stock = i;
 	while (map[i])//最長行を探している
 	{
-		if (ft_strlen(map[i])>maxlen)
+		if (ft_strlen(map[i]) > maxlen)
 			maxlen = ft_strlen(map[i]);
 		i++;
 	}
@@ -122,7 +54,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 		ft_memcpy(newline, map[i], strlen);// strlen-1は'\n'分減らしているが、確認が必要
 		free(map[i]);
 		stock = strlen;
-		while (stock < maxlen - 1)
+		while (stock < (int)maxlen - 1)
 		{
 			newline[stock] = ' ';
 			stock++;
@@ -134,7 +66,7 @@ void	check_map(char **map, t_map *mapdata, int i)//checkではなくeditmap
 	i = stock;
 }
 
-void	check_mapcontents(char **map, t_map *mapdata, int i)
+void	check_mapcontents(char **map, int i, t_map *mapdata)
 {
 	int	count_news;
 	int	j;
@@ -165,10 +97,8 @@ void	check_mapcontents(char **map, t_map *mapdata, int i)
 
 void	check_hole(char **map, int i, int j, int border, t_map *mapdata)
 {
-//<<<<<<< HEAD
-	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0') && j == 0 )
+	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' ' || map[i][j] == '\0' || (map[i][j] == '\0' && j == 0 ))
 		exit_error(HOLE_MAP_ERROR, mapdata, map);
-//>>>>>>> develop
 	if (j < 0 || i < border || !map[i] || map[i][j] == '\0' || map[i][j] == '1' || map[i][j] == '2')//すでに移動した箇所を2に置き換えている。"D"などにすべき
 		 return ;
 	if (map[i][j] == '0')
@@ -179,7 +109,7 @@ void	check_hole(char **map, int i, int j, int border, t_map *mapdata)
 	check_hole(map, i, j - 1, border, mapdata);
 }
 
-void	check_mapcollect(char **map, t_map *mapdata, int i)
+void	check_mapcollect(char **map, int i, t_map *mapdata)
 {
 	int	j;
 	int	border;
@@ -238,7 +168,7 @@ bool	check_num_coma(char* str)
 	while (str[i])
 	{
 //		printf("%c", str[i]);
-		if (commma_num > 2 || (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n' || (str[i] == ',' && !ft_isdigit(str[i + 1]))))
+		if (commma_num > 2 || (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n') || (str[i] == ',' && !ft_isdigit(str[i + 1])))
 			return(false);
 		if (str[i] == '\n')
 			str[i] = '\0';
@@ -273,10 +203,13 @@ int	split_number(t_map *mapdata)
 		mapdata->floor_num[i] = num_floor;
 		mapdata->ceiling_num[i] = num_ceiling;
 		printf("floor = %d\n",mapdata->floor_num[i]);
+		printf("ceiling = %d\n",mapdata->ceiling_num[i]);
 		i++;
 	}
-	free(array_floor);
-	free(array_ceiling);
+	printf("texture num 設置完了\n");
+	//free(array_floor);
+	//free(array_ceiling);
+	printf("free 完了num 置完了\n");
 //------------------------------------------------------------
 //	printf("\n");
 //	for (int i = 0; i < 3; i++)
@@ -295,7 +228,7 @@ void	check_floor_ceiling(char **map, t_map *mapdata)
 		exit_error(TEXTURE_BIG_ERROR, mapdata, map);
 }
 
-char**	creat_new_map(char **map, t_map *mapdata, int i)
+char**	creat_new_map(char **map, int i)
 {
 	int	j;
 	int	stock;
@@ -326,22 +259,46 @@ char**	creat_new_map(char **map, t_map *mapdata, int i)
 	return (newmap);
 }
 
+bool	is_blankline(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return true;
+	while (line[i])
+	{
+		if (ft_isprint(line[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+void	check_single_map(char **map, int i, t_map *mapdata)
+{
+	while (map[i])
+	{
+		if (is_blankline(map[i]) && !is_blankline(map[i + 1]))
+			exit_error(TOO_MANY_MAPS, mapdata, map);
+		i++;
+	}
+}
+
 void	check_mapfile(char **map, t_map *mapdata)
 {
 	int	i;
-	int	j;
-	int	stock;
-	int	start;
 
-	j = 0;
 	i = check_texture(map, mapdata);
-	// print_map(map);
-	check_map(map, mapdata, i);
-	check_mapcontents(map, mapdata, i);
-	check_mapcollect(map, mapdata, i);
+	check_single_map(map, i, mapdata);
+	check_map(map, i);
+	check_mapcontents(map, i, mapdata);
+	check_mapcollect(map, i, mapdata);
 	check_floor_ceiling(map, mapdata);
 	check_readable_texture(map, mapdata);
-	mapdata->map = creat_new_map(map, mapdata, i);
+	mapdata->map = creat_new_map(map, i);
+	printf("namunamu\n");
+
 //--------------------------------------------------------------------------------
 //	for (int i = 0; i < 4; i++)
 //		printf("%s\n",mapdata->map[i]);

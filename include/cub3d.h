@@ -82,5 +82,7 @@ void	print_map(char **map);
 double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
-
+char	*check_direction(char *line, char *dir, char **map, t_map *mapdata);
+int	check_texture(char **map, t_map *mapdata);
+void	skip_space(char **map, int *i, t_map *mapdata);
 #endif
