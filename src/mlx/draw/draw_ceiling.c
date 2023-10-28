@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_raycast.c                                       :+:      :+:    :+:   */
+/*   draw_ceiling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 02:09:06 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:35:05 by yumaohno         ###   ########.fr       */
+/*   Created: 2023/10/27 02:41:47 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/27 02:41:55 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_raycast(t_mlx *mlx)
+void	draw_ceiling(int x, int y, void *mlx_ptr, void *mlx_win)
 {
-	size_t	x;
+	long	color_ceiling;
 
-	x = 0;
-	while (x < WINSIZE_WIDTH)
-	{
-		calc_wall_height(mlx, x);
-		draw_wall_texture_ceiling_floor(mlx, x);
-		x++;
-	}
-	return (0);
+	color_ceiling = (0 * 65536) + (0 * 256) + 0;
+	mlx_pixel_put(mlx_ptr, mlx_win, x, y, color_ceiling);
 }

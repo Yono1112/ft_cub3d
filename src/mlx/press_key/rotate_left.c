@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_raycast.c                                       :+:      :+:    :+:   */
+/*   rotate_left.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 02:09:06 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:35:05 by yumaohno         ###   ########.fr       */
+/*   Created: 2023/10/27 02:13:04 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/27 03:15:15 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_raycast(t_mlx *mlx)
+void	rotate_left(t_mlx *mlx)
 {
-	size_t	x;
-
-	x = 0;
-	while (x < WINSIZE_WIDTH)
-	{
-		calc_wall_height(mlx, x);
-		draw_wall_texture_ceiling_floor(mlx, x);
-		x++;
-	}
-	return (0);
+	mlx->player_direct -= 10 * (M_PI / 180);
+	if (mlx->player_direct < 0)
+		mlx->player_direct += 2 * M_PI;
 }

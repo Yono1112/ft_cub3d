@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_wall_texture.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/27 02:07:57 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/27 02:27:54umaohno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void	set_img_ptr(t_mlx *mlx, t_map *mapdata)
+static void	set_img_ptr(t_mlx *mlx, t_map *mapdata)
 {
 	int		height;
 	int		width;
@@ -20,7 +32,7 @@ void	set_img_ptr(t_mlx *mlx, t_map *mapdata)
 		exit_error(IMG_PTR_ERROR, mapdata, mapdata->map);
 }
 
-void	set_deta_addr(t_mlx *mlx)
+static void	set_deta_addr(t_mlx *mlx)
 {
 	mlx->wall_texture[0].deta_addr = mlx_get_data_addr(
 			mlx->wall_texture[0].img_ptr, &mlx->wall_texture[0].bits_per_pixel,
@@ -41,8 +53,6 @@ void	set_deta_addr(t_mlx *mlx)
 
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata)
 {
-	printf("start set_wall_texture\n");
 	set_img_ptr(mlx, mapdata);
 	set_deta_addr(mlx);
-	printf("finish set_wall_texture\n");
 }

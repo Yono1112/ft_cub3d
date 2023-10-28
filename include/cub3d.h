@@ -77,7 +77,7 @@ int		ft_raycast(t_mlx *mlx);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata);
 int		ft_press_key(int i, t_mlx *mlx);
-void	init_raycast_value(t_mlx *mlx, size_t x);
+void	calc_wall_height(t_mlx *mlx, size_t x);
 void	print_map(char **map);
 double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 int		ft_destroy(t_mlx *mlx);
@@ -91,5 +91,14 @@ void	check_floor_ceiling(char **map, t_map *mapdata);
 void	check_mapcollect(char **map, int i, t_map *mapdata);
 void	check_mapcontents(char **map, int i, t_map *mapdata);
 void	check_readable_texture(char **map, t_map *mapdata);
+void	move_forward(t_mlx *mlx);
+void	move_back(t_mlx *mlx);
+void	move_left(t_mlx *mlx);
+void	move_right(t_mlx *mlx);
+void	rotate_left(t_mlx *mlx);
+void	rotate_right(t_mlx *mlx);
+void	draw_wall_texture(int x, int y, t_mlx *mlx);
+void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win);
+void	draw_ceiling(int x, int y, void *mlx_ptr, void *mlx_win);
 
 #endif

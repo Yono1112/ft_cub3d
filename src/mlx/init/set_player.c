@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_player.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/27 02:07:40 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/27 03:24:01 by yumaohno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void	set_direction(t_mlx *mlx, char direction)
+static void	set_direction(t_mlx *mlx, char direction)
 {
 	if (direction == 'N')
 		mlx->player_direct = NORTH;
@@ -17,7 +29,6 @@ void	set_player(t_mlx *mlx, char **map)
 	size_t	x;
 	size_t	y;
 
-	printf("start set_player\n");
 	y = 0;
 	while (map[y] != NULL)
 	{
@@ -35,7 +46,6 @@ void	set_player(t_mlx *mlx, char **map)
 			}
 			x++;
 		}
-		// printf("\n");
 		y++;
 	}
 	exit_error(SET_PLAYER_ERROR, mlx->mapdata, mlx->mapdata->map);
