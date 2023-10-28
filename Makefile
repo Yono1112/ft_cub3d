@@ -40,7 +40,13 @@ SRCS	= 	src/main.c		\
 		src/exit/ft_destroy.c \
 		src/mlx/press_key/ft_press_key.c \
 		src/exit/free.c \
-		src/check/check_texture.c
+		src/check/check_texture.c \
+		src/check/check_map.c \
+		src/check/check_single_map.c \
+		src/check/check_floor_ceiling.c \
+		src/check/check_mapcontents.c \
+		src/check/check_mapcollect.c \
+		src/check/check_readable_texture.c
 
 all:	$(NAME)
 

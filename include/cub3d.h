@@ -85,4 +85,11 @@ int		ft_press_key(int key_num, t_mlx *mlx);
 char	*check_direction(char *line, char *dir, char **map, t_map *mapdata);
 int	check_texture(char **map, t_map *mapdata);
 void	skip_space(char **map, int *i, t_map *mapdata);
+void	check_single_map(char **map, int i, t_map *mapdata);
+void	check_map(char **map, int i);
+void	check_floor_ceiling(char **map, t_map *mapdata);
+void	check_mapcollect(char **map, int i, t_map *mapdata);
+void	check_mapcontents(char **map, int i, t_map *mapdata);
+void	check_readable_texture(char **map, t_map *mapdata);
+
 #endif
