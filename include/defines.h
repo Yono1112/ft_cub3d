@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/29 16:52:23 by yumaohno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -27,10 +39,10 @@
 # define MOVE_SPEED 0.3
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define NORTH_TEX 0
-# define SOUTH_TEX 1
-# define EAST_TEX 2
-# define WEST_TEX 3
+# define NORTH_TEX 1
+# define SOUTH_TEX 0
+# define EAST_TEX 3
+# define WEST_TEX 2
 # define MOVE_FORWARD 0
 # define MOVE_BACK 1
 # define MOVE_LEFT 2
@@ -64,13 +76,5 @@
 		"Cannot get memory address of image in mlx_get_data_addr()"
 # define TOO_MANY_MAPS "too meny maps in file"
 # define INDEX_TEXTURE_ERROR "cannot set index_texture in draw_wall_texture()"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
-// # define FILENAME_ERROR "Missing required arguments"
 
 #endif
