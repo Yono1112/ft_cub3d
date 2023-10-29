@@ -46,7 +46,7 @@ SRCS	= 	src/main.c		\
 		src/check/check_floor_ceiling.c \
 		src/check/check_mapcontents.c \
 		src/check/check_mapcollect.c \
-		src/check/check_readable_texture.c
+		src/check/check_readable_texture.c \
 		src/mlx/press_key/move_back.c \
 		src/mlx/press_key/move_forward.c \
 		src/mlx/press_key/move_left.c \

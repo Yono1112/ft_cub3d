@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/29 16:45:03 by yumaohno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -21,8 +33,8 @@ typedef struct s_map
 	char	*floor;
 	char	*ceiling;
 	char	**map;
-	int	ceiling_num[3];
-	int	floor_num[3];
+	int		ceiling_num[3];
+	int		floor_num[3];
 }t_map;
 
 typedef struct s_img
@@ -56,7 +68,6 @@ typedef struct s_mlx
 	int		step_y;
 	int		side;
 	double	wall_height;
-	// texture
 	t_img	wall_texture[4];
 	double	step;
 	double	tex_pos;
@@ -64,7 +75,7 @@ typedef struct s_mlx
 
 //check-mapfile
 void	exit_error(char *str, t_map *mapdata, char **map);
-void	check_error(const int argc, const char **argv,t_map *mapdata);
+void	check_error(const int argc, const char **argv, t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
 void	file_name(const int argc, const char **argv);
 void	free_map(char **map);
@@ -83,7 +94,7 @@ double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
 char	*check_direction(char *line, char *dir, char **map, t_map *mapdata);
-int	check_texture(char **map, t_map *mapdata);
+int		check_texture(char **map, t_map *mapdata);
 void	skip_space(char **map, int *i, t_map *mapdata);
 void	check_single_map(char **map, int i, t_map *mapdata);
 void	check_map(char **map, int i);
