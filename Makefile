@@ -1,8 +1,8 @@
 NAME	= cub3D
 
-CC	= gcc
+CC	= cc
 
-#CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 DEBUG_FLAGS = -g -O0
 
@@ -40,6 +40,13 @@ SRCS	= 	src/main.c		\
 		src/exit/ft_destroy.c \
 		src/mlx/press_key/ft_press_key.c \
 		src/exit/free.c \
+		src/check/check_texture.c \
+		src/check/check_map.c \
+		src/check/check_single_map.c \
+		src/check/check_floor_ceiling.c \
+		src/check/check_mapcontents.c \
+		src/check/check_mapcollect.c \
+		src/check/check_readable_texture.c
 		src/mlx/press_key/move_back.c \
 		src/mlx/press_key/move_forward.c \
 		src/mlx/press_key/move_left.c \

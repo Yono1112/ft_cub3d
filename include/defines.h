@@ -62,6 +62,7 @@
 # define IMG_PTR_ERROR "Cannot convert xpm to image in mlx_xpm_file_to_image()"
 # define DETA_ADDR_ERROR\
 		"Cannot get memory address of image in mlx_get_data_addr()"
+# define TOO_MANY_MAPS "too meny maps in file"
 # define INDEX_TEXTURE_ERROR "cannot set index_texture in draw_wall_texture()"
 // # define FILENAME_ERROR "Missing required arguments"
 // # define FILENAME_ERROR "Missing required arguments"

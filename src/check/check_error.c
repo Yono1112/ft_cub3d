@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/26 21:25:02 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/29 05:49:15 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static char	**read_mapfile(int fd)
 	char	**save;
 	char	*stock;
 
-	map = NULL;
-	stock = get_next_line(fd);
+	map = NULL; stock = get_next_line(fd);
 	if (!stock)
 		exit_error(READFILE_ERROR, NULL, NULL);
 	size = 0;
