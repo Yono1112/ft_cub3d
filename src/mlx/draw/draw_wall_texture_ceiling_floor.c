@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:58 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 03:26:43 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:09:10umaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 	while (y < WINSIZE_HEIGTH)
 	{
 		if (is_ceiling(y, draw_start))
-			draw_ceiling(x, y, mlx->mlx_ptr, mlx->mlx_win);
+			draw_ceiling(x, y, mlx->mlx_ptr, mlx->mlx_win, mlx->mapdata->ceiling_num);
 		else if (is_floor(y, draw_end))
-			draw_floor(x, y, mlx->mlx_ptr, mlx->mlx_win);
+			draw_floor(x, y, mlx->mlx_ptr, mlx->mlx_win, mlx->mapdata->floor_num);
 		else
 			draw_wall_texture(x, y, mlx);
 		y++;

@@ -109,7 +109,7 @@ void	move_right(t_mlx *mlx);
 void	rotate_left(t_mlx *mlx);
 void	rotate_right(t_mlx *mlx);
 void	draw_wall_texture(int x, int y, t_mlx *mlx);
-void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win);
-void	draw_ceiling(int x, int y, void *mlx_ptr, void *mlx_win);
+void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win, int floor_num[3]);
+void	draw_ceiling(int x, int y, void *mlx_ptr, void *mlx_win, int ceiling_num[3]);
 
 #endif

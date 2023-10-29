@@ -12,10 +12,10 @@
 
 #include "cub3d.h"
 
-void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win)
+void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win, int floor_num[3])
 {
 	long	color_floor;
 
-	color_floor = (0 * 65536) + (0 * 256) + 0;
+	color_floor = (floor_num[0] * 65536) + (floor_num[1] * 256) + floor_num[2];
 	mlx_pixel_put(mlx_ptr, mlx_win, x, y, color_floor);
 }
