@@ -46,9 +46,9 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 	while (y < WINSIZE_HEIGTH)
 	{
 		if (is_ceiling(y, draw_start))
-			draw_ceiling(x, y, mlx->mlx_ptr, mlx->mlx_win, mlx->mapdata->ceiling_num);
+			draw_ceiling(x, y, mlx->mapdata->ceiling_num, mlx);
 		else if (is_floor(y, draw_end))
-			draw_floor(x, y, mlx->mlx_ptr, mlx->mlx_win, mlx->mapdata->floor_num);
+			draw_floor(x, y, mlx->mapdata->floor_num, mlx);
 		else
 			draw_wall_texture(x, y, mlx);
 		y++;

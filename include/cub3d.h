@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 16:45:03 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:28:59 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	move_right(t_mlx *mlx);
 void	rotate_left(t_mlx *mlx);
 void	rotate_right(t_mlx *mlx);
 void	draw_wall_texture(int x, int y, t_mlx *mlx);
-void	draw_floor(int x, int y, void *mlx_ptr, void *mlx_win, int floor_num[3]);
-void	draw_ceiling(int x, int y, void *mlx_ptr, void *mlx_win, int ceiling_num[3]);
+void	draw_floor(int x, int y, int floor_num[3], t_mlx *mlx);
+void	draw_ceiling(int x, int y, int ceiling_num[3], t_mlx *mlx);
 
 #endif
