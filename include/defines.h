@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 16:45:03 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:52:23 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 # define MOVE_SPEED 0.3
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define NORTH_TEX 0
-# define SOUTH_TEX 1
-# define EAST_TEX 2
-# define WEST_TEX 3
+# define NORTH_TEX 1
+# define SOUTH_TEX 0
+# define EAST_TEX 3
+# define WEST_TEX 2
 # define MOVE_FORWARD 0
 # define MOVE_BACK 1
 # define MOVE_LEFT 2

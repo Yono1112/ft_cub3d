@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:39:47 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 03:26:08 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:52:57 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ static double	calc_tex_x(double ray_direct, int side, double wall_x)
 static int	set_index_texture(double ray_direct, int side)
 {
 	if (is_direction(NORTH, ray_direct, side))
-		return (NORTH_TEX);
-	if (is_direction(SOUTH, ray_direct, side))
 		return (SOUTH_TEX);
+	if (is_direction(SOUTH, ray_direct, side))
+		return (NORTH_TEX);
 	if (is_direction(WEST, ray_direct, side))
-		return (WEST_TEX);
-	if (is_direction(EAST, ray_direct, side))
 		return (EAST_TEX);
+	if (is_direction(EAST, ray_direct, side))
+		return (WEST_TEX);
 	return (-1);
 }
 
