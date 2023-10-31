@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/29 07:12:29 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 13:44:43 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char**	creat_new_map(char **map, int i)
 	while (map[stock])
 		stock++;
 	newmap = (char **)malloc(sizeof(char *) * (stock - i + 1));
+	if (!newmap)
+		exit_error(MALLOC_ERROR, NULL, NULL);
 	newmap[stock - i] = NULL;
 	stock = i;
 	i = 0;
@@ -54,6 +56,8 @@ char**	creat_new_map(char **map, int i)
 			j++;
 		}
 		newmap[i] = ft_strdup(map[i + stock]);
+		if (!newmap[i])
+			exit_error(MALLOC_ERROR, NULL, NULL);
 		i++;
 	}
 	return (newmap);

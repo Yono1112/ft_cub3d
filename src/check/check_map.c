@@ -19,6 +19,8 @@ void	check_map(char **map, int i)//checkではなくeditmap
 	while (map[i])
 	{
 		newline = malloc(sizeof(char)*maxlen);
+		if (!newline)
+			exit_error(MALLOC_ERROR, NULL, NULL);
 		newline[maxlen-1] = '\0';
 		strlen = ft_strlen(map[i]) - 1;
 		ft_memcpy(newline, map[i], strlen);

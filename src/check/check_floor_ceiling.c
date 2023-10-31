@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_floor_ceiling.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnaka <rnaka@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
+/*   Updated: 2023/10/31 14:23:23 by rnaka            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
 bool	check_num_coma(char* str)
 {
 	int i;
@@ -32,6 +45,8 @@ int	split_number(t_map *mapdata)
 	i = 0;
 	array_floor = ft_split(mapdata->floor, ',');
 	array_ceiling = ft_split(mapdata->ceiling, ',');
+	if (!array_floor || !array_ceiling)
+		exit_error(MALLOC_ERROR, mapdata,NULL);
 	while (array_ceiling[i] && array_floor[i])
 	{
 		num_ceiling = ft_atoi(array_ceiling[i]);
@@ -42,8 +57,6 @@ int	split_number(t_map *mapdata)
 		free(array_ceiling[i]);
 		mapdata->floor_num[i] = num_floor;
 		mapdata->ceiling_num[i] = num_ceiling;
-		printf("floor = %d\n",mapdata->floor_num[i]);
-		printf("ceiling = %d\n",mapdata->ceiling_num[i]);
 		i++;
 	}
 	free(array_floor);

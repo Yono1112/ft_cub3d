@@ -20,7 +20,7 @@ char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 
 	while (!ft_isalpha(line[j]))
 		j++;
-	if (ft_strncmp(line + j, dir, ft_strlen(dir))) //方向キー
+	if (ft_strncmp(line + j, dir, ft_strlen(dir)))
 		exit_error(TEXTURE_ERROR, mapdata, map);
 	j += ft_strlen(dir);
 	if (ft_strlen(dir) == 1)
@@ -33,7 +33,7 @@ char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 		while (line[j] && (!ft_isprint(line[j]) || line[j] == ' '))
 			j++;
 	}
-	return change_newline_to_null(ft_strdup(line + j));//テクスチャー名の後のスペースを除けていない
+	return change_newline_to_null(ft_strdup(line + j));
 }
 
 int	check_texture(char **map, t_map *mapdata)
@@ -58,14 +58,6 @@ int	check_texture(char **map, t_map *mapdata)
 	i++;
 	skip_space(map, &i, mapdata);
 	mapdata->ceiling = check_direction(map[i], "C", map, mapdata);
-//------------------------------------------------------------
-//	printf("no = %s\n", mapdata->no);
-//	printf("so = %s\n", mapdata->so);
-//	printf("ea = %s\n", mapdata->ea);
-//	printf("we = %s\n", mapdata->we);
-//	printf("floor = %s\n", mapdata->floor);
-//	printf("ceiling = %s\n", mapdata->ceiling);
-//------------------------------------------------------------
 	i++;
 	skip_space(map, &i, mapdata);
 	return i;
