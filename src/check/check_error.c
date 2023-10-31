@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/29 05:49:15 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 19:27:12 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ static void	free_map_last_line(char **map)
 
 static char	**read_mapfile(int fd)
 {
-	int	size;
+	int		size;
 	char	**map;
 	char	**save;
 	char	*stock;
 
-	map = NULL; stock = get_next_line(fd);
+	map = NULL;
+	stock = get_next_line(fd);
 	if (!stock)
 		exit_error(READFILE_ERROR, NULL, NULL);
 	size = 0;
@@ -54,6 +55,8 @@ static char	**read_mapfile(int fd)
 	{
 		size++;
 		save = (char **)malloc(sizeof(char *) * (size + 1));
+		if (!save)
+			exit_error(MALLOC_ERROR, NULL, NULL);
 		chardp_mig(map, save);
 		save[size - 1] = stock;
 		save[size] = NULL;
@@ -77,7 +80,7 @@ static void	init_mapdata(t_map *mapdata)
 
 void	check_error(const int argc, const char **argv, t_map *mapdata)
 {
-	int	fd;
+	int		fd;
 	char	**mapfile;
 
 	init_mapdata(mapdata);

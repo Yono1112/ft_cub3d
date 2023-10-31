@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 16:52:23 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:17:19 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 # define MLX_WINDOW_ERROR "Cannot run mlx_new_window()"
 # define SET_PLAYER_ERROR "Start position is not set"
 # define IMG_PTR_ERROR "Cannot convert xpm to image in mlx_xpm_file_to_image()"
+# define MALLOC_ERROR "Faild to allocate memory"
 # define DETA_ADDR_ERROR\
 		"Cannot get memory address of image in mlx_get_data_addr()"
 # define TOO_MANY_MAPS "too meny maps in file"
