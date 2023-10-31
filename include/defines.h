@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/31 19:17:19 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 21:18:41 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define DESTROY_PREFIX "\x1b[96mFINISH\x1b[0m"
 
 // error_message
-# define ERROR_PREFIX "\e[31mERROR\e[m: "
+# define ERROR_PREFIX "\e[31mERROR\e[m\n"
 # define ARGUMENT_ERROR "Missing required arguments"
 # define FILENAME_ERROR "Missing filename"
 # define OPENFILE_ERROR "Cannot open the file"
