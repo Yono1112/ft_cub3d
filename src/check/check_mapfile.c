@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/31 13:44:43 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 20:01:26 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,26 @@ void	skip_space(char **map, int *i, t_map *mapdata)
 		exit_error(NOT_ENOUGH_ARGUMENT_ERROR, mapdata, map);
 }
 
-char**	creat_new_map(char **map, int i)
+char	**malloc_new_map(int i, int stock, char **map)
 {
-	int	j;
-	int	stock;
 	char	**newmap;
 
-	stock = i;
 	while (map[stock])
 		stock++;
 	newmap = (char **)malloc(sizeof(char *) * (stock - i + 1));
 	if (!newmap)
 		exit_error(MALLOC_ERROR, NULL, NULL);
 	newmap[stock - i] = NULL;
+	return (newmap);
+}
+
+char	**creat_new_map(char **map, int i)
+{
+	int		j;
+	int		stock;
+	char	**newmap;
+
+	newmap = malloc_new_map(i, i, map);
 	stock = i;
 	i = 0;
 	while (map[i + stock])
@@ -51,7 +58,7 @@ char**	creat_new_map(char **map, int i)
 		{
 			if (map[i + stock][j] == ' ')
 				map[i + stock][j] = '1';
-			else if(map[i + stock][j] == '2')
+			else if (map[i + stock][j] == '2')
 				map[i + stock][j] = '0';
 			j++;
 		}

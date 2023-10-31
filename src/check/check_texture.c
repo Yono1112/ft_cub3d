@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/31 19:45:16 by rnaka             #+#    #+#             */
+/*   Updated: 2023/10/31 20:02:40 by rnaka            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-char*	change_newline_to_null(char *str)
+
+char	*change_newline_to_null(char *str)
 {
 	int	i;
 
@@ -10,14 +23,15 @@ char*	change_newline_to_null(char *str)
 			str[i] = '\0';
 		i++;
 	}
-	printf("%s\n",str);
+	printf("%s\n", str);
 	return (str);
 }
 
 char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 {
-	int j = 0;
+	int	j;
 
+	j = 0;
 	while (!ft_isalpha(line[j]))
 		j++;
 	if (ft_strncmp(line + j, dir, ft_strlen(dir)))
@@ -33,7 +47,7 @@ char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 		while (line[j] && (!ft_isprint(line[j]) || line[j] == ' '))
 			j++;
 	}
-	return change_newline_to_null(ft_strdup(line + j));
+	return (change_newline_to_null(ft_strdup(line + j)));
 }
 
 int	check_texture(char **map, t_map *mapdata)
@@ -60,6 +74,5 @@ int	check_texture(char **map, t_map *mapdata)
 	mapdata->ceiling = check_direction(map[i], "C", map, mapdata);
 	i++;
 	skip_space(map, &i, mapdata);
-	return i;
+	return (i);
 }
-

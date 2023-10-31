@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/31 13:42:31 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 19:27:12 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	free_map_last_line(char **map)
 
 static char	**read_mapfile(int fd)
 {
-	int	size;
+	int		size;
 	char	**map;
 	char	**save;
 	char	*stock;
@@ -80,7 +80,7 @@ static void	init_mapdata(t_map *mapdata)
 
 void	check_error(const int argc, const char **argv, t_map *mapdata)
 {
-	int	fd;
+	int		fd;
 	char	**mapfile;
 
 	init_mapdata(mapdata);
