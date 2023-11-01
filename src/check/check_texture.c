@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:45:16 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/31 20:02:40 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 23:48:42 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 	j += ft_strlen(dir);
 	if (ft_strlen(dir) == 1)
 	{
-		while (line[j] && !ft_isdigit(line[j]))
+		//while (line[j] && !ft_isdigit(line[j]))
+		while (line[j] && (!ft_isprint(line[j]) || line[j] == ' '))
 			j++;
 	}
 	else
