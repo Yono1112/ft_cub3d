@@ -1,11 +1,11 @@
-NO ./wall_texture/wall_texture_north.xpm
+                                     NO ./wall_texture/wall_texture_north.xpm
 SO ./wall_texture/wall_texture_south.xpm
 WE                 ./wall_texture/wall_texture_west.xpm
 
 
 EA ./wall_texture/wall_texture_east.xpm
 
-F                   0,277,0
+F                   0,255,0
 C 0,255,255
 
         1111111111111111111111111
