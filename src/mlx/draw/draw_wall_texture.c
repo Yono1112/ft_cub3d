@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:39:47 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 16:52:57 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:50:41 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx)
 
 	wall_x = calc_wall_x(mlx);
 	tex_x = calc_tex_x(mlx->ray_direct, mlx->side, wall_x);
-	tex_y = (int)mlx->tex_pos & (TEX_HEIGHT - 1);
-	mlx->tex_pos += mlx->step;
+	tex_y = (int)mlx->wall_y % TEX_HEIGHT;
+	mlx->wall_y += mlx->step;
 	index_texture = set_index_texture(mlx->ray_direct, mlx->side);
 	if (index_texture < 0)
 		exit_error(INDEX_TEXTURE_ERROR, mlx->mapdata, mlx->mapdata->map);

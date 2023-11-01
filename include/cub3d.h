@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 17:28:59 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:30:15 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_mlx
 	double	wall_height;
 	t_img	wall_texture[4];
 	double	step;
-	double	tex_pos;
+	double	wall_y;
 }	t_mlx;
 
 //check-mapfile
