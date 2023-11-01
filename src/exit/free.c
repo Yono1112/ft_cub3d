@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:39 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 16:29:40 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:40:22 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_map(char **map)
 		free(map[i]);
 		i++;
 	}
-	free(map[i]);
 	free(map);
 }
 

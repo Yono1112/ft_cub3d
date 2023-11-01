@@ -55,7 +55,7 @@
 # define DESTROY_PREFIX "\x1b[96mFINISH\x1b[0m"
 
 // error_message
-# define ERROR_PREFIX "\e[31mERROR\e[m: "
+# define ERROR_PREFIX "\e[31mERROR\e[m\n"
 # define ARGUMENT_ERROR "Missing required arguments"
 # define FILENAME_ERROR "Missing filename"
 # define OPENFILE_ERROR "Cannot open the file"

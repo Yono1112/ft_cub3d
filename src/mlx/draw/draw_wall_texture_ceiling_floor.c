@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:58 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/29 17:30:31 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:30:08 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x)
 	y = 0;
 	set_draw_start_end(mlx->wall_height, &draw_start, &draw_end);
 	mlx->step = 1.0 * TEX_HEIGHT / mlx->wall_height;
-	mlx->tex_pos = (draw_start - WINSIZE_HEIGTH / 2 + mlx->wall_height / 2)
+	mlx->wall_y = (draw_start - WINSIZE_HEIGTH / 2 + mlx->wall_height / 2)
 		* mlx->step;
 	while (y < WINSIZE_HEIGTH)
 	{

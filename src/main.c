@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:35:00 by yumaohno          #+#    #+#             */
 /*   Updated: 2023/10/31 20:59:45 by rnaka            ###   ########.fr       */
@@ -31,9 +31,9 @@ int	main(int argc, char **argv)
 	t_map	mapdata;
 
 	check_error((const int)argc, (const char **)argv, &mapdata);
-	print_map_debug(mapdata.map);//
+	print_map_debug(mapdata.map);
 	run_mlx(&mapdata);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 __attribute__((destructor))
