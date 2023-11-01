@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_floor_ceiling.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/01 12:50:14 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:20:40 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ bool	check_num_coma(char *str)
 	return (true);
 }
 
+void	free_split(char **split1, char **split2)
+{
+	free_map(split1);
+	free_map(split2);
+}
+
 int	split_number(t_map *mapdata)
 {
 	char	**array_ceiling;
@@ -54,14 +60,14 @@ int	split_number(t_map *mapdata)
 		num_ceiling = ft_atoi(array_ceiling[i]);
 		num_floor = ft_atoi(array_floor[i]);
 		if (num_ceiling > 255 || num_floor > 255)
+		{
+			free_split(array_ceiling, array_floor);
 			return (false);
-		free(array_floor[i]);
-		free(array_ceiling[i]);
+		}
 		mapdata->floor_num[i] = num_floor;
 		mapdata->ceiling_num[i++] = num_ceiling;
 	}
-	free(array_floor);
-	free(array_ceiling);
+	free_split(array_ceiling, array_floor);
 	return (true);
 }
 
