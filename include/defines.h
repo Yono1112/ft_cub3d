@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/01 12:49:30 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/02 14:40:21 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@
 # define MALLOC_ERROR "Faild to allocate memory"
 # define DETA_ADDR_ERROR\
 		"Cannot get memory address of image in mlx_get_data_addr()"
-# define TOO_MANY_MAPS "too meny maps in file"
+# define TOO_MANY_MAPS "too many maps in file"
 # define INDEX_TEXTURE_ERROR "cannot set index_texture in draw_wall_texture()"
 # define FLOOR_CEILING_ERROR "floor or ceiling number error"
 #endif

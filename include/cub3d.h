@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:30:35 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:39:28 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_mlx
 void	exit_error(char *str, t_map *mapdata, char **map);
 void	check_error(const int argc, const char **argv, t_map *mapdata);
 void	check_mapfile(char **argv, t_map *mapdata);
+void	file_name(const int argc, const char *argv[]);
 void	free_map(char **map);
 void	free_data(t_map *mapdata, char **map);
 // raycast
