@@ -6,23 +6,11 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:07:25 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:27:59 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:31:03 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
 
 void	ft_init_mlx(t_mlx *mlx, t_map *mapdata)
 {
