@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:45:16 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/01 20:31:57 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/02 03:36:12 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 	int	j;
 
 	j = 0;
-	while (!ft_isalpha(line[j]))
+	while (!ft_isprint(line[j]) || line[j] == ' ')
 		j++;
 	if (ft_strncmp(line + j, dir, ft_strlen(dir)))
 		exit_error(TEXTURE_ERROR, mapdata, map);

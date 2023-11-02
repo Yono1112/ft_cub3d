@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:35 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/31 20:01:26 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/02 03:47:07 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	skip_space(char **map, int *i, t_map *mapdata)
 	while (map[*i])
 	{
 		j = 0;
-		while (!ft_isprint(map[*i][j]) && map[*i][j])
+		while ((!ft_isprint(map[*i][j]) || map[*i][j] == ' ') && map[*i][j])
 			j++;
 		if (ft_isprint(map[*i][j]))
 			break ;
