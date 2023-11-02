@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 16:35:00 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:30:21 by yumaohno         ###   ########.fr       */
+/*   Created: 2023/10/29 16:29:36 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/29 16:29:37 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub3d.h"
+#include "cub3d.h"
 
-void	print_map(char **map)
+void	exit_error(char *str, t_map *mapdata, char **map)
 {
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	t_map	mapdata;
-
-	check_error((const int)argc, (const char **)argv, &mapdata);
-	print_map(mapdata.map);
-	run_mlx(&mapdata);
-	exit(EXIT_SUCCESS);
-}
-
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q cub3D");
+	if (mapdata)
+		free_data(mapdata, map);
+	write(STDERR_FILENO, ERROR_PREFIX, ft_strlen(ERROR_PREFIX));
+	if (str)
+		write(STDERR_FILENO, str, ft_strlen(str));
+	write(STDERR_FILENO, "\n", 1);
+	exit(EXIT_FAILURE);
 }

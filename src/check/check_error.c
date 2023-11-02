@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:58:07 by rnaka             #+#    #+#             */
-/*   Updated: 2023/10/14 12:22:15 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/10/31 19:27:12 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	chardp_mig(char **map, char **save)
 	}
 }
 
-static void	free_map(char **map)
+static void	free_map_last_line(char **map)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ static void	free_map(char **map)
 
 static char	**read_mapfile(int fd)
 {
-	int	size;
+	int		size;
 	char	**map;
 	char	**save;
 	char	*stock;
@@ -49,31 +49,47 @@ static char	**read_mapfile(int fd)
 	map = NULL;
 	stock = get_next_line(fd);
 	if (!stock)
-		error(Readfile_Error);
+		exit_error(READFILE_ERROR, NULL, NULL);
 	size = 0;
 	while (stock)
 	{
 		size++;
 		save = (char **)malloc(sizeof(char *) * (size + 1));
+		if (!save)
+			exit_error(MALLOC_ERROR, NULL, NULL);
 		chardp_mig(map, save);
 		save[size - 1] = stock;
 		save[size] = NULL;
-		free_map(map);
+		free_map_last_line(map);
 		map = save;
 		stock = get_next_line(fd);
 	}
 	return (map);
 }
 
+static void	init_mapdata(t_map *mapdata)
+{
+	mapdata->no = NULL;
+	mapdata->so = NULL;
+	mapdata->ea = NULL;
+	mapdata->we = NULL;
+	mapdata->floor = NULL;
+	mapdata->ceiling = NULL;
+	mapdata->map = NULL;
+}
+
 void	check_error(const int argc, const char **argv, t_map *mapdata)
 {
-	int	fd;
+	int		fd;
 	char	**mapfile;
 
+	init_mapdata(mapdata);
 	file_name(argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error(Filename_Error);
+		exit_error(FILENAME_ERROR, NULL, NULL);
 	mapfile = read_mapfile(fd);
+	close(fd);
 	check_mapfile(mapfile, mapdata);
+	free_map(mapfile);
 }

@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 16:35:00 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:30:21 by yumaohno         ###   ########.fr       */
+/*   Created: 2023/10/27 02:09:06 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/27 02:35:05 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub3d.h"
+#include "cub3d.h"
 
-void	print_map(char **map)
+int	ft_raycast(t_mlx *mlx)
 {
-	int	i;
+	size_t	x;
 
-	i = 0;
-	while (map[i])
+	x = 0;
+	while (x < WINSIZE_WIDTH)
 	{
-		printf("%s\n", map[i]);
-		i++;
+		calc_wall_height(mlx, x);
+		draw_wall_texture_ceiling_floor(mlx, x);
+		x++;
 	}
-}
-
-int	main(int argc, char **argv)
-{
-	t_map	mapdata;
-
-	check_error((const int)argc, (const char **)argv, &mapdata);
-	print_map(mapdata.map);
-	run_mlx(&mapdata);
-	exit(EXIT_SUCCESS);
-}
-
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q cub3D");
+	return (0);
 }

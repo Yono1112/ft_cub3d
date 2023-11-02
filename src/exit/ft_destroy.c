@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_destroy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 16:35:00 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:30:21 by yumaohno         ###   ########.fr       */
+/*   Created: 2023/10/29 16:29:42 by yumaohno          #+#    #+#             */
+/*   Updated: 2023/10/29 16:42:31 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub3d.h"
+#include "cub3d.h"
 
-void	print_map(char **map)
+int	ft_destroy(t_mlx *mlx)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	t_map	mapdata;
-
-	check_error((const int)argc, (const char **)argv, &mapdata);
-	print_map(mapdata.map);
-	run_mlx(&mapdata);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
+	while (i < 4)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->wall_texture[i++].img_ptr);
+	free_data(mlx->mapdata, mlx->mapdata->map);
+	write(STDOUT_FILENO, DESTROY_PREFIX, ft_strlen(DESTROY_PREFIX));
+	write(STDOUT_FILENO, "\n", 1);
 	exit(EXIT_SUCCESS);
-}
-
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q cub3D");
 }

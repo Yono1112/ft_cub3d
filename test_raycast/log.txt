@@ -1,0 +1,190 @@
+start init_wall_texture
+finish init_wall_texture
+2
+press D key
+before mlx->pos_x: 9.500000, mlx->pos_y: 4.000000
+cos: 1.000000, sin: 0.000000
+after mlx->pos_x: 9.500000, mlx->pos_y: 4.250000
+2
+press D key
+before mlx->pos_x: 9.500000, mlx->pos_y: 4.250000
+cos: 1.000000, sin: 0.000000
+after mlx->pos_x: 9.500000, mlx->pos_y: 4.500000
+13
+press W key
+before mlx->pos_x: 9.500000, mlx->pos_y: 4.500000
+mlx->player_direct: 0.000000
+mlx->pos_x: 9.750000
+mlx->pos_y: 4.500000
+after mlx->pos_x: 9.750000, mlx->pos_y: 4.500000
+13
+press W key
+before mlx->pos_x: 9.750000, mlx->pos_y: 4.500000
+mlx->player_direct: 0.000000
+mlx->pos_x: 10.000000
+mlx->pos_y: 4.500000
+after mlx->pos_x: 10.000000, mlx->pos_y: 4.500000
+13
+press W key
+before mlx->pos_x: 10.000000, mlx->pos_y: 4.500000
+mlx->player_direct: 0.000000
+mlx->pos_x: 10.250000
+mlx->pos_y: 4.500000
+after mlx->pos_x: 10.250000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 10.250000, mlx->pos_y: 4.500000
+after mlx->pos_x: 10.000000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 10.000000, mlx->pos_y: 4.500000
+after mlx->pos_x: 9.750000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 9.750000, mlx->pos_y: 4.500000
+after mlx->pos_x: 9.500000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 9.500000, mlx->pos_y: 4.500000
+after mlx->pos_x: 9.250000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 9.250000, mlx->pos_y: 4.500000
+after mlx->pos_x: 9.000000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 9.000000, mlx->pos_y: 4.500000
+after mlx->pos_x: 8.750000, mlx->pos_y: 4.500000
+1
+press S key
+before mlx->pos_x: 8.750000, mlx->pos_y: 4.500000
+after mlx->pos_x: 8.500000, mlx->pos_y: 4.500000
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+13
+press W key
+before mlx->pos_x: 8.500000, mlx->pos_y: 4.500000
+mlx->player_direct: 0.698132
+mlx->pos_x: 8.691511
+mlx->pos_y: 4.660697
+after mlx->pos_x: 8.691511, mlx->pos_y: 4.660697
+13
+press W key
+before mlx->pos_x: 8.691511, mlx->pos_y: 4.660697
+mlx->player_direct: 0.698132
+mlx->pos_x: 8.883022
+mlx->pos_y: 4.821394
+after mlx->pos_x: 8.883022, mlx->pos_y: 4.821394
+13
+press W key
+before mlx->pos_x: 8.883022, mlx->pos_y: 4.821394
+mlx->player_direct: 0.698132
+mlx->pos_x: 9.074533
+mlx->pos_y: 4.982091
+after mlx->pos_x: 9.074533, mlx->pos_y: 4.982091
+124
+press KEY_ARROW_RIGHT key
+13
+press W key
+before mlx->pos_x: 9.074533, mlx->pos_y: 4.982091
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.199533
+mlx->pos_y: 5.198597
+after mlx->pos_x: 9.199533, mlx->pos_y: 5.198597
+13
+press W key
+before mlx->pos_x: 9.199533, mlx->pos_y: 5.198597
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.324533
+mlx->pos_y: 5.415103
+after mlx->pos_x: 9.324533, mlx->pos_y: 5.415103
+13
+press W key
+before mlx->pos_x: 9.324533, mlx->pos_y: 5.415103
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.449533
+mlx->pos_y: 5.631610
+after mlx->pos_x: 9.449533, mlx->pos_y: 5.631610
+13
+press W key
+before mlx->pos_x: 9.449533, mlx->pos_y: 5.631610
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.574533
+mlx->pos_y: 5.848116
+after mlx->pos_x: 9.574533, mlx->pos_y: 5.848116
+13
+press W key
+before mlx->pos_x: 9.574533, mlx->pos_y: 5.848116
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.699533
+mlx->pos_y: 6.064622
+after mlx->pos_x: 9.699533, mlx->pos_y: 6.064622
+13
+press W key
+before mlx->pos_x: 9.699533, mlx->pos_y: 6.064622
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.824533
+mlx->pos_y: 6.281129
+after mlx->pos_x: 9.824533, mlx->pos_y: 6.281129
+13
+press W key
+before mlx->pos_x: 9.824533, mlx->pos_y: 6.281129
+mlx->player_direct: 1.047198
+mlx->pos_x: 9.949533
+mlx->pos_y: 6.497635
+after mlx->pos_x: 9.949533, mlx->pos_y: 6.497635
+13
+press W key
+before mlx->pos_x: 9.949533, mlx->pos_y: 6.497635
+mlx->player_direct: 1.047198
+mlx->pos_x: 10.074533
+mlx->pos_y: 6.714142
+after mlx->pos_x: 10.074533, mlx->pos_y: 6.714142
+13
+press W key
+before mlx->pos_x: 10.074533, mlx->pos_y: 6.714142
+mlx->player_direct: 1.047198
+mlx->pos_x: 10.199533
+mlx->pos_y: 6.930648
+after mlx->pos_x: 10.199533, mlx->pos_y: 6.930648
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+124
+press KEY_ARROW_RIGHT key
+13
+press W key
+before mlx->pos_x: 10.199533, mlx->pos_y: 6.930648
+mlx->player_direct: 3.839724
+mlx->pos_x: 10.008022
+mlx->pos_y: 6.769951
+after mlx->pos_x: 10.008022, mlx->pos_y: 6.769951
+13
+press W key
+before mlx->pos_x: 10.008022, mlx->pos_y: 6.769951
+mlx->player_direct: 3.839724
+mlx->pos_x: 9.816511
+mlx->pos_y: 6.609254
+after mlx->pos_x: 9.816511, mlx->pos_y: 6.609254
+13
+press W key
+before mlx->pos_x: 9.816511, mlx->pos_y: 6.609254
+mlx->player_direct: 3.839724
+mlx->pos_x: 9.625000
+mlx->pos_y: 6.448557
+after mlx->pos_x: 9.625000, mlx->pos_y: 6.448557
+53
+FINISH: press ESC key

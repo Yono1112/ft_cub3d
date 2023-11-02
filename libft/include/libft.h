@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:20:46 by rnaka             #+#    #+#             */
-/*   Updated: 2023/07/19 10:22:20 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/02 14:55:00 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ int		ft_putpointer(unsigned long long point);
 int		ft_putnbrbase(long int n, int base, char c, int count);
 int		ft_putulong(unsigned int n, int base, char c, int count);
 char	*get_next_line(int fd);
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 #endif
