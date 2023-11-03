@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:45:16 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/02 03:36:12 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/03 17:51:14 by yuohno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,27 @@ char	*change_newline_to_null(char *str)
 	return (str);
 }
 
+char	*remove_space(char *result)
+{
+	int	i;
+
+	i = 0;
+	while (result[i])
+	{
+		if (result[i] == ' ')
+		{
+			result[i] = '\0';
+			return (result);
+		}
+		i++;
+	}
+	return (result);
+}
+
 char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 {
-	int	j;
+	int		j;
+	char	*result;
 
 	j = 0;
 	while (!ft_isprint(line[j]) || line[j] == ' ')
@@ -39,7 +57,8 @@ char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 	j += ft_strlen(dir);
 	while (line[j] && (!ft_isprint(line[j]) || line[j] == ' '))
 		j++;
-	return (change_newline_to_null(ft_strdup(line + j)));
+	result = change_newline_to_null(ft_strdup(line + j));
+	return (remove_space(result));
 }
 
 int	check_texture(char **map, t_map *mapdata)
