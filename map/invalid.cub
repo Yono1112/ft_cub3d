@@ -1,5 +1,5 @@
-NO ./wall_texture/wall_texture_north.xpm                 
-SO ./wall_texture/wall_texture_south.xpm
+NO ./wall_texture/wall_texture_north.xpm               
+SO ./wall_texture/wall_texture_south.xpm			
 WE ./wall_texture/wall_texture_west.xpm
 EA ./wall_texture/wall_texture_east.xpm
 
@@ -8,7 +8,7 @@ C 225,30,0
 
 11111111
 10000001
-1000N001
+1000N001           
 100000010
 100000010
 10000001

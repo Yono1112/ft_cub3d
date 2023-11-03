@@ -6,59 +6,41 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:45:16 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/03 17:51:14 by yuohno           ###   ########.fr       */
+/*   Updated: 2023/11/03 18:30:21 by yuohno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*change_newline_to_null(char *str)
+char	*change_newline_to_null(char *str, char start)
 {
 	int	i;
 
-	i = 0;
+	i = start;
 	while (str[i])
 	{
-		if (str[i] == '\n')
-			str[i] = '\0';
+		if (str[i] == '\n' || ft_isspace(str[i]))
+			break ;
 		i++;
 	}
+	str[i] = '\0';
 	printf("%s\n", str);
-	return (str);
-}
-
-char	*remove_space(char *result)
-{
-	int	i;
-
-	i = 0;
-	while (result[i])
-	{
-		if (result[i] == ' ')
-		{
-			result[i] = '\0';
-			return (result);
-		}
-		i++;
-	}
-	return (result);
+	return (ft_substr(str, start, i));
 }
 
 char	*check_direction(char *line, char *dir, char **map, t_map *mapdata)
 {
 	int		j;
-	char	*result;
 
 	j = 0;
-	while (!ft_isprint(line[j]) || line[j] == ' ')
+	while (!ft_isprint(line[j]) || ft_isspace(line[j]))
 		j++;
 	if (ft_strncmp(line + j, dir, ft_strlen(dir)))
 		exit_error(TEXTURE_ERROR, mapdata, map);
 	j += ft_strlen(dir);
-	while (line[j] && (!ft_isprint(line[j]) || line[j] == ' '))
+	while (line[j] && (!ft_isprint(line[j]) || ft_isspace(line[j])))
 		j++;
-	result = change_newline_to_null(ft_strdup(line + j));
-	return (remove_space(result));
+	return (change_newline_to_null(line, j));
 }
 
 int	check_texture(char **map, t_map *mapdata)

@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:20:46 by rnaka             #+#    #+#             */
-/*   Updated: 2023/03/20 10:55:33 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/03 18:28:26 by yuohno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ int		ft_putpointer(unsigned long long point);
 int		ft_putnbrbase(long int n, int base, char c, int count);
 int		ft_putulong(unsigned int n, int base, char c, int count);
 char	*get_next_line(int fd);
+int		ft_isspace(char c);
 #endif
