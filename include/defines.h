@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:40:21 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:33:24 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define MOVE_LEFT 2
 # define MOVE_RIGHT 3
 # define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_DESTROY_NOTIFY 17 
 # define GAME_NAME "cub3D"
 // # define ESC_DESTROY "press ESC key"
