@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/05 17:43:08 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:29:44 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ typedef struct s_mlx
 	int		map_y;
 	double	player_direct;
 	double	ray_direct;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	side_dist_x;

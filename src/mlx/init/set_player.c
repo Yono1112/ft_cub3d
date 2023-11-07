@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:07:40 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 03:24:01 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:29:26 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,37 @@
 static void	set_direction(t_mlx *mlx, char direction)
 {
 	if (direction == 'N')
+	{
 		mlx->player_direct = NORTH;
+		mlx->dir_x = 0;
+		mlx->dir_y = -1;
+		mlx->plane_x = 0.66;
+		mlx->plane_y = 0;
+	}
 	if (direction == 'S')
+	{
 		mlx->player_direct = SOUTH;
+		mlx->dir_x = 0;
+		mlx->dir_y = 1;
+		mlx->plane_x = -0.66;
+		mlx->plane_y = 0;
+	}
 	if (direction == 'E')
+	{
 		mlx->player_direct = EAST;
+		mlx->dir_x = 1;
+		mlx->dir_y = 0;
+		mlx->plane_x = 0;
+		mlx->plane_y = 0.66;
+	}
 	if (direction == 'W')
+	{
 		mlx->player_direct = WEST;
+		mlx->dir_x = -1;
+		mlx->dir_y = 0;
+		mlx->plane_x = 0;
+		mlx->plane_y = -0.66;
+	}
 }
 
 void	set_player(t_mlx *mlx, char **map)

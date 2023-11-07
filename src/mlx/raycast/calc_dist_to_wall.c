@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:53 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 03:23:31 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:49:48 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ static void	calc_delta_dist(t_mlx *mlx)
 
 double	calc_dist_to_wall(t_mlx *mlx, double ray_direct)
 {
+	(void)ray_direct;
 	mlx->map_x = (int)mlx->pos_x;
 	mlx->map_y = (int)mlx->pos_y;
-	mlx->ray_dir_x = cos(ray_direct);
-	mlx->ray_dir_y = sin(ray_direct);
+	// mlx->ray_dir_x = cos(ray_direct);
+	// mlx->ray_dir_y = sin(ray_direct);
+	mlx->ray_dir_x = mlx->dir_x + mlx->plane_x * mlx->camera_x;
+	mlx->ray_dir_y = mlx->dir_y + mlx->plane_y * mlx->camera_x;
 	calc_delta_dist(mlx);
 	calc_initial_step(mlx);
 	calc_dda_algorithm(mlx);

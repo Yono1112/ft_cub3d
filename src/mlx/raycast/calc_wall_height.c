@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:09:09 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 03:22:36 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:28:19 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static double	calc_ray_direct(t_mlx *mlx, size_t x)
 
 void	calc_wall_height(t_mlx *mlx, size_t x)
 {
+	mlx->camera_x = 2 * x / (double)WINSIZE_WIDTH - 1;
 	mlx->ray_direct = calc_ray_direct(mlx, x);
 	mlx->dist_to_wall = calc_dist_to_wall(mlx, mlx->ray_direct);
 	mlx->wall_height = WINSIZE_HEIGTH / mlx->dist_to_wall;
