@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/05 17:43:08 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:22:10 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ typedef struct s_mlx
 	int		map_x;
 	int		map_y;
 	double	player_direct;
-	double	ray_direct;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	side_dist_x;
@@ -97,7 +101,7 @@ int		ft_press_key(int i, t_mlx *mlx);
 int		ft_release_key(int key_num, t_mlx *mlx);
 void	calc_wall_height(t_mlx *mlx, size_t x);
 void	print_map(char **map);
-double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
+double	calc_dist_to_wall(t_mlx *mlx);
 int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
 char	*check_direction(char *line, char *dir, char **map, t_map *mapdata);

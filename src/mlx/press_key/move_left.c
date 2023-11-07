@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:12:29 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:51:23 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:43:35 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,15 @@
 
 void	move_left(t_mlx *mlx)
 {
-	double	dist_to_wall;
+	double	left_dir_x;
+	double	left_dir_y;
 
-	printf("press S key: move_left\n");
-	printf("before mlx->pos_x: %lf, mlx->pos_y: %lf\n", mlx->pos_x, mlx->pos_y);
-	dist_to_wall = calc_dist_to_wall(mlx,
-			(mlx->player_direct - 90 * (M_PI / 180)));
-	printf("dist_to_wall: %f\n", dist_to_wall);
-	if (dist_to_wall > MOVE_SPEED * 1.15)
-	{
-		mlx->pos_x = mlx->pos_x + MOVE_SPEED * sin(mlx->player_direct);
-		mlx->pos_y = mlx->pos_y - MOVE_SPEED * cos(mlx->player_direct);
-		printf("after mlx->pos_x: %lf, mlx->pos_y: %lf\n",
-			mlx->pos_x, mlx->pos_y);
-	}
-	else
-		printf("cannnot move left\n");
-	printf("----------------------------------------\n");
+	left_dir_x = mlx->dir_y;
+	left_dir_y = -mlx->dir_x;
+	if (mlx->mapdata->map[(int)(mlx->pos_y + left_dir_y * MOVE_SPEED)]
+		[(int)mlx->pos_x] == '0')
+		mlx->pos_y += left_dir_y * MOVE_SPEED;
+	if (mlx->mapdata->map[(int)(mlx->pos_y)]
+		[(int)(mlx->pos_x + left_dir_x * MOVE_SPEED)] == '0')
+		mlx->pos_x += left_dir_x * MOVE_SPEED;
 }
