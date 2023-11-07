@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:39:47 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/07 16:18:33 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:27:44 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ static double	calc_tex_x(t_mlx *mlx, int side, double wall_x)
 {
 	double	tex_x;
 
-	(void)side;
-	(void)mlx;
 	tex_x = (int)(wall_x * (double)TEX_WIDTH);
-	if (mlx->side == SIDE_Y && mlx->ray_dir_y >= 0)
+	if (is_direction(SOUTH, mlx, side))
 		tex_x = TEX_WIDTH - tex_x - 1;
-	else if (mlx->side == SIDE_X && mlx->ray_dir_x < 0)
+	else if (is_direction(WEST, mlx, side))
 		tex_x = TEX_WIDTH - tex_x - 1;
 	return (tex_x);
 }
