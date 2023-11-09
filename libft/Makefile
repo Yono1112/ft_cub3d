@@ -1,6 +1,6 @@
 NAME		= libft.a
 
-SRCS1	= ft_atoi.c		\
+SRCS1	= ft_atol.c		\
 		ft_bzero.c		\
 		ft_isalnum.c	\
 		ft_isalpha.c	\

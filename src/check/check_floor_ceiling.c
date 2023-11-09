@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/01 16:20:40 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/10 03:33:44 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@ int	split_number(t_map *mapdata)
 		exit_error(MALLOC_ERROR, mapdata, NULL);
 	while (array_ceiling[i] && array_floor[i])
 	{
-		num_ceiling = ft_atoi(array_ceiling[i]);
-		num_floor = ft_atoi(array_floor[i]);
-		if (num_ceiling > 255 || num_floor > 255)
+		num_ceiling = 0;
+		num_floor = 0;
+		num_ceiling = ft_atol(array_ceiling[i], &num_ceiling);
+		num_floor = ft_atol(array_floor[i], &num_floor);
+		printf("%d\n",num_ceiling);
+		if (num_ceiling < 0 || num_floor < 0  || num_ceiling > 255 || num_floor > 255)
 		{
 			free_split(array_ceiling, array_floor);
 			return (false);
