@@ -15,7 +15,7 @@ WE                 ./wall_texture/wall_texture_west.xpm
 
 EA ./wall_texture/wall_texture_east.xpm
 
-F                   222,255,2147483647
+F                   222,255,0
 C 0,255,255
 
         1111111111111111111111111

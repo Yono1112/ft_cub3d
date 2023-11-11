@@ -6,7 +6,7 @@
 /*   By: yuohno <yuohno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:05:26 by yuohno            #+#    #+#             */
-/*   Updated: 2023/11/10 03:28:53 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/10 13:55:56 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ long	ft_atol(const char *str, int *is_over_long)
 	i = 0;
 	sign = 1;
 	result = 0;
-	if (*is_over_long == -1)
-		return (-1);
 	while ((('\t' <= str[i] && str[i] <= '\r') || str[i] == ' ') && str[i])
 		i++;
 	if (str[i] == '-' || str[i] == '+')
