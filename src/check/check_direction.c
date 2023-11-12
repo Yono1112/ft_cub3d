@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:57:59 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/12 14:58:05 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/12 17:19:44 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,36 @@ char	*change_newline_to_null(char *str)
 
 void	move_path(char *line, int dir_num, t_map *mapdata)
 {
-	if (dir_num == 1)
+	if (dir_num == 1 && !mapdata->no)
 		mapdata->no = line;
-	if (dir_num == 2)
+	if (dir_num == 2 && !mapdata->so)
 		mapdata->so = line;
-	if (dir_num == 3)
+	if (dir_num == 3 && !mapdata->ea)
 		mapdata->ea = line;
-	if (dir_num == 4)
+	if (dir_num == 4 && !mapdata->we)
 		mapdata->we = line;
-	if (dir_num == 5)
+	if (dir_num == 5 && !mapdata->floor)
 		mapdata->floor = line;
-	if (dir_num == 6)
+	if (dir_num == 6 && !mapdata->ceiling)
 		mapdata->ceiling = line;
 }
+bool	is_null(int dir_num, t_map *mapdata)
+{
+	if (dir_num == 1 && !mapdata->no)
+		return (true);
+	if (dir_num == 2 && !mapdata->so)
+		return (true);
+	if (dir_num == 3 && !mapdata->ea)
+		return (true);
+	if (dir_num == 4 && !mapdata->we)
+		return (true);
+	if (dir_num == 5 && !mapdata->floor)
+		return (true);
+	if (dir_num == 6 && !mapdata->ceiling)
+		return (true);
+	return (false);
 
+}
 int	is_texture_trigger(char *trigger)
 {
 	char	*dir;
@@ -84,5 +100,7 @@ void	check_direction(char *line, char **map, t_map *mapdata)
 		j += 2;
 	while (line[j] && (!ft_isprint(line[j]) || line[j] == ' '))
 		j++;
+	if (!is_null(dir_num, mapdata))
+		exit_error(TEXTURE_ERROR, mapdata, map);
 	move_path(change_newline_to_null(ft_strdup(line + j)), dir_num, mapdata);
 }
