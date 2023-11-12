@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/02 14:39:28 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:48:32 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	print_map(char **map);
 double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
 int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
-char	*check_direction(char *line, char *dir, char **map, t_map *mapdata);
+void	check_direction(char *line, char **map, t_map *mapdata);
 int		check_texture(char **map, t_map *mapdata);
 void	skip_space(char **map, int *i, t_map *mapdata);
 void	check_single_map(char **map, int i, t_map *mapdata);
@@ -111,5 +111,6 @@ void	rotate_right(t_mlx *mlx);
 void	draw_wall_texture(int x, int y, t_mlx *mlx);
 void	draw_floor(int x, int y, int floor_num[3], t_mlx *mlx);
 void	draw_ceiling(int x, int y, int ceiling_num[3], t_mlx *mlx);
+void	check_direction(char *line, char **map, t_map *mapdata);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:39:58 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/07 00:06:59 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/12 13:52:37 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 bool	check_hole(char **map, int i, int j, int deadline)
 {
 	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' '
-		|| map[i][j] == '\0' || (map[i][j] == '\0' && j == 0) || deadline > 1000)
+		|| map[i][j] == '\0' || (map[i][j] == '\0' && j == 0)
+		|| deadline > 1000)
 		return (true);
 	if (j < 0 || i < 0 || !map[i] || map[i][j] == '\0'
 		|| map[i][j] == '1' || map[i][j] == '2')
 		return (false);
-	printf("deadline  = %d\n", deadline);
 	if (map[i][j] == '0')
 		map[i][j] = '2';
 	if (check_hole(map, i + 1, j, ++deadline))

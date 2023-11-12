@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/10 03:33:44 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/12 13:57:27 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ bool	check_num_coma(char *str)
 	return (true);
 }
 
-void	free_split(char **split1, char **split2)
+bool	free_split(char **split1, char **split2)
 {
 	free_map(split1);
 	free_map(split2);
+	return (false);
 }
 
 int	split_number(t_map *mapdata)
@@ -61,12 +62,9 @@ int	split_number(t_map *mapdata)
 		num_floor = 0;
 		num_ceiling = ft_atol(array_ceiling[i], &num_ceiling);
 		num_floor = ft_atol(array_floor[i], &num_floor);
-		printf("%d\n",num_ceiling);
-		if (num_ceiling < 0 || num_floor < 0  || num_ceiling > 255 || num_floor > 255)
-		{
-			free_split(array_ceiling, array_floor);
-			return (false);
-		}
+		if (num_ceiling < 0 || num_floor < 0
+			|| num_ceiling > 255 || num_floor > 255)
+			return (free_split(array_ceiling, array_floor));
 		mapdata->floor_num[i] = num_floor;
 		mapdata->ceiling_num[i++] = num_ceiling;
 	}
