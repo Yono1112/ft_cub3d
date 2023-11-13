@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/01 16:20:40 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:08:41 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ bool	check_num_coma(char *str)
 	return (true);
 }
 
-void	free_split(char **split1, char **split2)
+bool	free_split(char **split1, char **split2)
 {
 	free_map(split1);
 	free_map(split2);
+	return (false);
 }
 
 int	split_number(t_map *mapdata)
@@ -57,13 +58,13 @@ int	split_number(t_map *mapdata)
 		exit_error(MALLOC_ERROR, mapdata, NULL);
 	while (array_ceiling[i] && array_floor[i])
 	{
-		num_ceiling = ft_atoi(array_ceiling[i]);
-		num_floor = ft_atoi(array_floor[i]);
-		if (num_ceiling > 255 || num_floor > 255)
-		{
-			free_split(array_ceiling, array_floor);
-			return (false);
-		}
+		num_ceiling = 0;
+		num_floor = 0;
+		num_ceiling = ft_atol(array_ceiling[i], &num_ceiling);
+		num_floor = ft_atol(array_floor[i], &num_floor);
+		if (num_ceiling < 0 || num_floor < 0
+			|| num_ceiling > 255 || num_floor > 255)
+			return (free_split(array_ceiling, array_floor));
 		mapdata->floor_num[i] = num_floor;
 		mapdata->ceiling_num[i++] = num_ceiling;
 	}
@@ -73,6 +74,8 @@ int	split_number(t_map *mapdata)
 
 void	check_floor_ceiling(char **map, t_map *mapdata)
 {
+	mapdata->floor = removechr(mapdata->floor, ' ');
+	mapdata->ceiling = removechr(mapdata->ceiling, ' ');
 	if (!check_num_coma(mapdata->floor) || !check_num_coma(mapdata->ceiling))
 		exit_error(FLOOR_CEILING_ERROR, mapdata, map);
 	if (!split_number(mapdata))
