@@ -47,12 +47,14 @@ SRCS	= 	src/main.c		\
 		src/check/check_mapcontents.c \
 		src/check/check_mapcollect.c \
 		src/check/check_readable_texture.c \
+		src/check/check_direction.c \
 		src/mlx/press_key/move_back.c \
 		src/mlx/press_key/move_forward.c \
 		src/mlx/press_key/move_left.c \
 		src/mlx/press_key/move_right.c \
 		src/mlx/press_key/rotate_left.c \
 		src/mlx/press_key/rotate_right.c \
+		src/mlx/press_key/ft_release_key.c \
 		src/mlx/draw/draw_wall_texture.c \
 		src/mlx/draw/draw_floor.c \
 		src/mlx/draw/draw_ceiling.c \
