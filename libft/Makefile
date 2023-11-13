@@ -35,6 +35,7 @@ SRCS1	= ft_atol.c		\
 		ft_putstr_fd.c	\
 		ft_putendl_fd.c	\
 		ft_putnbr_fd.c	\
+		ft_removechr.c	\
 		ft_strcmp.c
 
 

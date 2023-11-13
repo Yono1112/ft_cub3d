@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/12 13:57:27 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/13 10:08:41 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	split_number(t_map *mapdata)
 
 void	check_floor_ceiling(char **map, t_map *mapdata)
 {
+	mapdata->floor = removechr(mapdata->floor, ' ');
+	mapdata->ceiling = removechr(mapdata->ceiling, ' ');
 	if (!check_num_coma(mapdata->floor) || !check_num_coma(mapdata->ceiling))
 		exit_error(FLOOR_CEILING_ERROR, mapdata, map);
 	if (!split_number(mapdata))
