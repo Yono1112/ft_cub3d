@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 02:08:46 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/10/27 02:17:18 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:17:12 by yumaohno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int	ft_press_key(int key_num, t_mlx *mlx)
 {
 	if (key_num == KEY_ESC)
 		ft_destroy(mlx);
-	else if (key_num == KEY_W)
-		move_forward(mlx);
+	if (key_num == KEY_W)
+		mlx->key_w = true;
 	else if (key_num == KEY_S)
-		move_back(mlx);
+		mlx->key_s = true;
 	else if (key_num == KEY_A)
-		move_left(mlx);
+		mlx->key_a = true;
 	else if (key_num == KEY_D)
-		move_right(mlx);
+		mlx->key_d = true;
 	else if (key_num == KEY_ARROW_LEFT)
-		rotate_left(mlx);
+		mlx->key_arrow_left = true;
 	else if (key_num == KEY_ARROW_RIGHT)
-		rotate_right(mlx);
+		mlx->key_arrow_right = true;
 	return (0);
 }
