@@ -56,7 +56,11 @@ typedef struct s_mlx
 	int		map_x;
 	int		map_y;
 	double	player_direct;
-	double	ray_direct;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	side_dist_x;
@@ -71,6 +75,12 @@ typedef struct s_mlx
 	t_img	wall_texture[4];
 	double	step;
 	double	wall_y;
+	bool	key_w;
+	bool	key_s;
+	bool	key_a;
+	bool	key_d;
+	bool	key_arrow_left;
+	bool	key_arrow_right;
 }	t_mlx;
 
 //check-mapfile
@@ -88,9 +98,10 @@ int		ft_raycast(t_mlx *mlx);
 void	draw_wall_texture_ceiling_floor(t_mlx *mlx, size_t x);
 void	set_wall_texture(t_mlx *mlx, t_map *mapdata);
 int		ft_press_key(int i, t_mlx *mlx);
+int		ft_release_key(int key_num, t_mlx *mlx);
 void	calc_wall_height(t_mlx *mlx, size_t x);
 void	print_map(char **map);
-double	calc_dist_to_wall(t_mlx *mlx, double ray_direct);
+double	calc_dist_to_wall(t_mlx *mlx);
 int		ft_destroy(t_mlx *mlx);
 int		ft_press_key(int key_num, t_mlx *mlx);
 void	check_direction(char *line, char **map, t_map *mapdata);
