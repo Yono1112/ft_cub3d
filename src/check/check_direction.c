@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:57:59 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/12 17:19:44 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/13 10:49:02 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	move_path(char *line, int dir_num, t_map *mapdata)
 	if (dir_num == 6 && !mapdata->ceiling)
 		mapdata->ceiling = line;
 }
+
 bool	is_null(int dir_num, t_map *mapdata)
 {
 	if (dir_num == 1 && !mapdata->no)
@@ -56,8 +57,8 @@ bool	is_null(int dir_num, t_map *mapdata)
 	if (dir_num == 6 && !mapdata->ceiling)
 		return (true);
 	return (false);
-
 }
+
 int	is_texture_trigger(char *trigger)
 {
 	char	*dir;
