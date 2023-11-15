@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:57:59 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/13 10:49:02 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/15 14:01:40 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	check_direction(char *line, char **map, t_map *mapdata)
 	dir_num = is_texture_trigger(line + j);
 	if (!dir_num)
 		exit_error(TEXTURE_ERROR, mapdata, map);
-	if (dir_num <= 5)
+	if (dir_num <= 4)
 		j += 3;
 	else
 		j += 2;
