@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:22:33 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/13 10:08:41 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/15 20:15:07 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,25 @@ bool	free_split(char **split1, char **split2)
 	return (false);
 }
 
-int	split_number(t_map *mapdata)
+void	split_number(t_map *mapdata, char ***array_ceiling, char ***array_floor)
+{
+	int	i;
+
+	i = 0;
+	*array_floor = ft_split(mapdata->floor, ',');
+	*array_ceiling = ft_split(mapdata->ceiling, ',');
+	if (!*array_floor || !*array_ceiling)
+		exit_error(MALLOC_ERROR, mapdata, NULL);
+	while ((*array_ceiling)[i] && (*array_floor)[i])
+		i++;
+	if (i != 3)
+	{
+		free_split(*array_ceiling, *array_floor);
+		exit_error(TEXTURE_ERROR, mapdata, NULL);
+	}
+}
+
+int	set_number(t_map *mapdata)
 {
 	char	**array_ceiling;
 	char	**array_floor;
@@ -52,10 +70,7 @@ int	split_number(t_map *mapdata)
 	int		i;
 
 	i = 0;
-	array_floor = ft_split(mapdata->floor, ',');
-	array_ceiling = ft_split(mapdata->ceiling, ',');
-	if (!array_floor || !array_ceiling)
-		exit_error(MALLOC_ERROR, mapdata, NULL);
+	split_number(mapdata, &array_ceiling, &array_floor);
 	while (array_ceiling[i] && array_floor[i])
 	{
 		num_ceiling = 0;
@@ -78,6 +93,6 @@ void	check_floor_ceiling(char **map, t_map *mapdata)
 	mapdata->ceiling = removechr(mapdata->ceiling, ' ');
 	if (!check_num_coma(mapdata->floor) || !check_num_coma(mapdata->ceiling))
 		exit_error(FLOOR_CEILING_ERROR, mapdata, map);
-	if (!split_number(mapdata))
+	if (!set_number(mapdata))
 		exit_error(TEXTURE_BIG_ERROR, mapdata, map);
 }
