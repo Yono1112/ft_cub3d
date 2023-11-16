@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/05 17:33:24 by yumaohno         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:58:05 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 # define NOT_ENOUGH_ARGUMENT_ERROR "Has not enough arguments"
 # define MAP_ARGUMENT_ERROR "Invalid arguments in map"
 # define NUM_ARGUMENT_ERROR "Invalid number of nums"
-# define HOLE_MAP_ERROR "There is hoge in map"
+# define HOLE_MAP_ERROR "There is hole in map"
 # define OPEN_TEXTURE_ERROR "Cannot open the texture"
 # define COMMA_ERROR "Commma error"
 # define TEXTURE_BIG_ERROR "Texture number error"
@@ -79,4 +79,5 @@
 # define TOO_MANY_MAPS "too many maps in file"
 # define INDEX_TEXTURE_ERROR "cannot set index_texture in draw_wall_texture()"
 # define FLOOR_CEILING_ERROR "floor or ceiling number error"
+# define HUGE_MAP_ERROR "The map size exceeds the allowable limit."
 #endif
