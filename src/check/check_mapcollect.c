@@ -6,22 +6,11 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:39:58 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/16 13:03:17 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/16 15:26:36 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	explore(char **map, int i, int j, int *deadline)
-{
-	if (j < 0 || i < 0 || !map[i] || map[i][j] == '\0'
-		|| map[i][j] == '1' || map[i][j] == '2')
-		return (0);
-	if (map[i][j] == '0')
-		map[i][j] = '2';
-	(*deadline)++;
-	return (check_hole(map, i, j, *deadline));
-}
 
 int	check_hole(char **map, int i, int j, int deadline)
 {
@@ -32,16 +21,24 @@ int	check_hole(char **map, int i, int j, int deadline)
 		return (1);
 	if (deadline > 1000)
 		return (2);
-	result = explore(map, i + 1, j, &deadline);
+	if (j < 0 || i < 0 || !map[i] || map[i][j] == '\0'
+		|| map[i][j] == '1' || map[i][j] == '2')
+		return (0);
+	if (map[i][j] == '0')
+		map[i][j] = '2';
+	result = check_hole(map, i + 1, j, ++deadline);
 	if (result)
 		return (result);
-	result = explore(map, i - 1, j, &deadline);
+	result = check_hole(map, i - 1, j, ++deadline);
 	if (result)
 		return (result);
-	result = explore(map, i, j + 1, &deadline);
+	result = check_hole(map, i, j + 1, ++deadline);
 	if (result)
 		return (result);
-	return (explore(map, i, j - 1, &deadline));
+	result = check_hole(map, i, j - 1, ++deadline);
+	if (result)
+		return (result);
+	return (--deadline, 0);
 }
 
 void	check_mapcollect(char **map, int i, t_map *mapdata)
