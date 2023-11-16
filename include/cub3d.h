@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:29:49 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/12 14:48:32 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/16 13:03:56 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ void	draw_wall_texture(int x, int y, t_mlx *mlx);
 void	draw_floor(int x, int y, int floor_num[3], t_mlx *mlx);
 void	draw_ceiling(int x, int y, int ceiling_num[3], t_mlx *mlx);
 void	check_direction(char *line, char **map, t_map *mapdata);
+int		check_hole(char **map, int i, int j, int deadline);
 
 #endif

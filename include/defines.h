@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/16 12:09:42 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/16 12:58:05 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@
 # define TOO_MANY_MAPS "too many maps in file"
 # define INDEX_TEXTURE_ERROR "cannot set index_texture in draw_wall_texture()"
 # define FLOOR_CEILING_ERROR "floor or ceiling number error"
+# define HUGE_MAP_ERROR "The map size exceeds the allowable limit."
 #endif
