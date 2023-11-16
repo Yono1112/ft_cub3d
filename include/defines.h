@@ -6,7 +6,7 @@
 /*   By: yumaohno <yumaohno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:43:31 by yumaohno          #+#    #+#             */
-/*   Updated: 2023/11/16 12:58:05 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/11/16 16:29:08 by yuohno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
-# define WINSIZE_WIDTH 480
-# define WINSIZE_HEIGTH 480
+# define WINSIZE_WIDTH 600
+# define WINSIZE_HEIGTH 600
 # define SOUTH 1.570796
 // # define SOUTH (M_PI / 180) * 90
 # define NORTH 4.712389
