@@ -6,24 +6,31 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:39:58 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/16 15:26:36 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/12/01 22:51:59 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+bool	is_wall(char **map, int i, int j)
+{
+	if (i == 0 || j == 0 || !map[i + 1] || map[i][j + 1] == '\0')
+		return (true);
+	return (false);
+}
+
 int	check_hole(char **map, int i, int j, int deadline)
 {
 	int	result;
 
-	if ((!map[i + 1] && map[i][j] == '0') || map[i][j] == ' '
-		|| map[i][j] == '\0' || (map[i][j] == '\0' && j == 0))
-		return (1);
-	if (deadline > 1000)
-		return (2);
 	if (j < 0 || i < 0 || !map[i] || map[i][j] == '\0'
 		|| map[i][j] == '1' || map[i][j] == '2')
 		return (0);
+	if ((is_wall(map, i, j) && map[i][j] == '0')
+		|| map[i][j] == ' ' || (map[i][j] == '\0' && j == 0))
+		return (1);
+	if (deadline > 1000)
+		return (2);
 	if (map[i][j] == '0')
 		map[i][j] = '2';
 	result = check_hole(map, i + 1, j, ++deadline);

@@ -2,7 +2,7 @@ NAME	= cub3D
 
 CC	= cc
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 
 DEBUG_FLAGS = -g -O0
 
