@@ -6,7 +6,7 @@
 /*   By: rnaka <rnaka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:45:16 by rnaka             #+#    #+#             */
-/*   Updated: 2023/11/14 21:19:07 by rnaka            ###   ########.fr       */
+/*   Updated: 2023/12/01 23:07:29 by rnaka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	remove_space_after_texture(char *line)
 			last_chr = i;
 		i++;
 	}
-	line[last_chr + 1] = '\0';
+	if (i != last_chr)
+		line[last_chr + 1] = '\0';
 }
 
 int	check_texture(char **map, t_map *mapdata)

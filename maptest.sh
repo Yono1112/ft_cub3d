@@ -8,7 +8,7 @@ YELLOW='\033[33m'
 NC='\033[0m' # No Color
 
 # errorboxディレクトリ内のerror*.cubファイルを検出して実行
-for file in map/errorbox/map{1..60}.cub; do
+for file in map/errorbox/map{1..90}.cub; do
     if [ -f "$file" ]; then
         echo -e "${YELLOW}実行中: $command $file${NC}"
         $command $file
