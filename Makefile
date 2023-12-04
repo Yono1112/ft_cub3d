@@ -4,7 +4,7 @@ CC	= cc
 
 CFLAGS	= -Wall -Wextra -Werror
 
-DEBUG_FLAGS = -g -O0
+DEBUG_FLAGS = -fsanitize=address
 
 INC	= -I./include
 
@@ -84,6 +84,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean all
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: re
 
 lldb: $(DEBUG_OBJS)
 	@make -C $(LIBFTDIR)
